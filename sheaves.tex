@@ -1,0 +1,152 @@
+\chapter{Sheaves}
+
+\section{Introduction}
+
+Functions\footnote{For now, in this introduction, we mean simply functions between sets, i.e. morphisms in $\Set$.} are arguably the most fundamental concept in mathematics. A key feature of functions is that they may be \emph{restricted}: given a function $f \colon X \to Y$ and a subset $X' \subseteq X$, we can produce a function
+\[f|_{X'} : X' \to Y\]
+defined simply by $f|_{X'}(x) = f(x)$. Equivalently, $f|_{X'}$ is the composite
+\[X' \hookrightarrow X \xrightarrow{f} Y.\]
+Of course, unless $X' = X$, the restriction $f|_{X'}$ holds less information than $f$ -- it no longer remembers the behavior of $f$ on the complement $X - X'$. However, the pair of functions $(f|_{X'}, f|_{X-X'})$ \emph{is} enough to recover the entire data of $f$; indeed we have
+\[f(x) = \begin{cases} f|_{X'}(x) &: x \in X' \\ f|_{X-X'}(x) &: x \notin X' \end{cases}\]
+for all $x \in X$. There is no more data in $f$ than what it does on $X'$ and its complement $X - X'$. This is special case of the following more general slogan.
+
+\begin{slogan}
+    Functions are globally determined by their local behavior.
+\end{slogan}
+
+This is only a slogan, so the terms ``global'' and ``local'' (and even ``function'') here are meant to be interpreted loosely. The central aim of this chapter is to develop the understanding that functions are \emph{precisely} those things which are globally determined by their local behavior. The desired understanding is \emph{unrigorous}, i.e. we aim to develop a certain mathematical intuition for what it means to be ``globally defined by local behavior'', and an intuition for what it means that functions are precisely those mathematical objects with this property. As with any goal of this flavor, we must develop the desired intuition by instantiating it in precise theorems.
+
+We can summarize our first example by noticing we have an isomorphism
+\[\Hom(X,Y) \cong \Hom(X',Y) \times \Hom(X - X', Y).\]
+For any sets $X$ and $Y$ and any subset $X' \subseteq X$. This is a special case of the universal property of coproducts, and more importantly for our purposes, it is also a special case of a \emph{sheaf condition}. We proceed by analyzing a more general situation.
+
+Let $X'$ and $X''$ be subsets of $X$. Then, given a function $f \colon X \to Y$, we may form the restrictions $f|_{X'}$ and $f|_{X''}$. This gives a map
+\begin{align*}
+    \Hom(X, Y) &\to \Hom(X',Y) \times \Hom(X'',Y) \\
+    f &\mapsto (f|_{X'}, f|_{X''})
+\end{align*}
+which is general is neither injective nor surjective. However, it is easy to understand precisely the failures of both of these conditions.
+
+\begin{proposition}
+    The map
+    \[
+        \Hom(X, Y) \to \Hom(X',Y) \times \Hom(X'',Y)
+    \]
+    is injective if and only if $X' \cup X'' = X$.
+\end{proposition}
+\begin{proof}
+    Elementary.
+\end{proof}
+
+Note that this map being injective is the same as saying that $f$ is always reconstructible from the data $(f|_{X'}, f|_{X''})$.
+
+\begin{proposition}
+    The image of the map
+    \[
+        \Hom(X, Y) \to \Hom(X',Y) \times \Hom(X'',Y)
+    \]
+    is precisely the set
+    \[
+        \{(f',f'') \in \Hom(X',Y) \times \Hom(X'', Y) : f'|_{X' \cap X''} = f''|_{X' \cap X''}\}.
+    \]
+\end{proposition}
+\begin{proof}
+    Elementary.
+\end{proof}
+
+To summarize all of the above: if $X'$ and $X''$ together cover $X$, then the data of a function on $X$ is equivalent to a pair of functions (one on $X'$ and one on $X''$) which agree on the overlap $X' \cap X''$. In other words, whenever $X = X' \cup X''$, we have a pullback square
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEhvbShYLFkpIl0sWzEsMCwiXFxIb20oWCcsWSkiXSxbMSwxLCJcXEhvbShYJyBcXGNhcCBYJycsWSkiXSxbMCwxLCJcXEhvbShYJycsWSkiXSxbMCwzXSxbMywyXSxbMCwxXSxbMSwyXSxbMCwyLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\Hom(X,Y)} \& {\Hom(X',Y)} \\
+	{\Hom(X'',Y)} \& {\Hom(X' \cap X'',Y)}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+in the category of sets.
+
+The situation is very much the same if we cover $X$ by more than two pieces.
+
+\begin{proposition}\label{prop:chap:sheaves:sec:intro:representables are sheaves}
+    Let $X = \bigcup_\alpha X'_\alpha$ for some collection of sets $\{X'_\alpha\}_\alpha$. Then for any set $Y$, there is an equalizer diagram
+    \[\Hom(X, Y) \to \prod_\alpha \Hom(X'_\alpha, Y) \rightrightarrows \prod_{\alpha, \beta} \Hom(X'_\alpha \cap X'_\beta, Y)\]
+    in the category of sets. Here the two parallel arrows are defined by
+    \[(f_\alpha)_\alpha \mapsto (f_\alpha |_{X'_\alpha \cap X'_\beta})_{\alpha,\beta}\]
+    and
+    \[(f_\alpha)_\alpha \mapsto (f_\beta |_{X'_\alpha \cap X'_\beta})_{\alpha,\beta}.\]
+\end{proposition}
+\begin{proof}
+    Exercise. In more detail:
+    \begin{enumerate}
+        \item Make it clear to yourself exactly what this proposition is saying.
+        \item Make it clear to yourself why this generalizes the previous discussion.
+        \item Prove the proposition.
+    \end{enumerate}
+    Remembering our earlier slogan, you should think to yourself about how this says that ``that functions on $X$ are determined globally by their local behavior''. It is very important that you really, fully understand this proposition before we continue.
+\end{proof}
+
+This is, essentially, the general form of the sheaf condition for sheaves on sets. We finish with an instantiation of our main goal: to understand that functions are \emph{precisely} those things which are determined globally by their local behaviors.
+
+\begin{theorem}
+    Let $\calF : \Set^\op \to \Set$ be a functor satisfying the following ``sheaf condition'':
+    \begin{description}
+        \item[$(\star)$] For any set $X$ and any collection of subsets $\{X'_\alpha\}_\alpha$ of $X$, if $X = \bigcup_\alpha X'_\alpha$ then
+        \[\calF(X) \to \prod_\alpha \calF(X'_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(X'_\alpha \cap X'_\beta)\]
+        is an equalizer diagram in $\Set$, where the maps above are given by precomposition with inclusions (as in \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}).
+    \end{description}
+    Then $\calF$ is representable, i.e. $\calF \cong \Hom({-},Y)$ for some $Y$.
+\end{theorem}
+\begin{proof}
+    Set $Y = \calF(\pt)$, where $\pt$ is your favorite singleton set\footnote{My favorite singleton set is $\{\varnothing\}$.}. We will now define a natural transformation $\calF \to \Hom({-},Y)$. For this, we first note that $\varnothing = \bigcup \varnothing$, whence we have an equalizer diagram of the form
+    \[\calF(\varnothing) \to \pt \rightrightarrows \pt,\]
+    showing that $\calF(\varnothing) \cong \pt$. Here we have used the fact that $\pt$ is terminal in $\Set$ (and empty products are terminal objects).
+    
+    Now let $X$ be an arbitrary set, and write $X = \bigcup_{x \in X} \{x\}$. Then we have an equalizer diagram
+    \[\calF(X) \to \prod_{x \in X} \calF(\{x\}) \rightrightarrows \prod_{x, x' \in X} \calF(\{x\} \cap \{x'\}).\]
+    We note that $\calF(\{x\} \cap \{x'\}) = \calF(\varnothing) \cong \pt$ unless $x = x'$. Therefore we have an equalizer diagram of the form
+    \[\calF(X) \to \prod_{x \in X} \calF(\{x\}) \rightrightarrows \prod_{x \in X} \calF(\{x\})\]
+    where the two parallel arrows are equal\footnote{Check!}. We conclude that the map
+    \[\calF(X) \to \prod_{x \in X} \calF(\{x\})\]
+    is an isomorphism. This allows us to construct an element
+    \[i \in \calF(Y) = \prod_{y \in Y} \calF(\{y\}) \cong \prod_{y \in Y} \calF(\pt) = \prod_{y \in Y} Y\]
+    from the tuple
+    \[(y)_{y \in Y},\]
+    where the isomorphism in the line above is product of the isomorphisms $\calF(\{y\}) \to \calF(\pt)$ obtained by applying $\calF$ to the unique map $\pt \to \{y\}$.
+    
+    By the Yoneda lemma, the element $i \in \calF(Y)$ corresponds to a natural transformation $\eta : \Hom({-},Y) \to \calF$. Explicitly, $\eta$ is given by
+    \[\eta_X(f) = \calF(f)(i).\]
+    We claim that this natural transformation is an isomorphism. For this, let $X$ be an arbitrary set, and notice that we have a commutative\footnote{Check!} diagram
+    % https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Rn0oWCkiXSxbMSwxLCJcXHByb2Rfe3ggXFxpbiBYfSBcXG1hdGhjYWx7Rn0oXFx7eFxcfSkiXSxbMCwwLCJcXEhvbShYLFkpIl0sWzEsMCwiXFxwcm9kX3t4IFxcaW4gWH0gXFxIb20oXFx7eFxcfSxZKSJdLFswLDEsIlxcY29uZyIsMl0sWzIsMCwiXFxldGFfWCIsMl0sWzMsMSwiXFxwcm9kX3t4IFxcaW4gWH0gXFxldGFfe1xce3hcXH19Il0sWzIsMywiXFxjb25nIl1d
+    \[\begin{tikzcd}[ampersand replacement=\&]
+    	{\Hom(X,Y)} \& {\prod_{x \in X} \Hom(\{x\},Y)} \\
+    	{\calF(X)} \& {\prod_{x \in X} \calF(\{x\})}
+    	\arrow["\cong", from=1-1, to=1-2]
+    	\arrow["{\eta_X}"', from=1-1, to=2-1]
+    	\arrow["{\prod_{x \in X} \eta_{\{x\}}}", from=1-2, to=2-2]
+    	\arrow["\cong"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    where the top horizontal map is an isomorphism by \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}. To show that $\eta_X$ is an isomorphism, it suffices to show that each $\eta_{\{x\}}$ is an isomorphism. We have a naturality square
+    % https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXG1hdGhjYWx7Rn0oXFx7eFxcfSkiXSxbMCwwLCJcXEhvbShcXHt4XFx9LFkpIl0sWzAsMSwiXFxIb20oXFxtYXRocm17cHR9LFkpIl0sWzEsMSwiXFxtYXRoY2Fse0Z9KFxcbWF0aHJte3B0fSkiXSxbMSwwLCJcXGV0YV97XFx7eFxcfX0iXSxbMSwyLCJcXGNvbmciLDJdLFswLDMsIlxcY29uZyJdLFsyLDMsIlxcZXRhX3tcXG1hdGhybXtwdH19IiwyXV0=
+    \[\begin{tikzcd}[ampersand replacement=\&]
+    	{\Hom(\{x\},Y)} \& {\calF(\{x\})} \\
+    	{\Hom(\pt,Y)} \& {\calF(\pt)}
+    	\arrow["{\eta_{\{x\}}}", from=1-1, to=1-2]
+    	\arrow["\cong"', from=1-1, to=2-1]
+    	\arrow["\cong", from=1-2, to=2-2]
+    	\arrow["{\eta_{\pt}}"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    so it suffices to show that $\eta_{\pt} : \Hom(\pt,Y) \to \calF(\pt) = Y$ is an isomorphism. We first precompose with the isomorphism
+    \begin{align*}
+        Y &\to \Hom(\pt,Y)\\
+        y &\mapsto f_y
+    \end{align*}
+    where $f_y : \pt \to Y$ is the unique function with image $\{y\}$. We will show that the composite $Y \to Y$ is the identity. So, let $y \in Y$ be arbitrary. We have
+    \[\eta_\pt(f_y) = \calF(f_y)(i).\]
+    But by construction of $i$, we have that\footnote{Check!} $\calF(f_y)$ sends $i$ to $y$.
+\end{proof}
+
+\section{Sheaves on Spaces}
+
+Now, let $X$ be a topological space. We are often interested in continuous functions on $X$. Continuous functions also have the property that they are determined globally by their local behavior: in this context, ``local'' is best interpreted as ``on an open set''.  

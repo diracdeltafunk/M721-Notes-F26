@@ -1,0 +1,62 @@
+%% Mathbb
+\newcommand{\RR}{\mathbb{R}}
+
+%% Mathcal
+\let\cal\mathcal
+\newcommand{\calF}{\cal{F}}
+
+%% Categories
+\let\cat\mathsf
+\newcommand{\catC}{\mathcal{C}}
+\newcommand{\catD}{\mathcal{D}}
+\newcommand{\Set}{\cat{Set}}
+% And related
+\newcommand{\op}{\mathrm{op}}
+
+%% Mathoperators
+\DeclareMathOperator{\Hom}{Hom}
+
+%% Other
+\newcommand{\pt}{\mathrm{pt}}
+
+%% Amsthm
+% normal theorem style
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+
+% slogan
+\newtheoremstyle{slogan}
+{\topsep}   % ABOVESPACE
+{\topsep}   % BELOWSPACE
+{\normalfont}  % BODYFONT
+{5pt}       % INDENT (empty value is the same as 0pt)
+{\bfseries \color{blue!70!black}} % HEADFONT
+{.}         % HEADPUNCT
+{5pt plus 1pt minus 1pt} % HEADSPACE
+{}          % CUSTOM-HEAD-SPEC
+\theoremstyle{slogan}
+\newtheorem{slogan}{Slogan}
+%warning
+\newtheoremstyle{warning}
+{\topsep}   % ABOVESPACE
+{\topsep}   % BELOWSPACE
+{\normalfont}  % BODYFONT
+{5pt}       % INDENT (empty value is the same as 0pt)
+{\bfseries \color{orange!70!black}} % HEADFONT
+{.}         % HEADPUNCT
+{5pt plus 1pt minus 1pt} % HEADSPACE
+{}          % CUSTOM-HEAD-SPEC
+\theoremstyle{warning}
+\newtheorem*{warning}{Warning}
+
+\mdfdefinestyle{leftbar}{
+    hidealllines=true,
+    leftline=true,
+    innerleftmargin=10pt,
+    innertopmargin=7pt,
+}
+\surroundwithmdframed[style=leftbar]{proof}
