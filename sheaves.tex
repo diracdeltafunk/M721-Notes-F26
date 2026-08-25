@@ -2,7 +2,7 @@
 
 \section{Introduction}
 
-Functions\footnote{For now, in this introduction, we mean simply functions between sets, i.e. morphisms in $\Set$.} are arguably the most fundamental concept in mathematics. A key feature of functions is that they may be \emph{restricted}: given a function $f \colon X \to Y$ and a subset $X' \subseteq X$, we can produce a function
+Functions\footnote{For now, in this introduction, we mean simply functions between sets, i.e. morphisms in $\Set$.} are arguably the most fundamental concept in mathematics. A key feature of functions is that they may be \emph{restricted}: given a function $f : X \to Y$ and a subset $X' \subseteq X$, we can produce a function
 \[f|_{X'} : X' \to Y\]
 defined simply by $f|_{X'}(x) = f(x)$. Equivalently, $f|_{X'}$ is the composite
 \[X' \hookrightarrow X \xrightarrow{f} Y.\]
@@ -20,7 +20,7 @@ We can summarize our first example by noticing we have an isomorphism
 \[\Hom(X,Y) \cong \Hom(X',Y) \times \Hom(X - X', Y).\]
 For any sets $X$ and $Y$ and any subset $X' \subseteq X$. This is a special case of the universal property of coproducts, and more importantly for our purposes, it is also a special case of a \emph{sheaf condition}. We proceed by analyzing a more general situation.
 
-Let $X'$ and $X''$ be subsets of $X$. Then, given a function $f \colon X \to Y$, we may form the restrictions $f|_{X'}$ and $f|_{X''}$. This gives a map
+Let $X'$ and $X''$ be subsets of $X$. Then, given a function $f : X \to Y$, we may form the restrictions $f|_{X'}$ and $f|_{X''}$. This gives a map
 \begin{align*}
     \Hom(X, Y) &\to \Hom(X',Y) \times \Hom(X'',Y) \\
     f &\mapsto (f|_{X'}, f|_{X''})
@@ -102,7 +102,7 @@ This is, essentially, the general form of the sheaf condition for sheaves on set
     Set $Y = \calF(\pt)$, where $\pt$ is your favorite singleton set\footnote{My favorite singleton set is $\{\varnothing\}$.}. We will now define a natural transformation $\calF \to \Hom({-},Y)$. For this, we first note that $\varnothing = \bigcup \varnothing$, whence we have an equalizer diagram of the form
     \[\calF(\varnothing) \to \pt \rightrightarrows \pt,\]
     showing that $\calF(\varnothing) \cong \pt$. Here we have used the fact that $\pt$ is terminal in $\Set$ (and empty products are terminal objects).
-    
+
     Now let $X$ be an arbitrary set, and write $X = \bigcup_{x \in X} \{x\}$. Then we have an equalizer diagram
     \[\calF(X) \to \prod_{x \in X} \calF(\{x\}) \rightrightarrows \prod_{x, x' \in X} \calF(\{x\} \cap \{x'\}).\]
     We note that $\calF(\{x\} \cap \{x'\}) = \calF(\varnothing) \cong \pt$ unless $x = x'$. Therefore we have an equalizer diagram of the form
@@ -114,7 +114,7 @@ This is, essentially, the general form of the sheaf condition for sheaves on set
     from the tuple
     \[(y)_{y \in Y},\]
     where the isomorphism in the line above is product of the isomorphisms $\calF(\{y\}) \to \calF(\pt)$ obtained by applying $\calF$ to the unique map $\pt \to \{y\}$.
-    
+
     By the Yoneda lemma, the element $i \in \calF(Y)$ corresponds to a natural transformation $\eta : \Hom({-},Y) \to \calF$. Explicitly, $\eta$ is given by
     \[\eta_X(f) = \calF(f)(i).\]
     We claim that this natural transformation is an isomorphism. For this, let $X$ be an arbitrary set, and notice that we have a commutative\footnote{Check!} diagram
@@ -149,4 +149,21 @@ This is, essentially, the general form of the sheaf condition for sheaves on set
 
 \section{Sheaves on Spaces}
 
-Now, let $X$ be a topological space. We are often interested in continuous functions on $X$. Continuous functions also have the property that they are determined globally by their local behavior: in this context, ``local'' is best interpreted as ``on an open set''.  
+Now, let $X$ be a topological space. We are often interested in continuous functions on $X$. Continuous functions also have the property that they are determined globally by their local behavior: in this context, ``local'' is best interpreted as ``on an open set''. That is: a continuous function on $X$ is uniquely determined by its restrictions to the pieces of an open cover of $X$, and a collection of continuous functions on the pieces of an open cover of $X$ comes from a continuous function on $X$ if and only if the continuous functions agree on pairwise intersections of pieces of the open cover. It is important that we restrict to open subsets here! For example, consider the functions
+\begin{align*}
+    f_1 : (-\infty,0) &\to \RR & f_2 : [0,\infty) &\to \RR \\
+    x &\mapsto 0 & x &\mapsto 1
+\end{align*}
+We see that $f_1$ and $f_2$ are continuous, and we have
+\[(-\infty,0) \cup [0,\infty) = \RR, (-\infty,0) \cap [0,\infty) = \varnothing,\]
+but there is no continuous function $f : \RR \to \RR$ such that $f|_{(-\infty,0)} = f_1$ and $f|_{[0,\infty)} = f_2$.
+
+So, the correct analogue of \Cref{prop:chap:sheaves:sec:intro:representables are sheaves} for continuous functions is the following.
+\begin{proposition}
+    Let $X$ and $Y$ be topological spaces, and let $\{U_\alpha\}_\alpha$ be an open cover of $X$. Then there is an equalizer diagram
+    \[\Hom(X, Y) \to \prod_\alpha \Hom(U_\alpha, Y) \rightrightarrows \prod_{\alpha, \beta} \Hom(U_\alpha \cap U_\beta, Y)\]
+    in the category of sets. Here the two parallel arrows are defined by
+    \[(f_\alpha)_\alpha \mapsto (f_\alpha |_{U_\alpha \cap U_\beta})_{\alpha,\beta}\]
+    and
+    \[(f_\alpha)_\alpha \mapsto (f_\beta |_{U_\alpha \cap U_\beta})_{\alpha,\beta}.\]
+\end{proposition}
