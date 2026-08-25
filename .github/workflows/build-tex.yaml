@@ -1,27 +1,24 @@
-name: "Build LaTex Document with Biber"
-on:
-  push:
+name: Build LaTeX document
+on: [push]
 jobs:
-  build:
+  build_latex:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Set up Git repository
         uses: actions/checkout@v7
-      - uses: actions/cache@v5
-        name: Tectonic Cache
+
+      - name: Compile main.tex
+        uses: xu-cheng/latex-action@v4
         with:
-          path: ~/.cache/Tectonic
-          key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
-          restore-keys: |
-            ${{ runner.os }}-tectonic-
-      - uses: wtfjoke/setup-tectonic@v4
-        with:
-          biber-version: "latest"
-      - name: Run Tectonic + Biber
-        run: tectonic main.tex
-      - name: Upload pdf
-        uses: actions/upload-artifact@v4
+          root_file: "main.tex"
+      
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v7
         with:
           name: PDF
           path: main.pdf
+      
+      # - name: Release
+      #   uses: softprops/action-gh-release@v3
+      #   with:
+      #     files: main.pdf
