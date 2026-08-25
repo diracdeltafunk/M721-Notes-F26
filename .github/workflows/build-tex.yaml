@@ -1,5 +1,11 @@
 name: Build LaTeX document
-on: [push]
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+
 jobs:
   build_latex:
     runs-on: ubuntu-latest
@@ -11,14 +17,16 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: "main.tex"
-      
-      - name: Upload PDF artifact
-        uses: actions/upload-artifact@v7
+
+      - name: Prepare publish directory
+        run: |
+          mkdir publish
+          cp main.pdf publish/main.pdf
+
+      - name: Push PDF to build branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          name: PDF
-          path: main.pdf
-      
-      - name: Make Release
-        uses: softprops/action-gh-release@v3
-        with:
-          files: main.pdf
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: publish
+          publish_branch: build
+          force_orphan: true
