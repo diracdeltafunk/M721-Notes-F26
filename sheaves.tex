@@ -24,12 +24,12 @@ For any sets $X$ and $Y$ and any subset $X' \subseteq X$. This is a special case
 
 Let $X'$ and $X''$ be subsets of $X$. Then, given a function $f : X \to Y$, we may form the restrictions $f|_{X'}$ and $f|_{X''}$. This gives a map
 \begin{align*}
-    \Hom(X, Y) &\to \Hom(X',Y) \times \Hom(X'',Y) \\
-    f &\mapsto (f|_{X'}, f|_{X''})
+    \Hom(X, Y) & \to \Hom(X',Y) \times \Hom(X'',Y) \\
+    f          & \mapsto (f|_{X'}, f|_{X''})
 \end{align*}
-which is general is neither injective nor surjective. However, it is easy to understand precisely the failures of both of these conditions.
+which in general is neither injective nor surjective. However, it is easy to understand precisely the failures of both of these conditions.
 
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:intro:injectivity of restriction maps}
     The map
     \[
         \Hom(X, Y) \to \Hom(X',Y) \times \Hom(X'',Y)
@@ -42,7 +42,7 @@ which is general is neither injective nor surjective. However, it is easy to und
 
 Note that this map being injective is the same as saying that $f$ is always reconstructible from the data $(f|_{X'}, f|_{X''})$.
 
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:intro:image of restriction maps}
     The image of the map
     \[
         \Hom(X, Y) \to \Hom(X',Y) \times \Hom(X'',Y)
@@ -59,14 +59,14 @@ Note that this map being injective is the same as saying that $f$ is always reco
 To summarize all of the above: if $X'$ and $X''$ together cover $X$, then the data of a function on $X$ is equivalent to a pair of functions (one on $X'$ and one on $X''$) which agree on the overlap $X' \cap X''$. In other words, whenever $X = X' \cup X''$, we have a pullback square
 % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEhvbShYLFkpIl0sWzEsMCwiXFxIb20oWCcsWSkiXSxbMSwxLCJcXEhvbShYJyBcXGNhcCBYJycsWSkiXSxbMCwxLCJcXEhvbShYJycsWSkiXSxbMCwzXSxbMywyXSxbMCwxXSxbMSwyXSxbMCwyLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
 \[\begin{tikzcd}[ampersand replacement=\&]
-	{\Hom(X,Y)} \& {\Hom(X',Y)} \\
-	{\Hom(X'',Y)} \& {\Hom(X' \cap X'',Y)}
-	\arrow[from=1-1, to=1-2]
-	\arrow[from=1-1, to=2-1]
-	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-	\arrow[from=1-2, to=2-2]
-	\arrow[from=2-1, to=2-2]
-\end{tikzcd}\]
+        {\Hom(X,Y)} \& {\Hom(X',Y)} \\
+        {\Hom(X'',Y)} \& {\Hom(X' \cap X'',Y)}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-1, to=2-1]
+        \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=2-1, to=2-2]
+    \end{tikzcd}\]
 in the category of sets.
 
 The situation is very much the same if we cover $X$ by more than two pieces.
@@ -85,8 +85,8 @@ The situation is very much the same if we cover $X$ by more than two pieces.
         \item Make it clear to yourself exactly what this proposition is saying.
         \item Make it clear to yourself why this generalizes the previous discussion.
         \item Prove the proposition.
+        \item Remembering our earlier slogan, you should think to yourself about how this says that ``that functions on $X$ are determined globally by their local behavior''.
     \end{enumerate}
-    Remembering our earlier slogan, you should think to yourself about how this says that ``that functions on $X$ are determined globally by their local behavior''. It is very important that you really, fully understand this proposition before we continue.
 \end{proof}
 
 This is, essentially, the general form of the sheaf condition for sheaves on sets. We finish with an instantiation of our main goal: to understand that functions are \emph{precisely} those things which are determined globally by their local behaviors.
@@ -95,13 +95,13 @@ This is, essentially, the general form of the sheaf condition for sheaves on set
     Let $\calF : \Set^\op \to \Set$ be a functor satisfying the following ``sheaf condition'':
     \begin{description}
         \item[$(\star)$] For any set $X$ and any collection of subsets $\{X'_\alpha\}_\alpha$ of $X$, if $X = \bigcup_\alpha X'_\alpha$ then
-        \[\calF(X) \to \prod_\alpha \calF(X'_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(X'_\alpha \cap X'_\beta)\]
-        is an equalizer diagram in $\Set$, where the maps above are given by precomposition with inclusions (as in \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}).
+              \[\calF(X) \to \prod_\alpha \calF(X'_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(X'_\alpha \cap X'_\beta)\]
+              is an equalizer diagram in $\Set$, where the maps above are given by precomposition with inclusions (as in \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}).
     \end{description}
     Then $\calF$ is representable, i.e. $\calF \cong \Hom({-},Y)$ for some $Y$.
 \end{theorem}
 \begin{proof}
-    Set $Y = \calF(\pt)$, where $\pt$ is your favorite singleton set\footnote{My favorite singleton set is $\{\varnothing\}$.}. We will now define a natural transformation $\calF \to \Hom({-},Y)$. For this, we first note that $\varnothing = \bigcup \varnothing$, whence we have an equalizer diagram of the form
+    Set $Y = \calF(\pt)$. We will now define a natural transformation $\calF \to \Hom({-},Y)$. For this, we first note that $\varnothing = \bigcup \varnothing$, whence we have an equalizer diagram of the form
     \[\calF(\varnothing) \to \pt \rightrightarrows \pt,\]
     showing that $\calF(\varnothing) \cong \pt$. Here we have used the fact that $\pt$ is terminal in $\Set$ (and empty products are terminal objects).
 
@@ -122,39 +122,54 @@ This is, essentially, the general form of the sheaf condition for sheaves on set
     We claim that this natural transformation is an isomorphism. For this, let $X$ be an arbitrary set, and notice that we have a commutative\footnote{Check!} diagram
     % https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Rn0oWCkiXSxbMSwxLCJcXHByb2Rfe3ggXFxpbiBYfSBcXG1hdGhjYWx7Rn0oXFx7eFxcfSkiXSxbMCwwLCJcXEhvbShYLFkpIl0sWzEsMCwiXFxwcm9kX3t4IFxcaW4gWH0gXFxIb20oXFx7eFxcfSxZKSJdLFswLDEsIlxcY29uZyIsMl0sWzIsMCwiXFxldGFfWCIsMl0sWzMsMSwiXFxwcm9kX3t4IFxcaW4gWH0gXFxldGFfe1xce3hcXH19Il0sWzIsMywiXFxjb25nIl1d
     \[\begin{tikzcd}[ampersand replacement=\&]
-    	{\Hom(X,Y)} \& {\prod_{x \in X} \Hom(\{x\},Y)} \\
-    	{\calF(X)} \& {\prod_{x \in X} \calF(\{x\})}
-    	\arrow["\cong", from=1-1, to=1-2]
-    	\arrow["{\eta_X}"', from=1-1, to=2-1]
-    	\arrow["{\prod_{x \in X} \eta_{\{x\}}}", from=1-2, to=2-2]
-    	\arrow["\cong"', from=2-1, to=2-2]
-    \end{tikzcd}\]
+            {\Hom(X,Y)} \& {\prod_{x \in X} \Hom(\{x\},Y)} \\
+            {\calF(X)} \& {\prod_{x \in X} \calF(\{x\})}
+            \arrow["\cong", from=1-1, to=1-2]
+            \arrow["{\eta_X}"', from=1-1, to=2-1]
+            \arrow["{\prod_{x \in X} \eta_{\{x\}}}", from=1-2, to=2-2]
+            \arrow["\cong"', from=2-1, to=2-2]
+        \end{tikzcd}\]
     where the top horizontal map is an isomorphism by \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}. To show that $\eta_X$ is an isomorphism, it suffices to show that each $\eta_{\{x\}}$ is an isomorphism. We have a naturality square
     % https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXG1hdGhjYWx7Rn0oXFx7eFxcfSkiXSxbMCwwLCJcXEhvbShcXHt4XFx9LFkpIl0sWzAsMSwiXFxIb20oXFxtYXRocm17cHR9LFkpIl0sWzEsMSwiXFxtYXRoY2Fse0Z9KFxcbWF0aHJte3B0fSkiXSxbMSwwLCJcXGV0YV97XFx7eFxcfX0iXSxbMSwyLCJcXGNvbmciLDJdLFswLDMsIlxcY29uZyJdLFsyLDMsIlxcZXRhX3tcXG1hdGhybXtwdH19IiwyXV0=
     \[\begin{tikzcd}[ampersand replacement=\&]
-    	{\Hom(\{x\},Y)} \& {\calF(\{x\})} \\
-    	{\Hom(\pt,Y)} \& {\calF(\pt)}
-    	\arrow["{\eta_{\{x\}}}", from=1-1, to=1-2]
-    	\arrow["\cong"', from=1-1, to=2-1]
-    	\arrow["\cong", from=1-2, to=2-2]
-    	\arrow["{\eta_{\pt}}"', from=2-1, to=2-2]
-    \end{tikzcd}\]
+            {\Hom(\{x\},Y)} \& {\calF(\{x\})} \\
+            {\Hom(\pt,Y)} \& {\calF(\pt)}
+            \arrow["{\eta_{\{x\}}}", from=1-1, to=1-2]
+            \arrow["\cong"', from=1-1, to=2-1]
+            \arrow["\cong", from=1-2, to=2-2]
+            \arrow["{\eta_{\pt}}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
     so it suffices to show that $\eta_{\pt} : \Hom(\pt,Y) \to \calF(\pt) = Y$ is an isomorphism. We first precompose with the isomorphism
     \begin{align*}
-        Y &\to \Hom(\pt,Y)\\
-        y &\mapsto f_y
+        Y & \to \Hom(\pt,Y) \\
+        y & \mapsto f_y
     \end{align*}
     where $f_y : \pt \to Y$ is the unique function with image $\{y\}$. We will show that the composite $Y \to Y$ is the identity. So, let $y \in Y$ be arbitrary. We have
     \[\eta_\pt(f_y) = \calF(f_y)(i).\]
     But by construction of $i$, we have that\footnote{Check!} $\calF(f_y)$ sends $i$ to $y$.
 \end{proof}
 
+\subsection*{Exercises}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\begin{exercise}
+    Prove \Cref{prop:chap:sheaves:sec:intro:injectivity of restriction maps,prop:chap:sheaves:sec:intro:image of restriction maps}.
+\end{exercise}
+
+\begin{exercise}
+    Complete the proof of \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}.
+\end{exercise}
+
+\begin{exercise}
+    Check the details in the proof of \Cref{thm:chap:sheaves:sec:intro:sheaves are representable}.
+\end{exercise}
+
 \section{Sheaves on Spaces}
 
 Now, let $X$ be a topological space. We are often interested in continuous functions on $X$. Continuous functions also have the property that they are determined globally by their local behavior: in this context, ``local'' is best interpreted as ``on an open set''. That is: a continuous function on $X$ is uniquely determined by its restrictions to the pieces of an open cover of $X$, and a collection of continuous functions on the pieces of an open cover of $X$ comes from a continuous function on $X$ if and only if the continuous functions agree on pairwise intersections of pieces of the open cover. It is important that we restrict to open subsets here! For example, consider the functions
 \begin{align*}
-    f_1 : (-\infty,0) &\to \RR & f_2 : [0,\infty) &\to \RR \\
-    x &\mapsto 0 & x &\mapsto 1
+    f_1 : (-\infty,0) & \to \RR   & f_2 : [0,\infty) & \to \RR   \\
+    x                 & \mapsto 0 & x                & \mapsto 1
 \end{align*}
 We see that $f_1$ and $f_2$ are continuous, and we have
 \[(-\infty,0) \cup [0,\infty) = \RR \qquad \qquad (-\infty,0) \cap [0,\infty) = \varnothing,\]
@@ -176,40 +191,40 @@ We note that the analog of \Cref{thm:chap:sheaves:sec:intro:sheaves are represen
 
 \begin{example}\label{example:chap:sheaves:sec:spaces:non representable sheaf on Top}
     Let $q : [0,1] \to S^1$ be the standard quotient map. We say that a continuous function $g : X \to S^1$ is \emph{locally liftable} along $q$ if, for all $x \in X$, there exists an open neighborhood $U$ of $x$ and a continuous function $\tilde{g} : U \to [0,1]$ such that $q \circ \tilde{g} = g|_U$.
-    
+
     Let $\calF : \Top^\op \to \Set$ be the subfunctor\footnote{This means simply that each $\calF(X)$ is a subset of $\Hom(X,S^1)$, and that the inclusions $\calF(X) \to \Hom(X,S^1)$ form a natural transformation (this determines what $\calF$ does to morphisms). We'll talk more about subfunctors later!} of $\Hom({-},S^1)$ defined by
     \[\calF(X) = \{g \in \Hom(X,S^1) : g~\text{is locally liftable along}~q\}.\]
-    
+
     Then the following sheaf condition holds:
     \begin{description}
         \item[$(\star)$] For any space $X$ and any open cover $\{U_\alpha\}_\alpha$ of $X$,
-        \[\calF(X) \to \prod_\alpha \calF(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(U_\alpha \cap U_\beta)\]
-        is an equalizer diagram in $\Set$.
+              \[\calF(X) \to \prod_\alpha \calF(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(U_\alpha \cap U_\beta)\]
+              is an equalizer diagram in $\Set$.
     \end{description}
     However, $\calF$ is not representable.
-\begin{proof}
-    It is left as an exercise to show that $\calF$ is a well-defined subfunctor of $\Hom({-},S^1)$ which satisfies the sheaf condition.
+    \begin{proof}
+        It is left as an exercise to show that $\calF$ is a well-defined subfunctor of $\Hom({-},S^1)$ which satisfies the sheaf condition.
 
-    Suppose for contradiction that $\calF$ is representable, and pick a space $Y$ such that $\calF \cong \Hom({-},Y)$. By the Yoneda lemma, this natural isomorphism is determined by an element $i \in \calF(Y)$, i.e. a continuous function $i : Y \to S^1$ which is locally liftable along $q$. Precisely, the Yoneda lemma tells us that the natural isomorphism $\Hom({-},Y) \to \calF$ is given by
-    \begin{align*}
-        \Hom(X,Y) &\to \calF(X) \\
-        f &\mapsto i \circ f.
-    \end{align*}
-    The map $i$ also determines a natural transformation $\Hom({-},Y) \to \Hom({-},S^1)$ by postcomposition. For any space $X$, we see that the composite
-    \[\calF(X) \xrightarrow{\cong} \Hom(X,Y) \xrightarrow{i_*} \Hom(X,S^1)\]
-    sends an element
-    $g \in \calF(X)$
-    first to the unique morphism
-    $f \in \Hom(X,Y)$
-    such that $i \circ f = g$, and then to the morphism
-    $i \circ f = g \in \Hom(X,S^1)$.
-    In other words, this composite is the inclusion $\calF \to \Hom({-},S^1)$. In particular, $i_* : \Hom(X,Y) \to \Hom(X,S^1)$ is injective for all spaces $X$, i.e.\ $i : Y \to S^1$ is a monomorphism\footnote{In $\Top$, monomorphisms are simply injective continuous functions.}.
+        Suppose for contradiction that $\calF$ is representable, and pick a space $Y$ such that $\calF \cong \Hom({-},Y)$. By the Yoneda lemma, this natural isomorphism is determined by an element $i \in \calF(Y)$, i.e. a continuous function $i : Y \to S^1$ which is locally liftable along $q$. Precisely, the Yoneda lemma tells us that the natural isomorphism $\Hom({-},Y) \to \calF$ is given by
+        \begin{align*}
+            \Hom(X,Y) & \to \calF(X)       \\
+            f         & \mapsto i \circ f.
+        \end{align*}
+        The map $i$ also determines a natural transformation $\Hom({-},Y) \to \Hom({-},S^1)$ by postcomposition. For any space $X$, we see that the composite
+        \[\calF(X) \xrightarrow{\cong} \Hom(X,Y) \xrightarrow{i_*} \Hom(X,S^1)\]
+        sends an element
+        $g \in \calF(X)$
+        first to the unique morphism
+        $f \in \Hom(X,Y)$
+        such that $i \circ f = g$, and then to the morphism
+        $i \circ f = g \in \Hom(X,S^1)$.
+        In other words, this composite is the inclusion $\calF \to \Hom({-},S^1)$. In particular, $i_* : \Hom(X,Y) \to \Hom(X,S^1)$ is injective for all spaces $X$, i.e.\ $i : Y \to S^1$ is a monomorphism\footnote{In $\Top$, monomorphisms are simply injective continuous functions.}.
 
-    Now observe that $q$ is itself locally liftable along $q$, since $\id_{[0,1]}$ is a
-    global lift. So $q \in \calF([0,1])$, i.e, there is a unique continuous map
-    $f : [0,1] \to Y$ with $i \circ f = q$. Since $q$ is a quotient map, $i$ is also a quotient map (in particular, $i$ is surjective). We have now established that $i$ is a bijective quotient map, i.e.\ a homeomorphism. Without loss of generality, $Y = S^1$ and $i = \id_{S^1}$. Then we have $\id_{S^1} \in \calF(Y)$, which is a contradiction: $\id_{S^1}$ is not locally liftable along $q$ at the basepoint
-    $\ast := q(0) = q(1)$.
-\end{proof}
+        Now observe that $q$ is itself locally liftable along $q$, since $\id_{[0,1]}$ is a
+        global lift. So $q \in \calF([0,1])$, i.e, there is a unique continuous map
+        $f : [0,1] \to Y$ with $i \circ f = q$. Since $q$ is a quotient map, $i$ is also a quotient map (in particular, $i$ is surjective). We have now established that $i$ is a bijective quotient map, i.e.\ a homeomorphism. Without loss of generality, $Y = S^1$ and $i = \id_{S^1}$. Then we have $\id_{S^1} \in \calF(Y)$, which is a contradiction: $\id_{S^1}$ is not locally liftable along $q$ at the basepoint
+        $\ast := q(0) = q(1)$.
+    \end{proof}
 \end{example}
 
 \begin{remark*}[For experts! This remark can be safely skipped.]
@@ -247,7 +262,7 @@ We think of a presheaf $\calF \in \PSh(X,\catC)$ as a way of assigning, to each 
     \end{enumerate}
 \end{example}
 
-There are many, many more examples, but we must focus on something to start. The first example is already familiar to us. The second example is almost disjoint from the first\footnote{Exercise: show that a presheaf of the type defined in the first example is never isomorphic to a presheaf of the type defined in the second example, unless $\lvert Y \rvert = 1$ for both.}. The fourth example is given to show that extra structure on a space (e.g. the structure of a smooth manifold) can allow us to define additional presheaves on the space.
+There are many, many more examples, but we must focus on something to start. The first example is already familiar to us. The second example is almost disjoint from the first\footnote{Exercise: show that a presheaf of the type defined in the first example is never isomorphic to a presheaf of the type defined in the second example, unless $\lvert Y \rvert = 1$ for both.}. The fourth example is given to show that extra structure on a space (e.g. the structure of a smooth manifold) can allow us to define additional presheaves on the space. Actually, in some precise sense, the presheaf $\calF$ in the fourth example \emph{encodes} the smooth manifold structure on $X$.
 
 The Yoneda lemma makes the third example of particular interest. We state some important features of the Yoneda lemma here in case they are unfamiliar\footnote{and apologize for having already used these facts earlier!}, but first we must generalize our notion of presheaves.
 
@@ -261,11 +276,11 @@ Note that presheaves on a space $X$ are the same thing as presheaves on the cate
     Let $\catC$ be any category.
     \begin{enumerate}
         \item There is a fully faithful functor $y : \catC \to \PSh(\catC)$ (the \emph{Yoneda embedding}) defined on objects by
-        \[y(X) = \Hom_\catC({-},X)\]
-        and acting on morphisms by postcomposition. Presheaves $\calF \in \PSh(\catC)$ which lie in the essential image of $y$ (i.e. $\calF \cong y(X)$ for some $X$) are called \emph{representable}.
+              \[y(X) = \Hom_\catC({-},X)\]
+              and acting on morphisms by postcomposition. Presheaves $\calF \in \PSh(\catC)$ which lie in the essential image of $y$ (i.e. $\calF \cong y(X)$ for some $X$) are called \emph{representable}.
         \item There is an isomorphism
-        \[\Hom_{\PSh(\catC)}(y(X),\calF) \cong \calF(X)\]
-        natural in both $X$ and $\calF$. In one direction, a natural transformation $\alpha : y(X) \to \calF$ determines an element $\alpha_X(\id_X) \in \calF(X)$. In the other direction, an element $x \in \calF(X)$ determines a natural transformation $\alpha : y(X) \to \calF$ whose components are given by $\alpha_Y(f) = \calF(f)(x)$.
+              \[\Hom_{\PSh(\catC)}(y(X),\calF) \cong \calF(X)\]
+              natural in both $X$ and $\calF$. In one direction, a natural transformation $\alpha : y(X) \to \calF$ determines an element $\alpha_X(\id_X) \in \calF(X)$. In the other direction, an element $x \in \calF(X)$ determines a natural transformation $\alpha : y(X) \to \calF$ whose components are given by $\alpha_Y(f) = \calF(f)(x)$.
         \item $y$ exhibits $\PSh(\catC)$ as the free cocompletion of $\catC$. That is: $\PSh(\catC)$ is cocomplete, and any functor $F : \catC \to \catD$ with $\catD$ cocomplete factors uniquely as $G \circ y$ with $G : \PSh(\catC) \to \catD$ cocontinuous.
         \item Every presheaf $\calF \in \PSh(\catC)$ is a colimit (in a canonical way) of representable presheaves. Explicitly, let $\int \calF$ (the \emph{category of elements} of $\calF$) be the category whose objects are pairs $(X,x)$ where $X \in \catC$ and $x \in \calF(X)$ -- morphisms $(X,x) \to (Y,y)$ in $\int \calF$ are morphisms $f : X \to Y$ in $\catC$ such that $\calF(f)(y) = x$. There is a projection $\pi : \int \calF \to \catC$ given by $(X,x) \mapsto X$. Composing this projection with the Yoneda embedding gives a functor $y \circ \pi : \int \calF \to \PSh(\catC)$. For each $(X,x) \in \int \calF$, there is a natural transformation $(y \circ \pi)(X,x) = y(X) \to \calF$ corresponding to the element $x \in \calF(X)$. This collection of natural transformations exhibits $\calF$ as the colimit of $y \circ \pi$.
     \end{enumerate}
@@ -274,7 +289,18 @@ Note that presheaves on a space $X$ are the same thing as presheaves on the cate
 Taking $\catC = \Open(X)$, we see:
 \begin{itemize}
     \item Let $U$ be an open subset of $X$. The representable presheaf $y(U) = \Hom_{\Open(X)}({-},U)$ has the property that
-    \[\Hom_{\PSh(X)}(y(U),\calF) \cong \calF(U)\]
-    naturally in presheaves $\calF \in \PSh(X)$.
+          \[\Hom_{\PSh(X)}(y(U),\calF) \cong \calF(U)\]
+          naturally in presheaves $\calF \in \PSh(X)$.
     \item Every presheaf $\calF \in \PSh(X)$ is a colimit of representable presheaves.
 \end{itemize}
+
+\subsection*{Exercises}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\begin{exercise}
+    Show that the functor $\calF$ in \Cref{example:chap:sheaves:sec:spaces:non representable sheaf on Top} is a well-defined subfunctor of $\Hom({-},S^1)$ which satisfies the sheaf condition. If needed, also prove the point-set topology lemma used in that proof: if $f \circ g$ is a quotient map, then $f$ is a quotient map.
+\end{exercise}
+
+\begin{exercise}
+    Let $X$, $Y_1$, and $Y_2$ be topological spaces. Let $\calF_1$ and $\calF_2$ be the presheaves on $X$ defined by $\calF_1(U) = \Hom_\Top(U,Y_1)$ and $\calF_2(U) = Y_2$ (technically, $\calF_2(U)$ is the underlying set of $Y_2$). Show that $\calF_1$ and $\calF_2$ are not isomorphic unless $Y_1$ and $Y_2$ are both singleton spaces.
+\end{exercise}
