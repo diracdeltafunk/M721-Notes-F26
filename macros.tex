@@ -10,11 +10,20 @@
 \newcommand{\catC}{\mathcal{C}}
 \newcommand{\catD}{\mathcal{D}}
 \newcommand{\Set}{\cat{Set}}
+\newcommand{\Top}{\cat{Top}}
+\newcommand{\Man}{\cat{Man}}
+\newcommand{\Open}{\cat{Open}}
+\newcommand{\Sh}{\cat{Sh}}
+\newcommand{\PSh}{\cat{PSh}}
 % And related
 \newcommand{\op}{\mathrm{op}}
 
 %% Mathoperators
 \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\id}{id}
 
 %% Other
 \newcommand{\pt}{\mathrm{pt}}
@@ -23,10 +32,24 @@
 % normal theorem style
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem*{theorem*}{Theorem}
+
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem*{proposition*}{Proposition}
+
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem*{corollary*}{Corollary}
+
+% definition style
+\theoremstyle{definition}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
 
 % slogan
 \newtheoremstyle{slogan}
@@ -40,6 +63,7 @@
 {}          % CUSTOM-HEAD-SPEC
 \theoremstyle{slogan}
 \newtheorem{slogan}{Slogan}
+
 %warning
 \newtheoremstyle{warning}
 {\topsep}   % ABOVESPACE
@@ -49,7 +73,7 @@
 {\bfseries \color{orange!70!black}} % HEADFONT
 {.}         % HEADPUNCT
 {5pt plus 1pt minus 1pt} % HEADSPACE
-{}          % CUSTOM-HEAD-SPEC
+{\faIcon{exclamation-triangle}~\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}          % CUSTOM-HEAD-SPEC
 \theoremstyle{warning}
 \newtheorem*{warning}{Warning}
 
@@ -60,3 +84,29 @@
     innertopmargin=7pt,
 }
 \surroundwithmdframed[style=leftbar]{proof}
+
+%% Lecture start lines
+\newcounter{lecture}
+\crefname{lecture}{Lecture}{Lectures}
+\Crefname{lecture}{Lecture}{Lectures}
+
+\makeatletter
+\newcommand{\l@lecture}[2]{\@dottedtocline{0}{0em}{5.5em}{#1}{#2}}
+\newcommand{\listoflectures}{%
+  \chapter*{List of Lectures}%
+  \addcontentsline{toc}{chapter}{List of Lectures}%
+  \@starttoc{lec}%
+}
+\makeatother
+
+\newcommand{\startlecture}[1][]{%
+  \par\medskip\penalty-200\needspace{3\baselineskip}\noindent
+  \refstepcounter{lecture}%
+  \label{lecture:\thelecture}%
+  \addcontentsline{lec}{lecture}{\protect\numberline{Lecture~\thelecture}#1}%
+  \makebox[\linewidth]{\hrulefill\quad
+    \textnormal{\footnotesize Approx. Start of Lecture \thelecture
+      \if\relax\detokenize{#1}\relax\else, #1\fi}%
+  \quad\hrulefill}%
+  \par\medskip
+}
