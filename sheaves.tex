@@ -10,17 +10,17 @@ defined simply by $f|_{X'}(x) = f(x)$. Equivalently, $f|_{X'}$ is the composite
 \[X' \hookrightarrow X \xrightarrow{f} Y.\]
 Of course, unless $X' = X$, the restriction $f|_{X'}$ holds less information than $f$ -- it no longer remembers the behavior of $f$ on the complement $X - X'$. However, the pair of functions $(f|_{X'}, f|_{X-X'})$ \emph{is} enough to recover the entire data of $f$; indeed we have
 \[f(x) = \begin{cases} f|_{X'}(x) &: x \in X' \\ f|_{X-X'}(x) &: x \notin X' \end{cases}\]
-for all $x \in X$. There is no more data in $f$ than what it does on $X'$ and its complement $X - X'$. This is special case of the following more general slogan.
+for all $x \in X$. There is no more data in $f$ than what it does on $X'$ and its complement $X - X'$. This is a special case of the following more general slogan.
 
 \begin{slogan}
     Functions are globally determined by their local behavior.
 \end{slogan}
 
-This is only a slogan, so the terms ``global'' and ``local'' (and even ``function'') here are meant to be interpreted loosely. The central aim of this chapter is to develop the understanding that functions are \emph{precisely} those things which are globally determined by their local behavior. The desired understanding is \emph{unrigorous}, i.e. we aim to develop a certain mathematical intuition for what it means to be ``globally defined by local behavior'', and an intuition for what it means that functions are precisely those mathematical objects with this property. As with any goal of this flavor, we must develop the desired intuition by instantiating it in precise theorems.
+This is only a slogan, so the terms ``global'' and ``local'' (and even ``function'') here are meant to be interpreted loosely. The central aim of this chapter is to develop the understanding that functions are \emph{precisely} those things which are globally determined by their local behavior. The desired understanding is \emph{unrigorous}, i.e. we aim to develop a certain mathematical intuition for what it means to be ``globally determined by local behavior'', and an intuition for what it means that functions are precisely those mathematical objects with this property. As with any goal of this flavor, we must develop the desired intuition by instantiating it in precise theorems.
 
 We can summarize our first example by noticing we have an isomorphism
-\[\Hom(X,Y) \cong \Hom(X',Y) \times \Hom(X - X', Y).\]
-For any sets $X$ and $Y$ and any subset $X' \subseteq X$. This is a special case of the universal property of coproducts, and more importantly for our purposes, it is also a special case of a \emph{sheaf condition}. We proceed by analyzing a more general situation.
+\[\Hom(X,Y) \cong \Hom(X',Y) \times \Hom(X - X', Y)\]
+for any sets $X$ and $Y$ and any subset $X' \subseteq X$. This is a special case of the universal property of coproducts, and more importantly for our purposes, it is also a special case of a \emph{sheaf condition}. We proceed by analyzing a more general situation.
 
 Let $X'$ and $X''$ be subsets of $X$. Then, given a function $f : X \to Y$, we may form the restrictions $f|_{X'}$ and $f|_{X''}$. This gives a map
 \begin{align*}
@@ -34,7 +34,7 @@ which in general is neither injective nor surjective. However, it is easy to und
     \[
         \Hom(X, Y) \to \Hom(X',Y) \times \Hom(X'',Y)
     \]
-    is injective if and only if $X' \cup X'' = X$.
+    is injective for all sets $Y$ if and only if $X' \cup X'' = X$.
 \end{proposition}
 \begin{proof}
     Elementary.
@@ -43,7 +43,7 @@ which in general is neither injective nor surjective. However, it is easy to und
 Note that this map being injective is the same as saying that $f$ is always reconstructible from the data $(f|_{X'}, f|_{X''})$.
 
 \begin{proposition}\label{prop:chap:sheaves:sec:intro:image of restriction maps}
-    The image of the map
+    When $X = X' \cup X''$, the image of the map
     \[
         \Hom(X, Y) \to \Hom(X',Y) \times \Hom(X'',Y)
     \]
@@ -72,12 +72,12 @@ in the category of sets.
 The situation is very much the same if we cover $X$ by more than two pieces.
 
 \begin{proposition}\label{prop:chap:sheaves:sec:intro:representables are sheaves}
-    Let $X = \bigcup_\alpha X'_\alpha$ for some collection of sets $\{X'_\alpha\}_\alpha$. Then for any set $Y$, there is an equalizer diagram
-    \[\Hom(X, Y) \to \prod_\alpha \Hom(X'_\alpha, Y) \rightrightarrows \prod_{\alpha, \beta} \Hom(X'_\alpha \cap X'_\beta, Y)\]
+    Let $X = \bigcup_\alpha X_\alpha$ for some collection of sets $\{X_\alpha\}_\alpha$. Then for any set $Y$, there is an equalizer diagram
+    \[\Hom(X, Y) \to \prod_\alpha \Hom(X_\alpha, Y) \rightrightarrows \prod_{\alpha, \beta} \Hom(X_\alpha \cap X_\beta, Y)\]
     in the category of sets. Here the two parallel arrows are defined by
-    \[(f_\alpha)_\alpha \mapsto (f_\alpha |_{X'_\alpha \cap X'_\beta})_{\alpha,\beta}\]
+    \[(f_\alpha)_\alpha \mapsto (f_\alpha |_{X_\alpha \cap X_\beta})_{\alpha,\beta}\]
     and
-    \[(f_\alpha)_\alpha \mapsto (f_\beta |_{X'_\alpha \cap X'_\beta})_{\alpha,\beta}.\]
+    \[(f_\alpha)_\alpha \mapsto (f_\beta |_{X_\alpha \cap X_\beta})_{\alpha,\beta}.\]
 \end{proposition}
 \begin{proof}
     Exercise. In more detail:
@@ -85,23 +85,23 @@ The situation is very much the same if we cover $X$ by more than two pieces.
         \item Make it clear to yourself exactly what this proposition is saying.
         \item Make it clear to yourself why this generalizes the previous discussion.
         \item Prove the proposition.
-        \item Remembering our earlier slogan, you should think to yourself about how this says that ``that functions on $X$ are determined globally by their local behavior''.
+        \item Remembering our earlier slogan, you should think to yourself about how this says that ``functions on $X$ are determined globally by their local behavior''.
     \end{enumerate}
 \end{proof}
 
-This is, essentially, the general form of the sheaf condition for sheaves on sets. We finish with an instantiation of our main goal: to understand that functions are \emph{precisely} those things which are determined globally by their local behaviors.
+We finish with an instantiation of our main goal: to understand that functions are \emph{precisely} those things which are determined globally by their local behavior.
 
 \begin{theorem}\label{thm:chap:sheaves:sec:intro:sheaves are representable}
     Let $\calF : \Set^\op \to \Set$ be a functor satisfying the following ``sheaf condition'':
     \begin{description}
-        \item[$(\star)$] For any set $X$ and any collection of subsets $\{X'_\alpha\}_\alpha$ of $X$, if $X = \bigcup_\alpha X'_\alpha$ then
-              \[\calF(X) \to \prod_\alpha \calF(X'_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(X'_\alpha \cap X'_\beta)\]
-              is an equalizer diagram in $\Set$, where the maps above are given by precomposition with inclusions (as in \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}).
+        \item[$(\star)$] For any set $X$ and any collection of subsets $\{X_\alpha\}_\alpha$ of $X$, if $X = \bigcup_\alpha X_\alpha$ then
+              \[\calF(X) \to \prod_\alpha \calF(X_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(X_\alpha \cap X_\beta)\]
+              is an equalizer diagram in $\Set$, where the maps above are given by applying $\calF$ to the inclusions (as in \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}).
     \end{description}
-    Then $\calF$ is representable, i.e. $\calF \cong \Hom({-},Y)$ for some $Y$.
+    Then $\calF$ is representable, i.e. $\calF \cong \Hom({-},Y)$ for some set $Y$.
 \end{theorem}
 \begin{proof}
-    Set $Y = \calF(\pt)$. We will now define a natural transformation $\calF \to \Hom({-},Y)$. For this, we first note that $\varnothing = \bigcup \varnothing$, whence we have an equalizer diagram of the form
+    Set $Y = \calF(\pt)$. We first note that $\varnothing = \bigcup \varnothing$, whence we have an equalizer diagram of the form
     \[\calF(\varnothing) \to \pt \rightrightarrows \pt,\]
     showing that $\calF(\varnothing) \cong \pt$. Here we have used the fact that $\pt$ is terminal in $\Set$ (and empty products are terminal objects).
 
@@ -112,10 +112,10 @@ This is, essentially, the general form of the sheaf condition for sheaves on set
     where the two parallel arrows are equal\footnote{Check!}. We conclude that the map
     \[\calF(X) \to \prod_{x \in X} \calF(\{x\})\]
     is an isomorphism. This allows us to construct an element
-    \[i \in \calF(Y) = \prod_{y \in Y} \calF(\{y\}) \cong \prod_{y \in Y} \calF(\pt) = \prod_{y \in Y} Y\]
+    \[i \in \calF(Y) \cong \prod_{y \in Y} \calF(\{y\}) \cong \prod_{y \in Y} \calF(\pt) = \prod_{y \in Y} Y\]
     from the tuple
     \[(y)_{y \in Y},\]
-    where the isomorphism in the line above is product of the isomorphisms $\calF(\{y\}) \to \calF(\pt)$ obtained by applying $\calF$ to the unique map $\pt \to \{y\}$.
+    where the isomorphism in the line above is the product of the isomorphisms $\calF(\{y\}) \to \calF(\pt)$ obtained by applying $\calF$ to the unique map $\pt \to \{y\}$.
 
     By the Yoneda lemma, the element $i \in \calF(Y)$ corresponds to a natural transformation $\eta : \Hom({-},Y) \to \calF$. Explicitly, $\eta$ is given by
     \[\eta_X(f) = \calF(f)(i).\]
@@ -168,15 +168,15 @@ This is, essentially, the general form of the sheaf condition for sheaves on set
 
 Now, let $X$ be a topological space. We are often interested in continuous functions on $X$. Continuous functions also have the property that they are determined globally by their local behavior: in this context, ``local'' is best interpreted as ``on an open set''. That is: a continuous function on $X$ is uniquely determined by its restrictions to the pieces of an open cover of $X$, and a collection of continuous functions on the pieces of an open cover of $X$ comes from a continuous function on $X$ if and only if the continuous functions agree on pairwise intersections of pieces of the open cover. It is important that we restrict to open subsets here! For example, consider the functions
 \begin{align*}
-    f_1 : (-\infty,0) & \to \RR   & f_2 : [0,\infty) & \to \RR   \\
-    x                 & \mapsto 0 & x                & \mapsto 1
+    f_1 : (-\infty,0) & \to \RR   & f_2 : [0,\infty) & \to \RR    \\
+    x                 & \mapsto 0 & x                & \mapsto 1.
 \end{align*}
 We see that $f_1$ and $f_2$ are continuous, and we have
 \[(-\infty,0) \cup [0,\infty) = \RR \qquad \qquad (-\infty,0) \cap [0,\infty) = \varnothing,\]
 but there is no continuous function $f : \RR \to \RR$ such that $f|_{(-\infty,0)} = f_1$ and $f|_{[0,\infty)} = f_2$.
 
 So, the correct analogue of \Cref{prop:chap:sheaves:sec:intro:representables are sheaves} for continuous functions is the following.
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:representables are sheaves}
     Let $X$ and $Y$ be topological spaces, and let $\{U_\alpha\}_\alpha$ be an open cover of $X$. Then there is an equalizer diagram
     \[\Hom(X, Y) \to \prod_\alpha \Hom(U_\alpha, Y) \rightrightarrows \prod_{\alpha, \beta} \Hom(U_\alpha \cap U_\beta, Y)\]
     in the category of sets. Here the two parallel arrows are defined by
@@ -184,10 +184,13 @@ So, the correct analogue of \Cref{prop:chap:sheaves:sec:intro:representables are
     and
     \[(f_\alpha)_\alpha \mapsto (f_\beta |_{U_\alpha \cap U_\beta})_{\alpha,\beta}.\]
 \end{proposition}
+\begin{proof}
+    Exercise.
+\end{proof}
 
 \startlecture[Aug 27, 2026]
 
-We note that the analog of \Cref{thm:chap:sheaves:sec:intro:sheaves are representable} does not hold in this context!
+We note that the analogue of \Cref{thm:chap:sheaves:sec:intro:sheaves are representable} does not hold in this context!
 
 \begin{example}\label{example:chap:sheaves:sec:spaces:non representable sheaf on Top}
     Let $q : [0,1] \to S^1$ be the standard quotient map. We say that a continuous function $g : X \to S^1$ is \emph{locally liftable} along $q$ if, for all $x \in X$, there exists an open neighborhood $U$ of $x$ and a continuous function $\tilde{g} : U \to [0,1]$ such that $q \circ \tilde{g} = g|_U$.
@@ -210,7 +213,7 @@ We note that the analog of \Cref{thm:chap:sheaves:sec:intro:sheaves are represen
             \Hom(X,Y) & \to \calF(X)       \\
             f         & \mapsto i \circ f.
         \end{align*}
-        The map $i$ also determines a natural transformation $\Hom({-},Y) \to \Hom({-},S^1)$ by postcomposition. For any space $X$, we see that the composite
+        The map $i$ also gives us a natural transformation $\Hom({-},Y) \to \Hom({-},S^1)$ by postcomposition. For any space $X$, we see that the composite
         \[\calF(X) \xrightarrow{\cong} \Hom(X,Y) \xrightarrow{i_*} \Hom(X,S^1)\]
         sends an element
         $g \in \calF(X)$
@@ -221,7 +224,7 @@ We note that the analog of \Cref{thm:chap:sheaves:sec:intro:sheaves are represen
         In other words, this composite is the inclusion $\calF \to \Hom({-},S^1)$. In particular, $i_* : \Hom(X,Y) \to \Hom(X,S^1)$ is injective for all spaces $X$, i.e.\ $i : Y \to S^1$ is a monomorphism\footnote{In $\Top$, monomorphisms are simply injective continuous functions.}.
 
         Now observe that $q$ is itself locally liftable along $q$, since $\id_{[0,1]}$ is a
-        global lift. So $q \in \calF([0,1])$, i.e, there is a unique continuous map
+        global lift. So $q \in \calF([0,1])$, i.e.\ there is a unique continuous map
         $f : [0,1] \to Y$ with $i \circ f = q$. Since $q$ is a quotient map, $i$ is also a quotient map (in particular, $i$ is surjective). We have now established that $i$ is a bijective quotient map, i.e.\ a homeomorphism. Without loss of generality, $Y = S^1$ and $i = \id_{S^1}$. Then we have $\id_{S^1} \in \calF(Y)$, which is a contradiction: $\id_{S^1}$ is not locally liftable along $q$ at the basepoint
         $\ast := q(0) = q(1)$.
     \end{proof}
@@ -232,45 +235,24 @@ We note that the analog of \Cref{thm:chap:sheaves:sec:intro:sheaves are represen
     \[\Sh(\catC,\tau) \simeq \Sh(\Sh(\catC,\tau),\mathrm{can})\]
     via the Yoneda embedding. \Cref{thm:chap:sheaves:sec:intro:sheaves are representable} is an instantiation of this in the case that $\catC = \ast$ is the terminal category (via $\Sh(\ast) \simeq \Set$), but the statement there is a priori stronger, because we only posit the sheaf condition for literal coverings by subsets $X = \bigcup_{\alpha} X_\alpha$. This turns out to not make a difference, because the canonical topology on $\Set$ is generated by these coverings. So, for $\Top$, there are two reasons to expect an example like \Cref{example:chap:sheaves:sec:spaces:non representable sheaf on Top}:
     \begin{enumerate}
-        \item $\Top$ is not a Grothendieck topos.
+        \item $\Top$ is not a Grothendieck topos (this is the real sticking point).
         \item The canonical topology on $\Top$ is not generated by open covers.
     \end{enumerate}
-    The former is the real sticking point: there do exist sheaves on $\Top$ (with respect to the canonical topology) that are not representable.
 \end{remark*}
 
-We can alleviate a lot of this weirdness by focusing our attention on just one topological space.
+We can alleviate a lot of this weirdness by focusing our attention on just one topological space, instead of the entire category $\Top$. First, some theory.
 
 \begin{definition}
     Let $X$ be a topological space. We denote by $\Open(X)$ the poset of open subsets of $X$, which we view as a category.
 \end{definition}
 
 \begin{definition}
-    Let $X$ be a topological space and $\catC$ a category. A \emph{presheaf} on $X$ valued in $\catC$ is a functor $\Open(X)^\op \to \catC$. The category of presheaves on $X$ valued in $\catC$ will be denoted
-    \[\PSh(X,\catC) := \Fun(\Open(X)^\op, \catC).\]
-    When not specified, we take $\catC = \Set$ by default. In particular, $\PSh(X)$ denotes the category $\Fun(\Open(X)^\op, \Set)$.
+    For any categories $\catC$ and $\catD$, a \emph{presheaf} on $\catC$ valued in $\catD$ is a functor $\calF : \catC^\op \to \catD$. The category of presheaves will be denoted $\PSh(\catC,\catD) = \Fun(\catC^\op, \catD)$.
+
+    A \emph{presheaf} on a space $X$ valued in $\catD$ is a functor $\calF : \Open(X)^\op \to \catD$, i.e. $\PSh(X, \catD)$ is defined to be $\PSh(\Open(X), \catD)$.
+
+    When $\catD$ is unspecified, it is assumed to be $\Set$. For example, when $X$ is a space, $\PSh(X)$ denotes the functor category $\Fun(\Open(X)^\op, \Set)$.
 \end{definition}
-
-We think of a presheaf $\calF \in \PSh(X,\catC)$ as a way of assigning, to each open subset $U \subseteq X$, a collection of data (an object of $\catC$) defined locally on $U$.
-
-\begin{example}
-    Here are some examples of presheaves on spaces.
-    \begin{enumerate}
-        \item Let $X$ and $Y$ be spaces. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF = \Hom_\Top({-},Y)$.
-        \item Let $X$ be a space and let $Y$ be a set. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = Y$ for all $U \in \Open(X)$ ($\calF$ sends each morphism in $\Open(X)$ to $\id_Y$).
-        \item Let $X$ be a space and let $U \in \Open(X)$. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF = \Hom_{\Open(X)}({-},U)$.
-        \item Let $X$ be a smooth manifold, so that every open subset of $X$ is also a smooth manifold in a canonical way. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF = \Hom_{\Man}({-},\RR)$, where $\Man$ is the category of smooth manifolds.
-    \end{enumerate}
-\end{example}
-
-There are many, many more examples, but we must focus on something to start. The first example is already familiar to us. The second example is almost disjoint from the first\footnote{Exercise: show that a presheaf of the type defined in the first example is never isomorphic to a presheaf of the type defined in the second example, unless $\lvert Y \rvert = 1$ for both.}. The fourth example is given to show that extra structure on a space (e.g. the structure of a smooth manifold) can allow us to define additional presheaves on the space. Actually, in some precise sense, the presheaf $\calF$ in the fourth example \emph{encodes} the smooth manifold structure on $X$.
-
-The Yoneda lemma makes the third example of particular interest. We state some important features of the Yoneda lemma here in case they are unfamiliar\footnote{and apologize for having already used these facts earlier!}, but first we must generalize our notion of presheaves.
-
-\begin{definition}
-    For any categories $\catC$ and $\catD$, a \emph{presheaf} on $\catC$ valued in $\catD$ is a functor $\calF : \catC^\op \to \catD$. The category of presheaves will be denoted $\PSh(\catC,\catD) = \Fun(\catC^\op, \catD)$. When $\catD$ is unspecified, it is assumed to be $\Set$.
-\end{definition}
-
-Note that presheaves on a space $X$ are the same thing as presheaves on the category $\Open(X)$, so this is simply a generalization.
 
 \begin{proposition}[Yoneda]
     Let $\catC$ be any category.
@@ -281,10 +263,32 @@ Note that presheaves on a space $X$ are the same thing as presheaves on the cate
         \item There is an isomorphism
               \[\Hom_{\PSh(\catC)}(y(X),\calF) \cong \calF(X)\]
               natural in both $X$ and $\calF$. In one direction, a natural transformation $\alpha : y(X) \to \calF$ determines an element $\alpha_X(\id_X) \in \calF(X)$. In the other direction, an element $x \in \calF(X)$ determines a natural transformation $\alpha : y(X) \to \calF$ whose components are given by $\alpha_Y(f) = \calF(f)(x)$.
-        \item $y$ exhibits $\PSh(\catC)$ as the free cocompletion of $\catC$. That is: $\PSh(\catC)$ is cocomplete, and any functor $F : \catC \to \catD$ with $\catD$ cocomplete factors uniquely as $G \circ y$ with $G : \PSh(\catC) \to \catD$ cocontinuous.
+        \item $y$ exhibits $\PSh(\catC)$ as the free cocompletion of $\catC$. That is: $\PSh(\catC)$ is cocomplete, and any functor $F : \catC \to \catD$ with $\catD$ cocomplete factors uniquely (up to natural isomorphism) as $G \circ y$ with $G : \PSh(\catC) \to \catD$ cocontinuous.
         \item Every presheaf $\calF \in \PSh(\catC)$ is a colimit (in a canonical way) of representable presheaves. Explicitly, let $\int \calF$ (the \emph{category of elements} of $\calF$) be the category whose objects are pairs $(X,x)$ where $X \in \catC$ and $x \in \calF(X)$ -- morphisms $(X,x) \to (Y,y)$ in $\int \calF$ are morphisms $f : X \to Y$ in $\catC$ such that $\calF(f)(y) = x$. There is a projection $\pi : \int \calF \to \catC$ given by $(X,x) \mapsto X$. Composing this projection with the Yoneda embedding gives a functor $y \circ \pi : \int \calF \to \PSh(\catC)$. For each $(X,x) \in \int \calF$, there is a natural transformation $(y \circ \pi)(X,x) = y(X) \to \calF$ corresponding to the element $x \in \calF(X)$. This collection of natural transformations exhibits $\calF$ as the colimit of $y \circ \pi$.
     \end{enumerate}
 \end{proposition}
+
+\begin{definition}
+    Let $X$ be a topological space and $\catC$ a category. A \emph{presheaf} on $X$ valued in $\catC$ is a functor $\Open(X)^\op \to \catC$. The category of presheaves on $X$ valued in $\catC$ will be denoted
+    \[\PSh(X,\catC) := \Fun(\Open(X)^\op, \catC).\]
+    When not specified, we take $\catC = \Set$ by default. In particular, $\PSh(X)$ denotes the category $\Fun(\Open(X)^\op, \Set)$.
+\end{definition}
+
+We think of a presheaf $\calF \in \PSh(X,\catC)$ as a way of assigning, to each open subset $U \subseteq X$, a collection of data (an object of $\catC$) defined locally on $U$.
+
+\begin{example}\label{example:chap:sheaves:sec:spaces:examples of presheaves}
+    Here are some examples of presheaves on spaces. In each example, I will describe the presheaf $\calF$ by describing what it does on objects (open subsets of $X$); it is left as an exercise to determine what $\calF$ does to morphisms.
+    \begin{enumerate}
+        \item Let $X$ and $Y$ be spaces. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_\Top(U,Y)$.
+        \item Let $X$ be a space and let $Y$ be a set. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = Y$ for all $U \in \Open(X)$.
+        \item Let $X$ be a space and let $V \in \Open(X)$. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_{\Open(X)}(U,V)$.
+        \item Let $X$ be a smooth manifold, so that every open subset of $X$ is also a smooth manifold in a canonical way. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_{\Man}(U,\RR)$, where $\Man$ is the category of smooth manifolds.
+    \end{enumerate}
+\end{example}
+
+There are many, many more examples, but we must focus on something to start. The first example is already familiar to us. The second example is almost disjoint from the first\footnote{Exercise: show that a presheaf (on a nonempty space) of the type defined in the first example is never isomorphic to a presheaf of the type defined in the second example, unless $\lvert Y \rvert = 1$ for both.}. The fourth example is given to show that extra structure on a space (e.g. the structure of a smooth manifold) can allow us to define additional presheaves on the space. Actually, in some precise sense, the presheaf $\calF$ in the fourth example \emph{encodes} the smooth manifold structure on $X$.
+
+The Yoneda lemma makes the third example of particular interest. We state some important features of the Yoneda lemma here in case they are unfamiliar\footnote{and apologize for having already used these facts earlier!}, but first we must generalize our notion of presheaves.
 
 Taking $\catC = \Open(X)$, we see:
 \begin{itemize}
@@ -294,13 +298,76 @@ Taking $\catC = \Open(X)$, we see:
     \item Every presheaf $\calF \in \PSh(X)$ is a colimit of representable presheaves.
 \end{itemize}
 
+With all of this in place, we can turn to the sheaf condition for presheaves on spaces. It is precisely the generalization of the condition in \Cref{prop:chap:sheaves:sec:spaces:representables are sheaves}.
+
+\begin{definition}
+    Let $X$ be a space. A presheaf $\calF \in \PSh(X)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
+    \[\calF(U) \to \prod_\alpha \calF(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(U_\alpha \cap U_\beta)\]
+    is an equalizer diagram in $\Set$. The category of sheaves on $X$ (the full subcategory of $\PSh(X)$ spanned by all sheaves) will be denoted $\Sh(X)$.
+\end{definition}
+
+Defining sheaves with values in a generic category $\catC$ is quite subtle. For now, we will handle only the case of ``algebraic categories''\footnote{This is intentionally imprecise, so as to avoid technical details. It will be enough (for now) to consider only categories the categories $\Set$, $\Grp$, $\Ab$, $\Ring$, and $\CRing$.}, e.g. $\Grp$, $\Ab$, $\CRing$. In this case, the same definition makes sense, and is ``correct''.
+
+\begin{definition}
+    Let $X$ be a space and let $\catC$ be an ``algebraic category''. A presheaf $\calF \in \PSh(X,\catC)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
+    \[\calF(U) \to \prod_\alpha \calF(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(U_\alpha \cap U_\beta)\]
+    is an equalizer diagram in $\catC$. The category of sheaves on $X$ with values in $\catC$ (the full subcategory of $\PSh(X,\catC)$ spanned by all sheaves) will be denoted $\Sh(X,\catC)$.
+\end{definition}
+
+Note that, for our algebraic categories $\Set$, $\Grp$, $\Ab$, $\Ring$, $\CRing$ (or indeed any category $\catC$ which is monadic over $\Set$), the forgetful functor $\catC \to \Set$ preserves and creates limits, so a presheaf $\calF \in \PSh(X,\catC)$ is a sheaf if and only if the underlying presheaf of sets is a sheaf.
+
+\subsection{Operations on (Pre-)Sheaves}
+
+Whenever $\catC$ is (co)complete, i.e.\ admits all small (co)limits, the category $\PSh(X,\catC)$ is also (co)complete, and these (co)limits are computed pointwise. In particular, for a diagram $F : \cal{I} \to \PSh(X)$, we have
+\[(\lim F)(U) \cong \lim_{i \in \cal{I}} F(i)(U) \qquad (\colim F)(U) \cong \colim_{i \in \cal{I}} F(i)(U)\]
+for all open sets $U \subseteq X$. In particular, we may form products, coproducts, pullbacks, equalizers, etc.\ of presheaves quite easily. The same is true for \emph{limits} of sheaves\footnote{Actually, $\Sh(X)$ is both complete and cocomplete, but the colimits are not computed pointwise. We'll get into this later.}.
+
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:sheaves are complete}
+    Let $X$ be a space and let $\catC$ be a complete ``algebraic category''. Then $\Sh(X,\catC)$ is complete, and limits in $\Sh(X,\catC)$ are computed pointwise.
+\end{proposition}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+
+
 \subsection*{Exercises}
 \addcontentsline{toc}{subsection}{Exercises}
+
+\begin{exercise}
+    Prove \Cref{prop:chap:sheaves:sec:spaces:representables are sheaves}.
+\end{exercise}
 
 \begin{exercise}
     Show that the functor $\calF$ in \Cref{example:chap:sheaves:sec:spaces:non representable sheaf on Top} is a well-defined subfunctor of $\Hom({-},S^1)$ which satisfies the sheaf condition. If needed, also prove the point-set topology lemma used in that proof: if $f \circ g$ is a quotient map, then $f$ is a quotient map.
 \end{exercise}
 
 \begin{exercise}
-    Let $X$, $Y_1$, and $Y_2$ be topological spaces. Let $\calF_1$ and $\calF_2$ be the presheaves on $X$ defined by $\calF_1(U) = \Hom_\Top(U,Y_1)$ and $\calF_2(U) = Y_2$ (technically, $\calF_2(U)$ is the underlying set of $Y_2$). Show that $\calF_1$ and $\calF_2$ are not isomorphic unless $Y_1$ and $Y_2$ are both singleton spaces.
+    Determine what the presheaves in \Cref{example:chap:sheaves:sec:spaces:examples of presheaves} should do to morphisms.
+\end{exercise}
+
+\begin{exercise}
+    Determine which of the presheaves in \Cref{example:chap:sheaves:sec:spaces:examples of presheaves} are sheaves.
+\end{exercise}
+
+\begin{exercise}
+    Let $X$ and $Y_1$ be topological spaces with $X \neq \varnothing$. Let $Y_2$ be a set. Let $\calF_1$ and $\calF_2$ be the presheaves on $X$ defined by $\calF_1(U) = \Hom_\Top(U,Y_1)$ and $\calF_2(U) = Y_2$. Show that $\calF_1$ and $\calF_2$ are not isomorphic unless $\lvert Y_1 \rvert = \lvert Y_2 \rvert = 1$.
+\end{exercise}
+
+\begin{exercise}
+    Prove \Cref{prop:chap:sheaves:sec:spaces:sheaves are complete}.
+\end{exercise}
+
+\begin{exercise}
+    Let $\catC$ be a category admitting finite products, and fix a terminal object $1 \in \catC$. An \emph{(abelian) group object} in $\catC$ is an object $X \in \catC$ together with morphisms
+    \begin{align*}
+        m : X \times X & \to X & e : 1 & \to X & i : X & \to X
+    \end{align*}
+    encoding multiplication, identity, and inverse, satisfying the usual axioms for an (abelian) group. The category of (abelian) group objects in $\catC$ will be denoted $\Grp(\catC)$ (resp. $\Ab(\catC)$) -- its objects are (abelian) group objects in $\catC$, and its morphisms are morphisms in $\catC$ that respect all of the structure maps.
+    \begin{enumerate}[label=(\alph*)]
+        \item Make sure this definition makes sense to you, i.e. you can formalize all the missing details. Convince yourself that $\Grp(\Set) \simeq \Grp$ and $\Ab(\Set) \simeq \Ab$.
+        \item Let $X$ be a topological space. Show that $\Sh(X,\Grp) \simeq \Grp(\Sh(X))$ and $\Sh(X,\Ab) \simeq \Ab(\Sh(X))$.
+        \item Convince yourself that a similar statement holds for $\Ring$ and $\CRing$.
+        \item For experts: formulate and prove the analogous statement for any locally presentable category.
+    \end{enumerate}
 \end{exercise}
