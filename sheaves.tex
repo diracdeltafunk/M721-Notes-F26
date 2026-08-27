@@ -117,7 +117,7 @@ We finish with an instantiation of our main goal: to understand that functions a
     \[(y)_{y \in Y},\]
     where the isomorphism in the line above is the product of the isomorphisms $\calF(\{y\}) \to \calF(\pt)$ obtained by applying $\calF$ to the unique map $\pt \to \{y\}$.
 
-    By the Yoneda lemma, the element $i \in \calF(Y)$ corresponds to a natural transformation $\eta : \Hom({-},Y) \to \calF$. Explicitly, $\eta$ is given by
+    By the Yoneda lemma\footnote{We discuss the Yoneda lemma in detail later, see \Cref{prop:Yoneda}.}, the element $i \in \calF(Y)$ corresponds to a natural transformation $\eta : \Hom({-},Y) \to \calF$. Explicitly, $\eta$ is given by
     \[\eta_X(f) = \calF(f)(i).\]
     We claim that this natural transformation is an isomorphism. For this, let $X$ be an arbitrary set, and notice that we have a commutative\footnote{Check!} diagram
     % https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Rn0oWCkiXSxbMSwxLCJcXHByb2Rfe3ggXFxpbiBYfSBcXG1hdGhjYWx7Rn0oXFx7eFxcfSkiXSxbMCwwLCJcXEhvbShYLFkpIl0sWzEsMCwiXFxwcm9kX3t4IFxcaW4gWH0gXFxIb20oXFx7eFxcfSxZKSJdLFswLDEsIlxcY29uZyIsMl0sWzIsMCwiXFxldGFfWCIsMl0sWzMsMSwiXFxwcm9kX3t4IFxcaW4gWH0gXFxldGFfe1xce3hcXH19Il0sWzIsMywiXFxjb25nIl1d
@@ -254,7 +254,9 @@ We can alleviate a lot of this weirdness by focusing our attention on just one t
     When $\catD$ is unspecified, it is assumed to be $\Set$. For example, when $X$ is a space, $\PSh(X)$ denotes the functor category $\Fun(\Open(X)^\op, \Set)$.
 \end{definition}
 
-\begin{proposition}[Yoneda]
+We think of a presheaf $\calF \in \PSh(X,\catD)$ as a way of assigning, to each open subset $U \subseteq X$, a collection of data (an object of $\catD$) defined locally on $U$. As we have already seen, \emph{representable} presheaves are very important. These are intimately connected to the Yoneda lemma and its corollaries.
+
+\begin{proposition}[Yoneda]\label{prop:Yoneda}
     Let $\catC$ be any category.
     \begin{enumerate}
         \item There is a fully faithful functor $y : \catC \to \PSh(\catC)$ (the \emph{Yoneda embedding}) defined on objects by
@@ -268,37 +270,17 @@ We can alleviate a lot of this weirdness by focusing our attention on just one t
     \end{enumerate}
 \end{proposition}
 
-\begin{definition}
-    Let $X$ be a topological space and $\catC$ a category. A \emph{presheaf} on $X$ valued in $\catC$ is a functor $\Open(X)^\op \to \catC$. The category of presheaves on $X$ valued in $\catC$ will be denoted
-    \[\PSh(X,\catC) := \Fun(\Open(X)^\op, \catC).\]
-    When not specified, we take $\catC = \Set$ by default. In particular, $\PSh(X)$ denotes the category $\Fun(\Open(X)^\op, \Set)$.
-\end{definition}
-
-We think of a presheaf $\calF \in \PSh(X,\catC)$ as a way of assigning, to each open subset $U \subseteq X$, a collection of data (an object of $\catC$) defined locally on $U$.
-
 \begin{example}\label{example:chap:sheaves:sec:spaces:examples of presheaves}
-    Here are some examples of presheaves on spaces. In each example, I will describe the presheaf $\calF$ by describing what it does on objects (open subsets of $X$); it is left as an exercise to determine what $\calF$ does to morphisms.
+    Here are some examples of presheaves on spaces.
     \begin{enumerate}
-        \item Let $X$ and $Y$ be spaces. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_\Top(U,Y)$.
-        \item Let $X$ be a space and let $Y$ be a set. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = Y$ for all $U \in \Open(X)$.
-        \item Let $X$ be a space and let $V \in \Open(X)$. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_{\Open(X)}(U,V)$.
-        \item Let $X$ be a smooth manifold, so that every open subset of $X$ is also a smooth manifold in a canonical way. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_{\Man}(U,\RR)$, where $\Man$ is the category of smooth manifolds.
+        \item Let $X$ and $Y$ be spaces. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_\Top(U,Y)$. This is the composition of the representable presheaf $y(Y) : \Top^\op \to \Set$ with the (usually non-full!) inclusion $\Open(X)^\op \subseteq \Top^\op$.
+        \item Let $X$ be a space and let $Y$ be a set. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = Y$ for all $U \in \Open(X)$. This is a constant functor.
+        \item Let $X$ be a space and let $V \in \Open(X)$. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_{\Open(X)}(U,V)$. This is the representable presheaf $y(V)$.
+        \item Let $X$ be a smooth manifold, so that every open subset of $X$ is also a smooth manifold in a canonical way. There is a presheaf $\calF \in \PSh(X)$ defined by $\calF(U) = \Hom_{\Man}(U,\RR)$, where $\Man$ is the category of smooth manifolds. This is the composition of the representable presheaf $y(\RR) : \Man^\op \to \Set$ with the (usually non-full!) inclusion $\Open(X)^\op \subseteq \Man^\op$.
     \end{enumerate}
 \end{example}
 
-There are many, many more examples, but we must focus on something to start. The first example is already familiar to us. The second example is almost disjoint from the first\footnote{Exercise: show that a presheaf (on a nonempty space) of the type defined in the first example is never isomorphic to a presheaf of the type defined in the second example, unless $\lvert Y \rvert = 1$ for both.}. The fourth example is given to show that extra structure on a space (e.g. the structure of a smooth manifold) can allow us to define additional presheaves on the space. Actually, in some precise sense, the presheaf $\calF$ in the fourth example \emph{encodes} the smooth manifold structure on $X$.
-
-The Yoneda lemma makes the third example of particular interest. We state some important features of the Yoneda lemma here in case they are unfamiliar\footnote{and apologize for having already used these facts earlier!}, but first we must generalize our notion of presheaves.
-
-Taking $\catC = \Open(X)$, we see:
-\begin{itemize}
-    \item Let $U$ be an open subset of $X$. The representable presheaf $y(U) = \Hom_{\Open(X)}({-},U)$ has the property that
-          \[\Hom_{\PSh(X)}(y(U),\calF) \cong \calF(U)\]
-          naturally in presheaves $\calF \in \PSh(X)$.
-    \item Every presheaf $\calF \in \PSh(X)$ is a colimit of representable presheaves.
-\end{itemize}
-
-With all of this in place, we can turn to the sheaf condition for presheaves on spaces. It is precisely the generalization of the condition in \Cref{prop:chap:sheaves:sec:spaces:representables are sheaves}.
+There are many, many more examples, but we must focus on something to start! Now we can turn to the sheaf condition for presheaves on spaces. It is precisely the generalization of the condition in \Cref{prop:chap:sheaves:sec:spaces:representables are sheaves}.
 
 \begin{definition}
     Let $X$ be a space. A presheaf $\calF \in \PSh(X)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
@@ -306,30 +288,49 @@ With all of this in place, we can turn to the sheaf condition for presheaves on 
     is an equalizer diagram in $\Set$. The category of sheaves on $X$ (the full subcategory of $\PSh(X)$ spanned by all sheaves) will be denoted $\Sh(X)$.
 \end{definition}
 
-Defining sheaves with values in a generic category $\catC$ is quite subtle. For now, we will handle only the case of ``algebraic categories''\footnote{This is intentionally imprecise, so as to avoid technical details. It will be enough (for now) to consider only categories the categories $\Set$, $\Grp$, $\Ab$, $\Ring$, and $\CRing$.}, e.g. $\Grp$, $\Ab$, $\CRing$. In this case, the same definition makes sense, and is ``correct''.
+Defining sheaves with values in a generic category $\catD$ is quite subtle, philosophically. For now, we will handle only the case of ``algebraic categories''\footnote{This is intentionally imprecise, so as to avoid technical details.}, by which I mean (for now) $\Set$, $\Grp$, $\Ab$, $\Ring$, and $\CRing$. In this case, the same definition makes sense, and is ``correct''.
 
 \begin{definition}
-    Let $X$ be a space and let $\catC$ be an ``algebraic category''. A presheaf $\calF \in \PSh(X,\catC)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
+    Let $X$ be a space and let $\catD$ be an ``algebraic category''. A presheaf $\calF \in \PSh(X,\catD)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
     \[\calF(U) \to \prod_\alpha \calF(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(U_\alpha \cap U_\beta)\]
-    is an equalizer diagram in $\catC$. The category of sheaves on $X$ with values in $\catC$ (the full subcategory of $\PSh(X,\catC)$ spanned by all sheaves) will be denoted $\Sh(X,\catC)$.
+    is an equalizer diagram in $\catD$. The category of sheaves on $X$ with values in $\catD$ (the full subcategory of $\PSh(X,\catD)$ spanned by all sheaves) will be denoted $\Sh(X,\catD)$.
 \end{definition}
 
-Note that, for our algebraic categories $\Set$, $\Grp$, $\Ab$, $\Ring$, $\CRing$ (or indeed any category $\catC$ which is monadic over $\Set$), the forgetful functor $\catC \to \Set$ preserves and creates limits, so a presheaf $\calF \in \PSh(X,\catC)$ is a sheaf if and only if the underlying presheaf of sets is a sheaf.
+Note that, for our ``algebraic categories'' (or indeed any category $\catD$ which is monadic over $\Set$), the forgetful functor $\catD \to \Set$ preserves and creates limits, so a presheaf $\calF \in \PSh(X,\catD)$ is a sheaf if and only if the underlying presheaf of sets is a sheaf. We now turn to the most important example of a sheaf on a space.
+
+\begin{example}\label{example:chap:sheaves:sec:spaces:sheaf of sections}
+    Let $\pi : E \to X$ be a continuous function. There is a sheaf $\cal{S}_\pi \in \Sh(X)$ defined on objects by
+    \[\cal{S}_\pi(U) = \{s \in \Hom_\Top(U,E) : \pi(s(x)) = x \text{ for all } x \in U\}\]
+    and on morphisms by
+    \begin{align*}
+        \cal{S}_\pi(U \subseteq V) : \cal{S}_\pi(V) & \to \cal{S}_\pi(U) \\
+        s                                           & \mapsto s|_U.
+    \end{align*}
+    This is called the \emph{sheaf of sections} of $\pi$.
+\end{example}
+
+One of the central theorems of sheaf theory is that every sheaf on a space arises as the sheaf of sections of some continuous function. We will prove this later -- for now, we note that this informs some common terminology.
+
+\begin{notation*}
+    When $\calF$ is a (pre)sheaf on $X$ and $U$ is an open subset of $X$, we call the elements of $\calF(U)$ \emph{local sections} of $\calF$ over $U$. When $U = X$, we call the elements of $\calF(X)$ \emph{global sections} of $\calF$. When $U \subseteq V$ is an inclusion of open sets, the map
+    \[\calF(U \subseteq V) : \calF(V) \to \calF(U)\]
+    is called \emph{restriction}, and may be denoted $\res^V_U$. We may even write $s|_U$ for $\res^V_U(s)$ when $s \in \calF(V)$, even when $s$ is not literally a function!
+\end{notation*}
+
+\startlecture[Sep 1, 2026]
 
 \subsection{Operations on (Pre-)Sheaves}
 
-Whenever $\catC$ is (co)complete, i.e.\ admits all small (co)limits, the category $\PSh(X,\catC)$ is also (co)complete, and these (co)limits are computed pointwise. In particular, for a diagram $F : \cal{I} \to \PSh(X)$, we have
-\[(\lim F)(U) \cong \lim_{i \in \cal{I}} F(i)(U) \qquad (\colim F)(U) \cong \colim_{i \in \cal{I}} F(i)(U)\]
-for all open sets $U \subseteq X$. In particular, we may form products, coproducts, pullbacks, equalizers, etc.\ of presheaves quite easily. The same is true for \emph{limits} of sheaves\footnote{Actually, $\Sh(X)$ is both complete and cocomplete, but the colimits are not computed pointwise. We'll get into this later.}.
+Whenever $\catD$ is (co)complete, i.e.\ admits all small (co)limits, the category $\PSh(\catC,\catD)$ is also (co)complete, and these (co)limits are computed pointwise. In particular, for a diagram $F : \cal{I} \to \PSh(\catC,\catD)$ (with $\cal{I}$ a small category), we have
+\[(\lim F)(X) \cong \lim_{i \in \cal{I}} F(i)(X) \qquad (\colim F)(X) \cong \colim_{i \in \cal{I}} F(i)(X)\]
+for all objects $X \in \catC$. In particular, we may form products, coproducts, pullbacks, equalizers, etc.\ of presheaves quite easily. The same is true for \emph{limits} of sheaves on spaces\footnote{Actually, $\Sh(X)$ is both complete and cocomplete, but the colimits are not computed pointwise. We'll get into this later.}.
 
 \begin{proposition}\label{prop:chap:sheaves:sec:spaces:sheaves are complete}
-    Let $X$ be a space and let $\catC$ be a complete ``algebraic category''. Then $\Sh(X,\catC)$ is complete, and limits in $\Sh(X,\catC)$ are computed pointwise.
+    Let $X$ be a space and let $\catD$ be an ``algebraic category''. Then $\Sh(X,\catD)$ is complete, and limits in $\Sh(X,\catD)$ are computed pointwise.
 \end{proposition}
 \begin{proof}
     Exercise.
 \end{proof}
-
-
 
 \subsection*{Exercises}
 \addcontentsline{toc}{subsection}{Exercises}
@@ -343,10 +344,6 @@ for all open sets $U \subseteq X$. In particular, we may form products, coproduc
 \end{exercise}
 
 \begin{exercise}
-    Determine what the presheaves in \Cref{example:chap:sheaves:sec:spaces:examples of presheaves} should do to morphisms.
-\end{exercise}
-
-\begin{exercise}
     Determine which of the presheaves in \Cref{example:chap:sheaves:sec:spaces:examples of presheaves} are sheaves.
 \end{exercise}
 
@@ -354,8 +351,21 @@ for all open sets $U \subseteq X$. In particular, we may form products, coproduc
     Let $X$ and $Y_1$ be topological spaces with $X \neq \varnothing$. Let $Y_2$ be a set. Let $\calF_1$ and $\calF_2$ be the presheaves on $X$ defined by $\calF_1(U) = \Hom_\Top(U,Y_1)$ and $\calF_2(U) = Y_2$. Show that $\calF_1$ and $\calF_2$ are not isomorphic unless $\lvert Y_1 \rvert = \lvert Y_2 \rvert = 1$.
 \end{exercise}
 
+% TODO When we get to locally ringed spaces, add an exercise about defining smooth manifolds via structure sheaves.
 \begin{exercise}
-    Prove \Cref{prop:chap:sheaves:sec:spaces:sheaves are complete}.
+    Let $X$ be a smooth manifold. Let $\cal{O}$ denote the sheaf of smooth functions on $X$, i.e.\ $\cal{O}(U) = \Hom_{\Man}(U,\RR)$ for each open set $U \subseteq X$. Show that a continuous function $f : Y \to X$ from a smooth manifold $Y$ is smooth if and only if the composite
+    \[Y \xrightarrow{f} X \xrightarrow{\varphi} \RR\]
+    is smooth for all global sections $\varphi \in \cal{O}(X)$.
+
+    In this way, $\cal{O}$ determines the smooth structure of $X$.
+\end{exercise}
+
+\begin{exercise}
+    Show that the functor $\cal{S}_\pi$ defined in \Cref{example:chap:sheaves:sec:spaces:sheaf of sections} is indeed a well-defined sheaf.
+\end{exercise}
+
+\begin{exercise}
+    Show that $\Sh(\pt) \simeq \Set$, but $\PSh(\pt) \not\simeq \Set$.
 \end{exercise}
 
 \begin{exercise}
@@ -371,3 +381,8 @@ for all open sets $U \subseteq X$. In particular, we may form products, coproduc
         \item For experts: formulate and prove the analogous statement for any locally presentable category.
     \end{enumerate}
 \end{exercise}
+
+\begin{exercise}
+    Prove \Cref{prop:chap:sheaves:sec:spaces:sheaves are complete}.
+\end{exercise}
+
