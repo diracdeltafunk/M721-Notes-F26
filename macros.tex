@@ -3,7 +3,14 @@
 
 %% Mathcal
 \let\cal\mathcal
+\newcommand{\calE}{\cal{E}}
 \newcommand{\calF}{\cal{F}}
+\newcommand{\calG}{\cal{G}}
+\newcommand{\calH}{\cal{H}}
+\newcommand{\calI}{\cal{I}}
+\newcommand{\calO}{\cal{O}}
+\newcommand{\calS}{\cal{S}}
+\newcommand{\calV}{\cal{V}}
 
 %% Categories
 \let\cat\mathsf
@@ -26,7 +33,7 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Fun}{Fun}
 \DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\res}{res}
@@ -58,6 +65,7 @@
 \newtheorem*{remark*}{Remark}
 
 \newtheorem{exercise}{Exercise}[section]
+\Crefname{exercise}{Exercise}{Exercises}
 
 \newtheorem*{notation*}{Notation}
 
@@ -73,6 +81,7 @@
 {}          % CUSTOM-HEAD-SPEC
 \theoremstyle{slogan}
 \newtheorem{slogan}{Slogan}
+\Crefname{slogan}{Slogan}{Slogans}
 
 %warning
 \newtheoremstyle{warning}
@@ -110,7 +119,6 @@
 
 %% Lecture start lines
 \newcounter{lecture}
-\crefname{lecture}{Lecture}{Lectures}
 \Crefname{lecture}{Lecture}{Lectures}
 
 \makeatletter
