@@ -92,38 +92,38 @@ The situation is very much the same if we cover $X$ by more than two pieces.
 We finish with an instantiation of our main goal: to understand that functions are \emph{precisely} those things which are determined globally by their local behavior.
 
 \begin{theorem}\label{thm:chap:sheaves:sec:intro:sheaves are representable}
-    Let $\calF : \Set^\op \to \Set$ be a functor satisfying the following ``sheaf condition'':
+    Let $\cal{F} : \Set^\op \to \Set$ be a functor satisfying the following ``sheaf condition'':
     \begin{description}
         \item[$(\star)$] For any set $X$ and any collection of subsets $\{X_\alpha\}_\alpha$ of $X$, if $X = \bigcup_\alpha X_\alpha$ then
-              \[\calF(X) \to \prod_\alpha \calF(X_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(X_\alpha \cap X_\beta)\]
-              is an equalizer diagram in $\Set$, where the maps above are given by applying $\calF$ to the inclusions (as in \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}).
+              \[\cal{F}(X) \to \prod_\alpha \cal{F}(X_\alpha) \rightrightarrows \prod_{\alpha, \beta} \cal{F}(X_\alpha \cap X_\beta)\]
+              is an equalizer diagram in $\Set$, where the maps above are given by applying $\cal{F}$ to the inclusions (as in \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}).
     \end{description}
-    Then $\calF$ is representable, i.e. $\calF \cong \Hom({-},Y)$ for some set $Y$.
+    Then $\cal{F}$ is representable, i.e. $\cal{F} \cong \Hom({-},Y)$ for some set $Y$.
 \end{theorem}
 \begin{proof}
-    Set $Y = \calF(\pt)$. We first note that $\varnothing = \bigcup \varnothing$, whence we have an equalizer diagram of the form
-    \[\calF(\varnothing) \to \pt \rightrightarrows \pt,\]
-    showing that $\calF(\varnothing) \cong \pt$. Here we have used the fact that $\pt$ is terminal in $\Set$ (and empty products are terminal objects).
+    Set $Y = \cal{F}(\pt)$. We first note that $\varnothing = \bigcup \varnothing$, whence we have an equalizer diagram of the form
+    \[\cal{F}(\varnothing) \to \pt \rightrightarrows \pt,\]
+    showing that $\cal{F}(\varnothing) \cong \pt$. Here we have used the fact that $\pt$ is terminal in $\Set$ (and empty products are terminal objects).
 
     Now let $X$ be an arbitrary set, and write $X = \bigcup_{x \in X} \{x\}$. Then we have an equalizer diagram
-    \[\calF(X) \to \prod_{x \in X} \calF(\{x\}) \rightrightarrows \prod_{x, x' \in X} \calF(\{x\} \cap \{x'\}).\]
-    We note that $\calF(\{x\} \cap \{x'\}) = \calF(\varnothing) \cong \pt$ unless $x = x'$. Therefore we have an equalizer diagram of the form
-    \[\calF(X) \to \prod_{x \in X} \calF(\{x\}) \rightrightarrows \prod_{x \in X} \calF(\{x\})\]
+    \[\cal{F}(X) \to \prod_{x \in X} \cal{F}(\{x\}) \rightrightarrows \prod_{x, x' \in X} \cal{F}(\{x\} \cap \{x'\}).\]
+    We note that $\cal{F}(\{x\} \cap \{x'\}) = \cal{F}(\varnothing) \cong \pt$ unless $x = x'$. Therefore we have an equalizer diagram of the form
+    \[\cal{F}(X) \to \prod_{x \in X} \cal{F}(\{x\}) \rightrightarrows \prod_{x \in X} \cal{F}(\{x\})\]
     where the two parallel arrows are equal\footnote{Check!}. We conclude that the map
-    \[\calF(X) \to \prod_{x \in X} \calF(\{x\})\]
+    \[\cal{F}(X) \to \prod_{x \in X} \cal{F}(\{x\})\]
     is an isomorphism. This allows us to construct an element
-    \[i \in \calF(Y) \cong \prod_{y \in Y} \calF(\{y\}) \cong \prod_{y \in Y} \calF(\pt) = \prod_{y \in Y} Y\]
+    \[i \in \cal{F}(Y) \cong \prod_{y \in Y} \cal{F}(\{y\}) \cong \prod_{y \in Y} \cal{F}(\pt) = \prod_{y \in Y} Y\]
     from the tuple
     \[(y)_{y \in Y},\]
-    where the isomorphism in the line above is the product of the isomorphisms $\calF(\{y\}) \to \calF(\pt)$ obtained by applying $\calF$ to the unique map $\pt \to \{y\}$.
+    where the isomorphism in the line above is the product of the isomorphisms $\cal{F}(\{y\}) \to \cal{F}(\pt)$ obtained by applying $\cal{F}$ to the unique map $\pt \to \{y\}$.
 
-    By the Yoneda lemma\footnote{We discuss the Yoneda lemma in detail later, see \Cref{prop:Yoneda}.}, the element $i \in \calF(Y)$ corresponds to a natural transformation $\eta : \Hom({-},Y) \to \calF$. Explicitly, $\eta$ is given by
-    \[\eta_X(f) = \calF(f)(i).\]
+    By the Yoneda lemma\footnote{We discuss the Yoneda lemma in detail later, see \Cref{prop:Yoneda}.}, the element $i \in \cal{F}(Y)$ corresponds to a natural transformation $\eta : \Hom({-},Y) \to \cal{F}$. Explicitly, $\eta$ is given by
+    \[\eta_X(f) = \cal{F}(f)(i).\]
     We claim that this natural transformation is an isomorphism. For this, let $X$ be an arbitrary set, and notice that we have a commutative\footnote{Check!} diagram
     % https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Rn0oWCkiXSxbMSwxLCJcXHByb2Rfe3ggXFxpbiBYfSBcXG1hdGhjYWx7Rn0oXFx7eFxcfSkiXSxbMCwwLCJcXEhvbShYLFkpIl0sWzEsMCwiXFxwcm9kX3t4IFxcaW4gWH0gXFxIb20oXFx7eFxcfSxZKSJdLFswLDEsIlxcY29uZyIsMl0sWzIsMCwiXFxldGFfWCIsMl0sWzMsMSwiXFxwcm9kX3t4IFxcaW4gWH0gXFxldGFfe1xce3hcXH19Il0sWzIsMywiXFxjb25nIl1d
     \[\begin{tikzcd}[ampersand replacement=\&]
             {\Hom(X,Y)} \& {\prod_{x \in X} \Hom(\{x\},Y)} \\
-            {\calF(X)} \& {\prod_{x \in X} \calF(\{x\})}
+            {\cal{F}(X)} \& {\prod_{x \in X} \cal{F}(\{x\})}
             \arrow["\cong", from=1-1, to=1-2]
             \arrow["{\eta_X}"', from=1-1, to=2-1]
             \arrow["{\prod_{x \in X} \eta_{\{x\}}}", from=1-2, to=2-2]
@@ -132,21 +132,21 @@ We finish with an instantiation of our main goal: to understand that functions a
     where the top horizontal map is an isomorphism by \Cref{prop:chap:sheaves:sec:intro:representables are sheaves}. To show that $\eta_X$ is an isomorphism, it suffices to show that each $\eta_{\{x\}}$ is an isomorphism. We have a naturality square
     % https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXG1hdGhjYWx7Rn0oXFx7eFxcfSkiXSxbMCwwLCJcXEhvbShcXHt4XFx9LFkpIl0sWzAsMSwiXFxIb20oXFxtYXRocm17cHR9LFkpIl0sWzEsMSwiXFxtYXRoY2Fse0Z9KFxcbWF0aHJte3B0fSkiXSxbMSwwLCJcXGV0YV97XFx7eFxcfX0iXSxbMSwyLCJcXGNvbmciLDJdLFswLDMsIlxcY29uZyJdLFsyLDMsIlxcZXRhX3tcXG1hdGhybXtwdH19IiwyXV0=
     \[\begin{tikzcd}[ampersand replacement=\&]
-            {\Hom(\{x\},Y)} \& {\calF(\{x\})} \\
-            {\Hom(\pt,Y)} \& {\calF(\pt)}
+            {\Hom(\{x\},Y)} \& {\cal{F}(\{x\})} \\
+            {\Hom(\pt,Y)} \& {\cal{F}(\pt)}
             \arrow["{\eta_{\{x\}}}", from=1-1, to=1-2]
             \arrow["\cong"', from=1-1, to=2-1]
             \arrow["\cong", from=1-2, to=2-2]
             \arrow["{\eta_{\pt}}"', from=2-1, to=2-2]
         \end{tikzcd}\]
-    so it suffices to show that $\eta_{\pt} : \Hom(\pt,Y) \to \calF(\pt) = Y$ is an isomorphism. We first precompose with the isomorphism
+    so it suffices to show that $\eta_{\pt} : \Hom(\pt,Y) \to \cal{F}(\pt) = Y$ is an isomorphism. We first precompose with the isomorphism
     \begin{align*}
         Y & \to \Hom(\pt,Y) \\
         y & \mapsto f_y
     \end{align*}
     where $f_y : \pt \to Y$ is the unique function with image $\{y\}$. We will show that the composite $Y \to Y$ is the identity. So, let $y \in Y$ be arbitrary. We have
-    \[\eta_\pt(f_y) = \calF(f_y)(i).\]
-    But by construction of $i$, we have that\footnote{Check!} $\calF(f_y)$ sends $i$ to $y$.
+    \[\eta_\pt(f_y) = \cal{F}(f_y)(i).\]
+    But by construction of $i$, we have that\footnote{Check!} $\cal{F}(f_y)$ sends $i$ to $y$.
 \end{proof}
 
 \subsection*{Exercises}
@@ -195,37 +195,37 @@ We note that the analogue of \Cref{thm:chap:sheaves:sec:intro:sheaves are repres
 \begin{example}\label{example:chap:sheaves:sec:spaces:non representable sheaf on Top}
     Let $q : [0,1] \to S^1$ be the standard quotient map. We say that a continuous function $g : X \to S^1$ is \emph{locally liftable} along $q$ if, for all $x \in X$, there exists an open neighborhood $U$ of $x$ and a continuous function $\tilde{g} : U \to [0,1]$ such that $q \circ \tilde{g} = g|_U$.
 
-    Let $\calF : \Top^\op \to \Set$ be the subfunctor\footnote{This means simply that each $\calF(X)$ is a subset of $\Hom(X,S^1)$, and that the inclusions $\calF(X) \to \Hom(X,S^1)$ form a natural transformation (this determines what $\calF$ does to morphisms). We'll talk more about subfunctors later!} of $\Hom({-},S^1)$ defined by
-    \[\calF(X) = \{g \in \Hom(X,S^1) : g~\text{is locally liftable along}~q\}.\]
+    Let $\cal{F} : \Top^\op \to \Set$ be the subfunctor\footnote{This means simply that each $\cal{F}(X)$ is a subset of $\Hom(X,S^1)$, and that the inclusions $\cal{F}(X) \to \Hom(X,S^1)$ form a natural transformation (this determines what $\cal{F}$ does to morphisms). We'll talk more about subfunctors later!} of $\Hom({-},S^1)$ defined by
+    \[\cal{F}(X) = \{g \in \Hom(X,S^1) : g~\text{is locally liftable along}~q\}.\]
 
     Then the following sheaf condition holds:
     \begin{description}
         \item[$(\star)$] For any space $X$ and any open cover $\{U_\alpha\}_\alpha$ of $X$,
-              \[\calF(X) \to \prod_\alpha \calF(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(U_\alpha \cap U_\beta)\]
+              \[\cal{F}(X) \to \prod_\alpha \cal{F}(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \cal{F}(U_\alpha \cap U_\beta)\]
               is an equalizer diagram in $\Set$.
     \end{description}
-    However, $\calF$ is not representable.
+    However, $\cal{F}$ is not representable.
     \begin{proof}
-        It is left as an exercise to show that $\calF$ is a well-defined subfunctor of $\Hom({-},S^1)$ which satisfies the sheaf condition.
+        It is left as an exercise to show that $\cal{F}$ is a well-defined subfunctor of $\Hom({-},S^1)$ which satisfies the sheaf condition.
 
-        Suppose for contradiction that $\calF$ is representable, and pick a space $Y$ such that $\calF \cong \Hom({-},Y)$. By the Yoneda lemma, this natural isomorphism is determined by an element $i \in \calF(Y)$, i.e. a continuous function $i : Y \to S^1$ which is locally liftable along $q$. Precisely, the Yoneda lemma tells us that the natural isomorphism $\Hom({-},Y) \to \calF$ is given by
+        Suppose for contradiction that $\cal{F}$ is representable, and pick a space $Y$ such that $\cal{F} \cong \Hom({-},Y)$. By the Yoneda lemma, this natural isomorphism is determined by an element $i \in \cal{F}(Y)$, i.e. a continuous function $i : Y \to S^1$ which is locally liftable along $q$. Precisely, the Yoneda lemma tells us that the natural isomorphism $\Hom({-},Y) \to \cal{F}$ is given by
         \begin{align*}
-            \Hom(X,Y) & \to \calF(X)       \\
+            \Hom(X,Y) & \to \cal{F}(X)     \\
             f         & \mapsto i \circ f.
         \end{align*}
         The map $i$ also gives us a natural transformation $\Hom({-},Y) \to \Hom({-},S^1)$ by postcomposition. For any space $X$, we see that the composite
-        \[\calF(X) \xrightarrow{\cong} \Hom(X,Y) \xrightarrow{i_*} \Hom(X,S^1)\]
+        \[\cal{F}(X) \xrightarrow{\cong} \Hom(X,Y) \xrightarrow{i_*} \Hom(X,S^1)\]
         sends an element
-        $g \in \calF(X)$
+        $g \in \cal{F}(X)$
         first to the unique morphism
         $f \in \Hom(X,Y)$
         such that $i \circ f = g$, and then to the morphism
         $i \circ f = g \in \Hom(X,S^1)$.
-        In other words, this composite is the inclusion $\calF \to \Hom({-},S^1)$. In particular, $i_* : \Hom(X,Y) \to \Hom(X,S^1)$ is injective for all spaces $X$, i.e.\ $i : Y \to S^1$ is a monomorphism\footnote{In $\Top$, monomorphisms are simply injective continuous functions.}.
+        In other words, this composite is the inclusion $\cal{F} \to \Hom({-},S^1)$. In particular, $i_* : \Hom(X,Y) \to \Hom(X,S^1)$ is injective for all spaces $X$, i.e.\ $i : Y \to S^1$ is a monomorphism\footnote{In $\Top$, monomorphisms are simply injective continuous functions.}.
 
         Now observe that $q$ is itself locally liftable along $q$, since $\id_{[0,1]}$ is a
-        global lift. So $q \in \calF([0,1])$, i.e.\ there is a unique continuous map
-        $f : [0,1] \to Y$ with $i \circ f = q$. Since $q$ is a quotient map, $i$ is also a quotient map (in particular, $i$ is surjective). We have now established that $i$ is a bijective quotient map, i.e.\ a homeomorphism. Without loss of generality, $Y = S^1$ and $i = \id_{S^1}$. Then we have $\id_{S^1} = i \in \calF(Y) = \calF(S^1)$, which is a contradiction: $\id_{S^1}$ is not locally liftable along $q$ at the basepoint
+        global lift. So $q \in \cal{F}([0,1])$, i.e.\ there is a unique continuous map
+        $f : [0,1] \to Y$ with $i \circ f = q$. Since $q$ is a quotient map, $i$ is also a quotient map (in particular, $i$ is surjective). We have now established that $i$ is a bijective quotient map, i.e.\ a homeomorphism. Without loss of generality, $Y = S^1$ and $i = \id_{S^1}$. Then we have $\id_{S^1} = i \in \cal{F}(Y) = \cal{F}(S^1)$, which is a contradiction: $\id_{S^1}$ is not locally liftable along $q$ at the basepoint
         $\ast := q(0) = q(1)$.
     \end{proof}
 \end{example}
@@ -247,46 +247,46 @@ We can alleviate a lot of this weirdness by focusing our attention on just one t
 \end{definition}
 
 \begin{definition}
-    For any categories $\catC$ and $\catD$, a \emph{presheaf} on $\catC$ valued in $\catD$ is a functor $\calF : \catC^\op \to \catD$. The category of presheaves will be denoted $\PSh(\catC,\catD) = \Fun(\catC^\op, \catD)$.
+    For any categories $\catC$ and $\catD$, a \emph{presheaf} on $\catC$ valued in $\catD$ is a functor $\cal{F} : \catC^\op \to \catD$. The category of presheaves will be denoted $\PSh(\catC,\catD) = \Fun(\catC^\op, \catD)$.
 
-    A \emph{presheaf} on a space $X$ valued in $\catD$ is a functor $\calF : \Open(X)^\op \to \catD$, i.e. $\PSh(X, \catD)$ is defined to be $\PSh(\Open(X), \catD)$.
+    A \emph{presheaf} on a space $X$ valued in $\catD$ is a functor $\cal{F} : \Open(X)^\op \to \catD$, i.e. $\PSh(X, \catD)$ is defined to be $\PSh(\Open(X), \catD)$.
 
     When $\catD$ is unspecified, it is assumed to be $\Set$. For example, when $X$ is a space, $\PSh(X)$ denotes the functor category $\Fun(\Open(X)^\op, \Set)$.
 \end{definition}
 
-We think of a presheaf $\calF \in \PSh(X,\catD)$ as a way of assigning, to each open subset $U \subseteq X$, a collection of data (an object of $\catD$) defined locally on $U$. As we have already seen, \emph{representable} presheaves are very important. These are intimately connected to the Yoneda lemma and its corollaries.
+We think of a presheaf $\cal{F} \in \PSh(X,\catD)$ as a way of assigning, to each open subset $U \subseteq X$, a collection of data (an object of $\catD$) defined locally on $U$. As we have already seen, \emph{representable} presheaves are very important. These are intimately connected to the Yoneda lemma and its corollaries.
 
 \begin{proposition}[Yoneda]\label{prop:Yoneda}
     Let $\catC$ be a small\footnote{For now, we will keep as a standing assumption that the domain of any presheaf is small.} category.
     \begin{enumerate}
         \item There is a fully faithful functor $y : \catC \to \PSh(\catC)$ (the \emph{Yoneda embedding}) defined on objects by
               \[y(X) = \Hom_\catC({-},X)\]
-              and acting on morphisms by postcomposition. Presheaves $\calF \in \PSh(\catC)$ which lie in the essential image of $y$ (i.e. $\calF \cong y(X)$ for some $X$) are called \emph{representable}.
+              and acting on morphisms by postcomposition. Presheaves $\cal{F} \in \PSh(\catC)$ which lie in the essential image of $y$ (i.e. $\cal{F} \cong y(X)$ for some $X$) are called \emph{representable}.
         \item There is an isomorphism
-              \[\Hom_{\PSh(\catC)}(y(X),\calF) \cong \calF(X)\]
-              natural in both $X$ and $\calF$. In one direction, a natural transformation $\alpha : y(X) \to \calF$ determines an element $\alpha_X(\id_X) \in \calF(X)$. In the other direction, an element $x \in \calF(X)$ determines a natural transformation $\alpha : y(X) \to \calF$ whose components are given by $\alpha_Y(f) = \calF(f)(x)$.
+              \[\Hom_{\PSh(\catC)}(y(X),\cal{F}) \cong \cal{F}(X)\]
+              natural in both $X$ and $\cal{F}$. In one direction, a natural transformation $\alpha : y(X) \to \cal{F}$ determines an element $\alpha_X(\id_X) \in \cal{F}(X)$. In the other direction, an element $x \in \cal{F}(X)$ determines a natural transformation $\alpha : y(X) \to \cal{F}$ whose components are given by $\alpha_Y(f) = \cal{F}(f)(x)$.
         \item $y$ exhibits $\PSh(\catC)$ as the free cocompletion of $\catC$. That is: $\PSh(\catC)$ is cocomplete, and any functor $F : \catC \to \catD$ with $\catD$ cocomplete factors uniquely (up to natural isomorphism) as $G \circ y$ with $G : \PSh(\catC) \to \catD$ cocontinuous.
-        \item Every presheaf $\calF \in \PSh(\catC)$ is a colimit (in a canonical way) of representable presheaves. Explicitly, let $\int \calF$ (the \emph{category of elements} of $\calF$) be the category whose objects are pairs $(X,x)$ where $X \in \catC$ and $x \in \calF(X)$ -- morphisms $(X,x) \to (Y,y)$ in $\int \calF$ are morphisms $f : X \to Y$ in $\catC$ such that $\calF(f)(y) = x$. There is a projection $\pi : \int \calF \to \catC$ given by $(X,x) \mapsto X$. Composing this projection with the Yoneda embedding gives a functor $y \circ \pi : \int \calF \to \PSh(\catC)$. For each $(X,x) \in \int \calF$, there is a natural transformation $(y \circ \pi)(X,x) = y(X) \to \calF$ corresponding to the element $x \in \calF(X)$. This collection of natural transformations exhibits $\calF$ as the colimit of $y \circ \pi$.
+        \item Every presheaf $\cal{F} \in \PSh(\catC)$ is a colimit (in a canonical way) of representable presheaves. Explicitly, let $\int \cal{F}$ (the \emph{category of elements} of $\cal{F}$) be the category whose objects are pairs $(X,x)$ where $X \in \catC$ and $x \in \cal{F}(X)$ -- morphisms $(X,x) \to (Y,y)$ in $\int \cal{F}$ are morphisms $f : X \to Y$ in $\catC$ such that $\cal{F}(f)(y) = x$. There is a projection $\pi : \int \cal{F} \to \catC$ given by $(X,x) \mapsto X$. Composing this projection with the Yoneda embedding gives a functor $y \circ \pi : \int \cal{F} \to \PSh(\catC)$. For each $(X,x) \in \int \cal{F}$, there is a natural transformation $(y \circ \pi)(X,x) = y(X) \to \cal{F}$ corresponding to the element $x \in \cal{F}(X)$. This collection of natural transformations exhibits $\cal{F}$ as the colimit of $y \circ \pi$.
     \end{enumerate}
 \end{proposition}
 
 \begin{example}\label{example:chap:sheaves:sec:spaces:examples of presheaves}
     Here are some examples of presheaves on spaces.
     \begin{enumerate}
-        \item Let $X$ and $Y$ be spaces. There is a presheaf $\calF \in \PSh(X)$ given by $\calF(U) = \Hom_\Top(U,Y)$. This is the composition of the representable presheaf $y(Y) : \Top^\op \to \Set$ with the (usually non-full!) inclusion $\Open(X)^\op \subseteq \Top^\op$.
-        \item Let $X$ be a space and let $Y$ be a set. There is a presheaf $\calF \in \PSh(X)$ given by $\calF(U) = Y$ for all $U \in \Open(X)$. This is a constant functor.
-        \item Let $X$ be a space and let $V \in \Open(X)$. There is a presheaf $\calF \in \PSh(X)$ given by
-              \[\calF(U) = \begin{cases} \pt & U \subseteq V, \\ \varnothing & U \not\subseteq V. \end{cases}\]
+        \item Let $X$ and $Y$ be spaces. There is a presheaf $\cal{F} \in \PSh(X)$ given by $\cal{F}(U) = \Hom_\Top(U,Y)$. This is the composition of the representable presheaf $y(Y) : \Top^\op \to \Set$ with the (usually non-full!) inclusion $\Open(X)^\op \subseteq \Top^\op$.
+        \item Let $X$ be a space and let $Y$ be a set. There is a presheaf $\cal{F} \in \PSh(X)$ given by $\cal{F}(U) = Y$ for all $U \in \Open(X)$. This is a constant functor.
+        \item Let $X$ be a space and let $V \in \Open(X)$. There is a presheaf $\cal{F} \in \PSh(X)$ given by
+              \[\cal{F}(U) = \begin{cases} \pt & U \subseteq V, \\ \varnothing & U \not\subseteq V. \end{cases}\]
               This is the representable presheaf $y(V)$.
-        \item Let $X$ be a smooth manifold, so that every open subset of $X$ is also a smooth manifold in a canonical way. There is a presheaf $\calF \in \PSh(X)$ given by $\calF(U) = \Hom_{\Man}(U,\RR)$, where $\Man$ is the category of smooth manifolds. This is the composition of the representable presheaf $y(\RR) : \Man^\op \to \Set$ with the (usually non-full!) inclusion $\Open(X)^\op \subseteq \Man^\op$.
+        \item Let $X$ be a smooth manifold, so that every open subset of $X$ is also a smooth manifold in a canonical way. There is a presheaf $\cal{F} \in \PSh(X)$ given by $\cal{F}(U) = \Hom_{\Man}(U,\RR)$, where $\Man$ is the category of smooth manifolds. This is the composition of the representable presheaf $y(\RR) : \Man^\op \to \Set$ with the (usually non-full!) inclusion $\Open(X)^\op \subseteq \Man^\op$.
     \end{enumerate}
 \end{example}
 
 There are many, many more examples, but we must focus on something to start! Now we can turn to the sheaf condition for presheaves on spaces. It is precisely the generalization of the condition in \Cref{prop:chap:sheaves:sec:spaces:representables are sheaves}.
 
 \begin{definition}
-    Let $X$ be a space. A presheaf $\calF \in \PSh(X)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
-    \[\calF(U) \to \prod_\alpha \calF(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(U_\alpha \cap U_\beta)\]
+    Let $X$ be a space. A presheaf $\cal{F} \in \PSh(X)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
+    \[\cal{F}(U) \to \prod_\alpha \cal{F}(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \cal{F}(U_\alpha \cap U_\beta)\]
     is an equalizer diagram in $\Set$. The category of sheaves on $X$ (the full subcategory of $\PSh(X)$ spanned by all sheaves) will be denoted $\Sh(X)$.
 \end{definition}
 
@@ -297,20 +297,20 @@ Defining sheaves with values in a generic category $\catD$ is quite subtle, phil
 \end{warning}
 
 \begin{definition}\label{def:chap:sheaves:sec:spaces:sheaf with values in algebraic category}
-    Let $X$ be a space and let $\catD$ be an algebraic category. A presheaf $\calF \in \PSh(X,\catD)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
-    \[\calF(U) \to \prod_\alpha \calF(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \calF(U_\alpha \cap U_\beta)\]
+    Let $X$ be a space and let $\catD$ be an algebraic category. A presheaf $\cal{F} \in \PSh(X,\catD)$ is a \emph{sheaf} if for any open set $U \subseteq X$ and any open cover $\{U_\alpha\}_\alpha$ of $U$, the diagram
+    \[\cal{F}(U) \to \prod_\alpha \cal{F}(U_\alpha) \rightrightarrows \prod_{\alpha, \beta} \cal{F}(U_\alpha \cap U_\beta)\]
     is an equalizer diagram in $\catD$. The category of sheaves on $X$ with values in $\catD$ (the full subcategory of $\PSh(X,\catD)$ spanned by all sheaves) will be denoted $\Sh(X,\catD)$.
 \end{definition}
 
-Note that, for our algebraic categories (or indeed any category $\catD$ which is monadic over $\Set$), the forgetful functor $\catD \to \Set$ preserves and creates limits, so a presheaf $\calF \in \PSh(X,\catD)$ is a sheaf if and only if the underlying presheaf of sets is a sheaf. We now turn to the most important example of a sheaf on a space.
+Note that, for our algebraic categories (or indeed any category $\catD$ which is monadic over $\Set$), the forgetful functor $\catD \to \Set$ preserves and creates limits, so a presheaf $\cal{F} \in \PSh(X,\catD)$ is a sheaf if and only if the underlying presheaf of sets is a sheaf. We now turn to the most important example of a sheaf on a space.
 
 \begin{example}\label{example:chap:sheaves:sec:spaces:sheaf of sections}
-    Let $\pi : E \to X$ be a continuous function. There is a sheaf $\calS_\pi \in \Sh(X)$ defined on objects by
-    \[\calS_\pi(U) = \{s \in \Hom_\Top(U,E) : \pi(s(x)) = x \text{ for all } x \in U\}\]
+    Let $\pi : E \to X$ be a continuous function. There is a sheaf $\cal{S}_\pi \in \Sh(X)$ defined on objects by
+    \[\cal{S}_\pi(U) = \{s \in \Hom_\Top(U,E) : \pi(s(x)) = x \text{ for all } x \in U\}\]
     and on morphisms by
     \begin{align*}
-        \calS_\pi(U \subseteq V) : \calS_\pi(V) & \to \calS_\pi(U) \\
-        s                                       & \mapsto s|_U.
+        \cal{S}_\pi(U \subseteq V) : \cal{S}_\pi(V) & \to \cal{S}_\pi(U) \\
+        s                                           & \mapsto s|_U.
     \end{align*}
     This is called the \emph{sheaf of sections} of $\pi$.
 \end{example}
@@ -318,17 +318,17 @@ Note that, for our algebraic categories (or indeed any category $\catD$ which is
 One of the central theorems of sheaf theory is that every sheaf on a space arises as the sheaf of sections of some continuous function. We will prove this later -- for now, we note that this informs some common terminology.
 
 \begin{notation*}
-    When $\calF$ is a (pre)sheaf on $X$ and $U$ is an open subset of $X$, we call the elements of $\calF(U)$ \emph{local sections} of $\calF$ over $U$. When $U = X$, we call the elements of $\calF(X)$ \emph{global sections} of $\calF$. When $U \subseteq V$ is an inclusion of open sets, the map
-    \[\calF(U \subseteq V) : \calF(V) \to \calF(U)\]
-    is called \emph{restriction}, and may be denoted $\res^V_U$. We may even write $s|_U$ for $\res^V_U(s)$ when $s \in \calF(V)$, even when $s$ is not literally a function!
+    When $\cal{F}$ is a (pre)sheaf on $X$ and $U$ is an open subset of $X$, we call the elements of $\cal{F}(U)$ \emph{local sections} of $\cal{F}$ over $U$. When $U = X$, we call the elements of $\cal{F}(X)$ \emph{global sections} of $\cal{F}$. When $U \subseteq V$ is an inclusion of open sets, the map
+    \[\cal{F}(U \subseteq V) : \cal{F}(V) \to \cal{F}(U)\]
+    is called \emph{restriction}, and may be denoted $\res^V_U$. We may even write $s|_U$ for $\res^V_U(s)$ when $s \in \cal{F}(V)$, even when $s$ is not literally a function!
 \end{notation*}
 
 \startlecture[Sep 1, 2026]
 
 \subsection{Operations and Functors on (Pre-)Sheaves}
 
-Whenever $\catD$ is (co)complete, i.e.\ admits all small (co)limits, the category $\PSh(\catC,\catD)$ is also (co)complete, and these (co)limits are computed pointwise. In particular, for a diagram $F : \calI \to \PSh(\catC,\catD)$ (with $\calI$ a small category), we have
-\[(\lim F)(c) \cong \lim_{i \in \calI} F(i)(c) \qquad (\colim F)(c) \cong \colim_{i \in \calI} F(i)(c)\]
+Whenever $\catD$ is (co)complete, i.e.\ admits all small (co)limits, the category $\PSh(\catC,\catD)$ is also (co)complete, and these (co)limits are computed pointwise. In particular, for a diagram $F : \cal{I} \to \PSh(\catC,\catD)$ (with $\cal{I}$ a small category), we have
+\[(\lim F)(c) \cong \lim_{i \in \cal{I}} F(i)(c) \qquad (\colim F)(c) \cong \colim_{i \in \cal{I}} F(i)(c)\]
 for all objects $c \in \catC$. In particular, we may form products, coproducts, pullbacks, equalizers, etc.\ of presheaves quite easily. The same is true for \emph{limits} of sheaves on spaces\footnote{Actually, $\Sh(X)$ is both complete and cocomplete, but the colimits are not computed pointwise. We'll get into this later.}.
 
 \begin{proposition}\label{prop:chap:sheaves:sec:spaces:sheaves are complete}
@@ -338,7 +338,7 @@ for all objects $c \in \catC$. In particular, we may form products, coproducts, 
     Exercise.
 \end{proof}
 
-This tells us, for example, that morphisms of sheaves of abelian groups have kernels, which are computed pointwise, i.e.\ $\ker(\varphi)(U) = \ker(\varphi_U : \calF(U) \to \calF'(U))$ for any morphism $\varphi : \calF \to \calF'$ of sheaves of abelian groups and any open set $U \subseteq X$.
+This tells us, for example, that morphisms of sheaves of abelian groups have kernels, which are computed pointwise, i.e.\ $\ker(\varphi)(U) = \ker(\varphi_U : \cal{F}(U) \to \cal{F}'(U))$ for any morphism $\varphi : \cal{F} \to \cal{F}'$ of sheaves of abelian groups and any open set $U \subseteq X$.
 
 There are also constructions that allow us to move between different categories of (pre)sheaves.
 
@@ -348,9 +348,9 @@ There are also constructions that allow us to move between different categories 
     Now assume moreover that $\catC$ and $\catC'$ are small.
     \begin{enumerate}[label=(\roman*)]
         \item If $\catD$ is cocomplete, then $F^*$ admits a left adjoint $F_! : \PSh(\catC, \catD) \to \PSh(\catC', \catD)$ defined by
-              \[(F_! \calF)(c') = \colim_{(c,u) \in (c' \downarrow F)^\op} \calF(c).\]
+              \[(F_! \cal{F})(c') = \colim_{(c,u) \in (c' \downarrow F)^\op} \cal{F}(c).\]
         \item If $\catD$ is complete, then $F^*$ admits a right adjoint $F_* : \PSh(\catC, \catD) \to \PSh(\catC', \catD)$ defined by
-              \[(F_* \calF)(c') = \lim_{(c,u) \in (F \downarrow c')^\op} \calF(c).\]
+              \[(F_* \cal{F})(c') = \lim_{(c,u) \in (F \downarrow c')^\op} \cal{F}(c).\]
     \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -370,12 +370,12 @@ This proposition is stated in large generality so that we can use it in other co
             \arrow["\dashv"{anchor=center}, draw=none, from=1, to=0]
         \end{tikzcd}\]
     (the left adjoint is written on the left-hand side). These functors are given on objects by
-    \[(f_* \calF)(V) = \calF(f^{-1}(V))\]
+    \[(f_* \cal{F})(V) = \cal{F}(f^{-1}(V))\]
     and
-    \[(f^{-1}_\pre \calF)(U) = \colim_{V \supseteq f(U)} \calF(V).\]
+    \[(f^{-1}_\pre \cal{F})(U) = \colim_{V \supseteq f(U)} \cal{F}(V).\]
 \end{corollary}
 
-Note that if $f(U)$ is open in $Y$, then $(f^{-1}_\pre \calF)(U) = \calF(f(U))$. It is clear from the definitions that these constructions are (pseudo)functorial: for any composable pair of continuous maps $X \xrightarrow{f} Y \xrightarrow{g} Z$, we have
+Note that if $f(U)$ is open in $Y$, then $(f^{-1}_\pre \cal{F})(U) = \cal{F}(f(U))$. It is clear from the definitions that these constructions are (pseudo)functorial: for any composable pair of continuous maps $X \xrightarrow{f} Y \xrightarrow{g} Z$, we have
 \[(g \circ f)_* = g_* \circ f_*\]
 and it follows that
 \[(g \circ f)^{-1}_\pre \cong f^{-1}_\pre \circ g^{-1}_\pre.\]
@@ -383,24 +383,24 @@ and it follows that
 As a special case, we may consider the inclusion of a point $x \in X$, which we will denote $i_x : \pt \to X$.
 
 \begin{definition}
-    Let $\catD$ be a category admitting all filtered colimits. For any space $X$ and any point $x \in X$, we define the \emph{stalk} of a presheaf $\calF \in \PSh(X,\catD)$ at $x$ to be the global sections of the presheaf $(i_x)^{-1}_\pre(\calF)$, i.e.
-    \[\calF_x := (i_x)^{-1}_\pre (\calF)(\pt) = \colim_{U \ni x} \calF(U).\]
-    This yields the \emph{stalk functor} $\calF \mapsto \calF_x :\PSh(X,\catD) \to \catD$.
+    Let $\catD$ be a category admitting all filtered colimits. For any space $X$ and any point $x \in X$, we define the \emph{stalk} of a presheaf $\cal{F} \in \PSh(X,\catD)$ at $x$ to be the global sections of the presheaf $(i_x)^{-1}_\pre(\cal{F})$, i.e.
+    \[\cal{F}_x := (i_x)^{-1}_\pre (\cal{F})(\pt) = \colim_{U \ni x} \cal{F}(U).\]
+    This yields the \emph{stalk functor} $\cal{F} \mapsto \cal{F}_x :\PSh(X,\catD) \to \catD$.
 \end{definition}
 
 Stalks are very important invariants of a (pre)sheaf. In nice cases, filtered colimits in $\catD$ commute with finite limits, so the stalk functor preserves finite limits. We record this briefly since it is often useful.
 
 \begin{proposition}\label{prop:chap:sheaves:sec:spaces:stalk functor preserves finite limits}
-    Let $\catD$ be an algebraic category. Then $f^{-1}_\pre : \PSh(Y,\catD) \to \PSh(X,\catD)$ preserves finite limits for any continuous map $f$, and in particular the stalk functor $\calF \mapsto \calF_x : \PSh(X,\catD) \to \catD$ preserves finite limits for any point $x \in X$.
+    Let $\catD$ be an algebraic category. Then $f^{-1}_\pre : \PSh(Y,\catD) \to \PSh(X,\catD)$ preserves finite limits for any continuous map $f$, and in particular the stalk functor $\cal{F} \mapsto \cal{F}_x : \PSh(X,\catD) \to \catD$ preserves finite limits for any point $x \in X$.
 \end{proposition}
 \begin{proof}
     Abstract nonsense.
 \end{proof}
 
 \begin{definition}
-    If $U \subseteq X$ is an open set containing a point $x$, then $U$ is one of the open sets indexing the colimit defining the stalk $\calF_x$, and so we have a canonical map
-    \[\calF(U) \to \calF_x\]
-    which is natural in $\calF$.
+    If $U \subseteq X$ is an open set containing a point $x$, then $U$ is one of the open sets indexing the colimit defining the stalk $\cal{F}_x$, and so we have a canonical map
+    \[\cal{F}(U) \to \cal{F}_x\]
+    which is natural in $\cal{F}$.
 
     When $\catD$ is one of our algebraic categories\footnote{Note that all of our algebraic categories are concrete, i.e. objects in $\catD$ have underlying sets and therefore elements.}, we write $s \mapsto s_x$ for the action of this map. We call $s_x$ the \emph{germ}\footnote{All of the terminology here is agricultural. A sheaf is a collected bundle of stalks of (e.g.) wheat, and each stalk of wheat has many germs (basically, the seeds/grains at the end of the stalk).} of the section $s$ at $x$.
 \end{definition}
@@ -408,13 +408,13 @@ Stalks are very important invariants of a (pre)sheaf. In nice cases, filtered co
 Intuitively, if we think of $s$ as some kind of function locally defined on $U$, its germ $s_x$ remembers only the behavior of $s$ at points ``arbitrarily close'' to $x$.
 
 \begin{proposition}\label{prop:chap:sheaves:sec:spaces:same germ means same locally}
-    Let $s, t \in \calF(U)$ be local sections of a presheaf $\calF \in \PSh(X,\catD)$, where $\catD$ is algebraic. Let $x \in U$. We have $s_x = t_x$ in $\calF_x$ if and only if there is some open neighborhood $V$ of $x$ such that $V \subseteq U$ and $s|_V = t|_V$.
+    Let $s, t \in \cal{F}(U)$ be local sections of a presheaf $\cal{F} \in \PSh(X,\catD)$, where $\catD$ is algebraic. Let $x \in U$. We have $s_x = t_x$ in $\cal{F}_x$ if and only if there is some open neighborhood $V$ of $x$ such that $V \subseteq U$ and $s|_V = t|_V$.
 \end{proposition}
 \begin{proof}
     Exercise (this just boils down to how colimits are constructed in our algebraic categories).
 \end{proof}
 
-In fact, the above proposition can be generalized: we can take $s \in \calF(U)$ and $t \in \calF(U')$ for any two open sets $U, U' \subseteq X$ containing $x$, and find that $s_x = t_x$ if and only if there is some open neighborhood $V \subseteq U \cap U'$ of $x$ such that $s|_V = t|_V$. In particular, note that $(s|_V)_x = s_x$ whenever $x \in V \subseteq U$ and $s \in \calF(U)$.
+In fact, the above proposition can be generalized: we can take $s \in \cal{F}(U)$ and $t \in \cal{F}(U')$ for any two open sets $U, U' \subseteq X$ containing $x$, and find that $s_x = t_x$ if and only if there is some open neighborhood $V \subseteq U \cap U'$ of $x$ such that $s|_V = t|_V$. In particular, note that $(s|_V)_x = s_x$ whenever $x \in V \subseteq U$ and $s \in \cal{F}(U)$.
 
 We finish with an omnibus theorem collecting some important facts about sheaves on spaces.
 
@@ -422,10 +422,10 @@ We finish with an omnibus theorem collecting some important facts about sheaves 
     Let $\catD$ be an algebraic category and $X, Y$ topological spaces. Then:
     \begin{enumerate}[label=(\roman*)]
         \item For any continuous function $f : X \to Y$, the functor $f_* : \PSh(X,\catD) \to \PSh(Y,\catD)$ restricts to a functor $f_* : \Sh(X,\catD) \to \Sh(Y,\catD)$.
-        \item For any point $x \in X$, the functor $(i_x)^{-1}_{\pre} : \PSh(X,\catD) \to \PSh(\pt, \catD)$ restricts to a functor $(i_x)^{-1}_{\pre} : \Sh(X,\catD) \to \Sh(\pt, \catD)$. Noting that taking global sections is an equivalence $\Sh(\pt,\catD) \to \catD$, we can view $(i_x)^{-1}_\pre$ as the stalk functor $\calF \mapsto \calF_x$.
-        \item For any open set $U \subseteq X$ and any sheaf $\calF \in \Sh(X,\catD)$, the morphism $\calF(U) \to \prod_{x \in U} \calF_x$ given by taking germs is injective.
-        \item Let $\varphi : \calF \to \calF'$ be a morphism in $\Sh(X,\catD)$. Then $\varphi$ is an isomorphism if and only if the induced morphism on stalks $\varphi_x : \calF_x \to \calF'_x$ is an isomorphism for all $x \in X$.
-        \item Let $\varphi_1, \varphi_2 : \calF \to \calF'$ be morphisms in $\Sh(X,\catD)$. We have $\varphi_1 = \varphi_2$ if and only if $(\varphi_1)_x = (\varphi_2)_x$ for all $x \in X$.
+        \item For any point $x \in X$, the functor $(i_x)^{-1}_{\pre} : \PSh(X,\catD) \to \PSh(\pt, \catD)$ restricts to a functor $(i_x)^{-1}_{\pre} : \Sh(X,\catD) \to \Sh(\pt, \catD)$. Noting that taking global sections is an equivalence $\Sh(\pt,\catD) \to \catD$, we can view $(i_x)^{-1}_\pre$ as the stalk functor $\cal{F} \mapsto \cal{F}_x$.
+        \item For any open set $U \subseteq X$ and any sheaf $\cal{F} \in \Sh(X,\catD)$, the morphism $\cal{F}(U) \to \prod_{x \in U} \cal{F}_x$ given by taking germs is injective.
+        \item Let $\varphi : \cal{F} \to \cal{F}'$ be a morphism in $\Sh(X,\catD)$. Then $\varphi$ is an isomorphism if and only if the induced morphism on stalks $\varphi_x : \cal{F}_x \to \cal{F}'_x$ is an isomorphism for all $x \in X$.
+        \item Let $\varphi_1, \varphi_2 : \cal{F} \to \cal{F}'$ be morphisms in $\Sh(X,\catD)$. We have $\varphi_1 = \varphi_2$ if and only if $(\varphi_1)_x = (\varphi_2)_x$ for all $x \in X$.
     \end{enumerate}
 \end{theorem}
 \startlecture[Sep 3, 2026]
@@ -433,18 +433,18 @@ We finish with an omnibus theorem collecting some important facts about sheaves 
     \begin{enumerate}[label=(\roman*)]
         \item Exercise.
         \item Exercise.
-        \item Let $s, t \in \calF(U)$ be such that $s_x = t_x$ for all $x \in U$. Let $\calV$ be the collection of all open subsets $V \subseteq U$ such that $s|_V = t|_V$. Since $s_x = t_x$ for all $x \in U$, \Cref{prop:chap:sheaves:sec:spaces:same germ means same locally} tells us that $\calV$ is an open cover of $U$. Now we apply the sheaf condition: $s$ and $t$ are local sections of $\calF$ on $U$ which agree on all pieces of the open cover $\calV$, so $s = t$.
-        \item If $\varphi$ is an isomorphism, then $\varphi_x$ is an isomorphism for all $x \in X$ (because the stalk functors are functors). Conversely, suppose that $\varphi_x$ is an isomorphism for all $x \in X$. Since $\catD$ is algebraic, it suffices to show that the underlying morphism of presheaves of sets is an isomorphism, i.e.\ that $\varphi_U : \calF(U) \to \calF'(U)$ is a bijection for all $U$. So, let $U \in \Open(X)$ be arbitrary. By naturality of taking germs and (iii), we have a commutative diagram
+        \item Let $s, t \in \cal{F}(U)$ be such that $s_x = t_x$ for all $x \in U$. Let $\cal{V}$ be the collection of all open subsets $V \subseteq U$ such that $s|_V = t|_V$. Since $s_x = t_x$ for all $x \in U$, \Cref{prop:chap:sheaves:sec:spaces:same germ means same locally} tells us that $\cal{V}$ is an open cover of $U$. Now we apply the sheaf condition: $s$ and $t$ are local sections of $\cal{F}$ on $U$ which agree on all pieces of the open cover $\cal{V}$, so $s = t$.
+        \item If $\varphi$ is an isomorphism, then $\varphi_x$ is an isomorphism for all $x \in X$ (because the stalk functors are functors). Conversely, suppose that $\varphi_x$ is an isomorphism for all $x \in X$. Since $\catD$ is algebraic, it suffices to show that the underlying morphism of presheaves of sets is an isomorphism, i.e.\ that $\varphi_U : \cal{F}(U) \to \cal{F}'(U)$ is a bijection for all $U$. So, let $U \in \Open(X)$ be arbitrary. By naturality of taking germs and (iii), we have a commutative diagram
               % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGNhbEYoVSkiXSxbMSwwLCJcXGNhbEYnKFUpIl0sWzAsMSwiXFxwcm9kX3t4IFxcaW4gVX0gXFxjYWxGX3giXSxbMSwxLCJcXHByb2Rfe3ggXFxpbiBVfSBcXGNhbEYnX3giXSxbMCwxLCJcXHZhcnBoaV9VIl0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbMiwzLCJcXHZhcnBoaV94IiwyXSxbMiwzLCJcXGNvbmciXV0=
               \[\begin{tikzcd}[ampersand replacement=\&,column sep=huge]
-                      {\calF(U)} \& {\calF'(U)} \\
-                      {\prod_{x \in U} \calF_x} \& {\prod_{x \in U} \calF'_x}
+                      {\cal{F}(U)} \& {\cal{F}'(U)} \\
+                      {\prod_{x \in U} \cal{F}_x} \& {\prod_{x \in U} \cal{F}'_x}
                       \arrow["{\varphi_U}", from=1-1, to=1-2]
                       \arrow[tail, from=1-1, to=2-1]
                       \arrow[tail, from=1-2, to=2-2]
                       \arrow["{\prod_{x \in U} \varphi_x}"', "\cong", from=2-1, to=2-2]
                   \end{tikzcd}\]
-              showing that $\varphi_U$ is injective. To show that $\varphi_U$ is surjective, let $s' \in \calF'(U)$. For each $x \in U$, we have $s'_x \in \calF'_x$, and since $\varphi_x$ is an isomorphism, there exists a unique $a_x \in \calF_x$ such that $\varphi_x(a_x) = s'_x$. By the definition of stalks, for each $x$ there exists an open neighborhood $V_x$ of $x$ and a local section $\sigma_x \in \calF(V_x)$ such that $(\sigma_x)_x = a_x$. Without loss of generality, we may assume $V_x \subseteq U$ (else replace $V_x$ with $V_x \cap U$ and $\sigma_x$ with $\sigma_x|_{V_x \cap U}$). By naturality of taking germs, we have
+              showing that $\varphi_U$ is injective. To show that $\varphi_U$ is surjective, let $s' \in \cal{F}'(U)$. For each $x \in U$, we have $s'_x \in \cal{F}'_x$, and since $\varphi_x$ is an isomorphism, there exists a unique $a_x \in \cal{F}_x$ such that $\varphi_x(a_x) = s'_x$. By the definition of stalks, for each $x$ there exists an open neighborhood $V_x$ of $x$ and a local section $\sigma_x \in \cal{F}(V_x)$ such that $(\sigma_x)_x = a_x$. Without loss of generality, we may assume $V_x \subseteq U$ (else replace $V_x$ with $V_x \cap U$ and $\sigma_x$ with $\sigma_x|_{V_x \cap U}$). By naturality of taking germs, we have
               \[(\varphi_{V_x}(\sigma_x))_x = \varphi_x((\sigma_x)_x) = \varphi_x(a_x) = s'_x.\]
               Now by \Cref{prop:chap:sheaves:sec:spaces:same germ means same locally}, for each $x \in U$ there exists an open neighborhood $W_x \subseteq V_x$ of $x$ such that
               \[\varphi_{W_x}(\sigma_x|_{W_x}) = \varphi_{V_x}(\sigma_x)|_{W_x} = s'|_{W_x}.\]
@@ -459,22 +459,22 @@ We finish with an omnibus theorem collecting some important facts about sheaves 
                                                                       & = (s'|_{W_{x_1}}|_{W_{x_1} \cap W_{x_2}})_z                                \\
                                                                       & = s'_z
               \end{align*}
-              and symmetrically $\varphi_z((\sigma_{x_2}|_{W_{x_1} \cap W_{x_2}})_z) = s'_z$. Since $\varphi_z : \calF_z \to \calF'_z$ is an isomorphism, we conclude that
+              and symmetrically $\varphi_z((\sigma_{x_2}|_{W_{x_1} \cap W_{x_2}})_z) = s'_z$. Since $\varphi_z : \cal{F}_z \to \cal{F}'_z$ is an isomorphism, we conclude that
               \[(\sigma_{x_1}|_{W_{x_1} \cap W_{x_2}})_z = (\sigma_{x_2}|_{W_{x_1} \cap W_{x_2}})_z.\]
               By (iii), we conclude that $\sigma_{x_1}|_{W_{x_1} \cap W_{x_2}} = \sigma_{x_2}|_{W_{x_1} \cap W_{x_2}}$, as desired.
 
-              Thus, we may apply the sheaf condition to obtain $s \in \calF(U)$ such that $s|_{W_x} = \sigma_x|_{W_x}$ for all $x \in U$. Note that
+              Thus, we may apply the sheaf condition to obtain $s \in \cal{F}(U)$ such that $s|_{W_x} = \sigma_x|_{W_x}$ for all $x \in U$. Note that
               \[\varphi_U(s)|_{W_x} = \varphi_{W_x}(s|_{W_x}) = \varphi_{W_x}(\sigma_x|_{W_x}) = s'|_{W_x}\]
-              for all $x \in U$. Since $\calF'$ is a sheaf and $\{W_x\}_{x \in U}$ is an open cover of $U$, we conclude that $\varphi_U(s) = s'$.
-        \item Let $\psi : \calE \to \calF$ be the equalizer of $\varphi_1$ and $\varphi_2$ in $\Sh(X,\catD)$. By \Cref{prop:chap:sheaves:sec:spaces:stalk functor preserves finite limits}, we have that $\psi_x$ is the equalizer of $(\varphi_1)_x$ and $(\varphi_2)_x$ in $\catD$ for all $x \in X$. Now $\psi$ is an isomorphism if and only if $\varphi_1 = \varphi_2$, and $\psi_x$ is an isomorphism if and only if $(\varphi_1)_x = (\varphi_2)_x$. The result follows from (iv). \qedhere
+              for all $x \in U$. Since $\cal{F}'$ is a sheaf and $\{W_x\}_{x \in U}$ is an open cover of $U$, we conclude that $\varphi_U(s) = s'$.
+        \item Let $\psi : \cal{E} \to \cal{F}$ be the equalizer of $\varphi_1$ and $\varphi_2$ in $\Sh(X,\catD)$. By \Cref{prop:chap:sheaves:sec:spaces:stalk functor preserves finite limits}, we have that $\psi_x$ is the equalizer of $(\varphi_1)_x$ and $(\varphi_2)_x$ in $\catD$ for all $x \in X$. Now $\psi$ is an isomorphism if and only if $\varphi_1 = \varphi_2$, and $\psi_x$ is an isomorphism if and only if $(\varphi_1)_x = (\varphi_2)_x$. The result follows from (iv). \qedhere
     \end{enumerate}
 \end{proof}
 
 \begin{corollary}
-    A sheaf $\calF$ is terminal (in the category $\Sh(X,\catD)$) if and only if $\calF_x$ is terminal in $\catD$ for all $x \in X$.
+    A sheaf $\cal{F}$ is terminal (in the category $\Sh(X,\catD)$) if and only if $\cal{F}_x$ is terminal in $\catD$ for all $x \in X$.
 \end{corollary}
 \begin{proof}
-    First, note that the terminal presheaf $\ast$ (the constant functor whose value is the terminal object in $\catD$) is also the terminal object of $\Sh(X,\catD)$, by \Cref{prop:chap:sheaves:sec:spaces:sheaves are complete}. We may compute directly that $\ast_x$ is terminal in $\catD$ for all $x \in X$. Then let $\calF \in \Sh(X,\catD)$ be arbitrary. There is a unique morphism of sheaves $\calF \to \ast$, which is an isomorphism if and only if $\calF$ is terminal. By \Cref{thm:chap:sheaves:sec:spaces:facts about sheaves}, we conclude that $\calF$ is terminal if and only if $\calF_x \to \ast_x$ is an isomorphism for all $x \in X$. Since $\ast_x$ is terminal in $\catD$, this is equivalent to $\calF_x$ being terminal in $\catD$ for all $x \in X$.
+    First, note that the terminal presheaf $\ast$ (the constant functor whose value is the terminal object in $\catD$) is also the terminal object of $\Sh(X,\catD)$, by \Cref{prop:chap:sheaves:sec:spaces:sheaves are complete}. We may compute directly that $\ast_x$ is terminal in $\catD$ for all $x \in X$. Then let $\cal{F} \in \Sh(X,\catD)$ be arbitrary. There is a unique morphism of sheaves $\cal{F} \to \ast$, which is an isomorphism if and only if $\cal{F}$ is terminal. By \Cref{thm:chap:sheaves:sec:spaces:facts about sheaves}, we conclude that $\cal{F}$ is terminal if and only if $\cal{F}_x \to \ast_x$ is an isomorphism for all $x \in X$. Since $\ast_x$ is terminal in $\catD$, this is equivalent to $\cal{F}_x$ being terminal in $\catD$ for all $x \in X$.
 \end{proof}
 
 \begin{slogan}\label{slogan:sheaves are governed by their stalks}
@@ -495,17 +495,17 @@ We finish with an omnibus theorem collecting some important facts about sheaves 
 We have seen (in \Cref{thm:chap:sheaves:sec:spaces:facts about sheaves}) that for any continuous map $f : X \to Y$, the functor $f_* : \PSh(X,\catD) \to \PSh(Y,\catD)$ preserves sheaves. Its left adjoint $f^{-1}_\pre$, however, does not preserve sheaves in general (see \Cref{exercise:chap:sheaves:sec:spaces:preimage does not preserve sheaves}). If $f$ is an open embedding, this problem goes away.
 
 \begin{proposition}
-    Let $i : U \to X$ be an open embedding\footnote{In other words, up to homeomorphism, $i$ is the inclusion of an open subspace of $X$.}. Then the functor $i^{-1}_\pre : \PSh(X,\catD) \to \PSh(U,\catD)$ preserves sheaves, and thus restricts to a functor $i^{-1} : \Sh(X,\catD) \to \Sh(U,\catD)$ which is left adjoint to $i_* : \Sh(U,\catD) \to \Sh(X,\catD)$.
+    Let $i : U \to X$ be an open embedding\footnote{In other words, up to homeomorphism, $i$ is the inclusion of an open subspace of $X$.}. Then the functor $i^{-1}_\pre : \PSh(X,\catD) \to \PSh(U,\catD)$ preserves sheaves, and thus restricts to a functor $i^{-1}_\pre : \Sh(X,\catD) \to \Sh(U,\catD)$ which is left adjoint to $i_* : \Sh(U,\catD) \to \Sh(X,\catD)$.
 \end{proposition}
 \begin{proof}
     We may compute directly that
-    \[(i^{-1}_\pre \calF)(V) = \colim_{W \supseteq i(V)} \calF(W) = \calF(i(V))\]
-    for any open set $V \subseteq U$. Then the sheaf condition for $\calF$ on $X$ implies the sheaf condition for $i^{-1}_\pre \calF$ on $U$. The adjunction follows from the fact that $\Sh(X,\catD)$ is a full subcategory of $\PSh(X,\catD)$.
+    \[(i^{-1}_\pre \cal{F})(V) = \colim_{W \supseteq i(V)} \cal{F}(W) = \cal{F}(i(V))\]
+    for any open set $V \subseteq U$. Then the sheaf condition for $\cal{F}$ on $X$ implies the sheaf condition for $i^{-1}_\pre \cal{F}$ on $U$. The adjunction follows from the fact that $\Sh(X,\catD)$ is a full subcategory of $\PSh(X,\catD)$.
 \end{proof}
 
-In the case that $i : U \to X$ is literally the inclusion of an open subspace (as opposed to an arbitrary open embedding), we often write $\calF \mapsto \calF|_U$ for the action of the functor $i^{-1}_\pre$, and we call $\calF|_U$ the \emph{restriction} of $\calF$ to $U$.
+In the case that $i : U \to X$ is literally the inclusion of an open subspace (as opposed to an arbitrary open embedding), we often write $\cal{F} \mapsto \cal{F}|_U$ for the action of the functor $i^{-1}_\pre$, and we call $\cal{F}|_U$ the \emph{restriction} of $\cal{F}$ to $U$.
 
-The fact that $i^{-1} : \Sh(X,\catD) \to \Sh(U,\catD)$ is well-defined when $i$ is an open embedding is explained by an underlying relationship between $\Open(U)$ and $\Open(X)$, which we will now explore.
+The fact that $i^{-1}_\pre : \Sh(X,\catD) \to \Sh(U,\catD)$ is well-defined when $i$ is an open embedding is explained by an underlying relationship between $\Open(U)$ and $\Open(X)$, which we will now explore.
 
 \begin{proposition}\label{prop:chap:sheaves:sec:spaces:adjunction between Open U and Open X}
     Let $i : U \to X$ be an open embedding. Then the functor $i^{-1} : \Open(X) \to \Open(U)$ is right adjoint to the functor $i : \Open(U) \to \Open(X)$.
@@ -534,7 +534,7 @@ The fact that $i^{-1} : \Sh(X,\catD) \to \Sh(U,\catD)$ is well-defined when $i$ 
     given by precomposition with $\eta$. We leave the verification of the triangle identities as an exercise.
 \end{proof}
 
-I apologize for the confusing overloading of notation: here $i$ denotes both the map of spaces $U \to X$ as well as the map of posets $\Open(U) \to \Open(X)$. Likewise, $i^{-1}$ denotes both the functor $\Sh(X,\catD) \to \Sh(U,\catD)$ and the preimage map $\Open(X) \to \Open(U)$. In the notation of \Cref{prop:chap:sheaves:sec:spaces:image of presheaves and adjoints}, we have (by definition)
+I apologize for the confusing overloading of notation: here $i$ denotes both the map of spaces $U \to X$ as well as the map of posets $\Open(U) \to \Open(X)$. In the notation of \Cref{prop:chap:sheaves:sec:spaces:image of presheaves and adjoints}, we have (by definition)
 \[i^{-1}_\pre : \PSh(X,\catD) \to \PSh(U,\catD) \quad = \quad (i^{-1} : \Open(X) \to \Open(U))_!\]
 and
 \[i_* : \PSh(U,\catD) \to \PSh(X,\catD) \quad = \quad (i^{-1} : \Open(X) \to \Open(U))^*.\]
@@ -546,61 +546,175 @@ of functors between categories of presheaves. The underbraces indicate the stand
 
 \begin{proposition}
     Let $\catD$ be a cocomplete category. The functor \[i_! : \PSh(U,\catD) \to \PSh(X,\catD)\] is given on objects by
-    \[(i_! \calF)(V) = \begin{cases}
-            \calF(V) & : V \subseteq U     \\
-            0        & : V \not\subseteq U
+    \[(i_! \cal{F})(V) = \begin{cases}
+            \cal{F}(V) & : V \subseteq U     \\
+            0          & : V \not\subseteq U
         \end{cases}\]
     where $0$ denotes the initial object of $\catD$. The operation $i_!$ is called \emph{extension by zero}. If $\catD = \Set$, then $i_!$ preserves sheaves.
 \end{proposition}
 \begin{proof}
     From \Cref{cor:chap:sheaves:sec:spaces:image of presheaves on spaces and adjoints}, we have
-    \[(i_! \calF)(V) = \colim_{i(W) \supseteq V} \calF(W) = \begin{cases}
-            \calF(V) & : V \subseteq U     \\
-            0        & : V \not\subseteq U
+    \[(i_! \cal{F})(V) = \colim_{i(W) \supseteq V} \cal{F}(W) = \begin{cases}
+            \cal{F}(V) & : V \subseteq U     \\
+            0          & : V \not\subseteq U
         \end{cases}.\]
-    If $\catD = \Set$ then $0 = \varnothing$, and the sheaf condition for $i_! \calF$ follows from the sheaf condition for $\calF$ together with the fact that if $V \not\subseteq U$, then any open cover of $V$ must contain some open set $W \not\subseteq U$.
+    If $\catD = \Set$ then $0 = \varnothing$, and the sheaf condition for $i_! \cal{F}$ follows from the sheaf condition for $\cal{F}$ together with the fact that if $V \not\subseteq U$, then any open cover of $V$ must contain some open set $W \not\subseteq U$.
 \end{proof}
 
 %TODO Exercise of $i_!$ not preserving sheaves for $\catD = \Ab$.
 
-The restriction functor $\calF \mapsto \calF|_U$ also allows us to define an enrichment of the category of (pre)sheaves.
+The restriction functor $\cal{F} \mapsto \cal{F}|_U$ also allows us to define an enrichment of the category of (pre)sheaves.
 \begin{proposition}
-    Let $X$ be a space and $\catD$ a category enriched over a base $\calV$ which is complete, cocomplete, and closed symmetric monoidal.
+    Let $X$ be a space and $\catD$ a category enriched over a base $\cal{V}$ which is complete, cocomplete, and closed symmetric monoidal.
 
-    First, the category $\PSh(X,\catD)$ is naturally enriched over $\calV$, with
-    \[\Hom(\calF, \calF') := \int_{U \in \Open(X)^\op} \Hom(\calF(U), \calF'(U)).\]
+    First, the category $\PSh(X,\catD)$ is naturally enriched over $\cal{V}$, with
+    \[\Hom(\cal{F}, \cal{F}') := \int_{U \in \Open(X)^\op} \Hom(\cal{F}(U), \cal{F}'(U)).\]
 
-    Moreover, $\PSh(X,\catD)$ is naturally enriched over $\PSh(X,\calV)$, with
-    \[\underline{\Hom}(\calF, \calF')(U) := \Hom_{\PSh(U,\catD)}(\calF|_U, \calF'|_U)\]
-    for each open set $U \subseteq X$. Note that the global sections of $\underline{\Hom}(\calF, \calF')$ are precisely the enriched hom $\Hom(\calF, \calF') \in \calV$.
+    Moreover, $\PSh(X,\catD)$ is naturally enriched over $\PSh(X,\cal{V})$, with
+    \[\underline{\Hom}(\cal{F}, \cal{F}')(U) := \Hom_{\PSh(U,\catD)}(\cal{F}|_U, \cal{F}'|_U)\]
+    for each open set $U \subseteq X$. Note that the global sections of $\underline{\Hom}(\cal{F}, \cal{F}')$ are precisely the enriched hom $\Hom(\cal{F}, \cal{F}') \in \cal{V}$.
 
-    If $\catD$ and $\calV$ are moreover algebraic\footnote{The only options for $\calV$ here are $\Set$ and $\Ab$.}, then the same holds for sheaves: $\Sh(X,\catD)$ is enriched over $\calV$ and over $\Sh(X,\calV)$.
+    If $\catD$ and $\cal{V}$ are moreover algebraic\footnote{The only options for $\cal{V}$ here are $\Set$ and $\Ab$.}, then the same holds for sheaves: $\Sh(X,\catD)$ is enriched over $\cal{V}$ and over $\Sh(X,\cal{V})$.
 \end{proposition}
 \begin{proof}
-    It is clear that $\underline{\Hom}(\calF, \calF')$ is a well-defined presheaf on $X$ when $\calF$ and $\calF'$ are presheaves\footnote{Make sure you know what the restriction maps are!}. We leave it as an exercise to show that $\underline{\Hom}(\calF, \calF')$ is a sheaf whenever $\calF'$ is a sheaf.
+    It is clear that $\underline{\Hom}(\cal{F}, \cal{F}')$ is a well-defined presheaf on $X$ when $\cal{F}$ and $\cal{F}'$ are presheaves\footnote{Make sure you know what the restriction maps are!}. We leave it as an exercise to show that $\underline{\Hom}(\cal{F}, \cal{F}')$ is a sheaf whenever $\cal{F}'$ is a sheaf.
 \end{proof}
-
-Be not afraid of the first formula above. In the case $\calV = \Set$, the enrichment over $\calV$ is just the usual category structure\footnote{A category is the same thing as a $\Set$-enriched category.}, by the end-formula for natural transformations. The other important case is $\calV = \Ab$, which gives the category of (pre)sheaves of abelian groups on $X$ a natural enrichment over itself -- all this is doing is noting that the set of morphisms between two presheaves of abelian groups is itself an abelian group!
-
-It is also worth noting that we get enrichments of automorphism groups of (pre)sheaves:
-\[\underline{\Aut}(\calF)(U) := \Aut_{\PSh(U,\catD)}(\calF|_U)\]
-defines a presheaf of groups\footnote{Here we must take $\catD$ as an ordinary category, ignoring any possible enrichment.} on $X$ when $\calF$ is a presheaf, and a sheaf of groups on $X$ when $\calF$ is a sheaf\footnote{Exercise!}.
 
 \startlecture[Sep 8, 2026]
 
+Be not afraid of the first formula above. In the case $\cal{V} = \Set$, the enrichment over $\cal{V}$ is just the usual category structure\footnote{A category is the same thing as a $\Set$-enriched category.}, by the end-formula for natural transformations. The other important case is $\cal{V} = \Ab$, which gives the category of (pre)sheaves of abelian groups on $X$ a natural enrichment over itself -- all this is doing is noting that the set of morphisms between two presheaves of abelian groups is itself an abelian group!
+
+It is also worth noting that we get enrichments of automorphism groups of (pre)sheaves:
+\[\underline{\Aut}(\cal{F})(U) := \Aut_{\PSh(U,\catD)}(\cal{F}|_U)\]
+defines a presheaf of groups\footnote{Here we must take $\catD$ as an ordinary category, ignoring any possible enrichment.} on $X$ when $\cal{F}$ is a presheaf, and a sheaf of groups on $X$ when $\cal{F}$ is a sheaf\footnote{Exercise!}.
+
 \subsection{Gluing}
 
-\begin{theorem}
-    Let $X$ be a space and let $\catD$ be an algebraic category. Let $\cal{B}$ be a basis for the topology on $X$. We may view $\cal{B}$ as a full subcategory of $\Open(X)$. Then the restriction functor $\Sh(X,\catD) \to \PSh(\cal{B},\catD)$ is fully faithful.
-\end{theorem}
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:sheaf determined by restriction to basis}
+    Let $X$ be a space and let $\catD$ be an algebraic category. Let $\cal{B}$ be a basis\footnote{Recall that a basis $\cal{B}$ for the topology on $X$ is a collection of open subsets of $X$ such that every open subset $U$ of $X$ can be written as a union $\bigcup \cal{V}$ for some $\cal{V} \subseteq \cal{B}$.} for the topology on $X$. We may view $\cal{B}$ as a full subcategory of $\Open(X)$. Then the restriction functor $\Sh(X,\catD) \to \PSh(\cal{B},\catD)$ is fully faithful.
+\end{proposition}
 \begin{proof}
-    %TODO
+    Exercise.
 \end{proof}
 
-We note that this theorem does not hold for presheaves on $X$! In part, this theorem says that a sheaf is determined by its values on a basis of the topology -- this requires the sheaf condition. It's also important to note that this restriction functor is not essentially surjective, i.e. not every presheaf on a basis of the topology extends to a sheaf on the whole space.
-%TODO Exercise of this failing for presheaves.
-%TODO When does a presheaf on a basis come from a sheaf.
-%TODO Gluing sheaves together over an open cover.
+We note that this does not hold for presheaves on $X$! In part, this proposition says that a sheaf is determined by its values on a basis of the topology -- this requires the sheaf condition. It's also important to note that this restriction functor is not essentially surjective, i.e. not every presheaf on a basis of the topology extends to a sheaf on the whole space.
+
+We can characterize exactly which presheaves on $\cal{B}$ come from sheaves on $X$. It is \emph{almost} enough to simply say that they are the presheaves on $\cal{B}$ which ``satisfy the sheaf condition'' -- the problem is that $\cal{B}$ need not be closed under intersection, so terms like $\cal{F}(B_1 \cap B_2)$ naturally appearing in a naive version of the sheaf condition are not well-defined. However, since $\cal{B}$ is a basis, any intersection $B_1 \cap B_2$ can itself be covered by elements of $\cal{B}$!
+
+\begin{definition}\label{def:chap:sheaves:sec:spaces:sheaf on a basis}
+    Let $X$ be a space, let $\cal{B}$ be a basis for the topology on $X$, and let $\catD$ be an algebraic category. A presheaf $\cal{F} \in \PSh(\cal{B},\catD)$ is a \emph{sheaf on $\cal{B}$} if the following  sheaf condition holds:
+    \begin{description}
+        \item[$(\star)$] For every $B \in \cal{B}$, every open cover $B = \bigcup_\alpha B_\alpha$ with each $B_\alpha \in \cal{B}$, and every collection of open covers\footnote{That is, we choose an open cover of $B_\alpha \cap B_\beta$. The indexing set of $\gamma$ therefore depends on $\alpha$ and $\beta$.}
+              \[B_\alpha \cap B_\beta = \bigcup_\gamma B_{\alpha, \beta, \gamma}\]
+              with each $B_{\alpha, \beta, \gamma} \in \cal{B}$, the diagram
+              \[\cal{F}(B) \to \prod_\alpha \cal{F}(B_\alpha) \rightrightarrows \prod_{\alpha, \beta} \prod_\gamma \cal{F}(B_{\alpha, \beta, \gamma})\]
+              is an equalizer diagram in $\catD$.
+    \end{description}
+    We write $\Sh(\cal{B},\catD)$ for the full subcategory of $\PSh(\cal{B},\catD)$ spanned by the sheaves.
+\end{definition}
+
+\begin{remark}\label{remark:chap:sheaves:sec:spaces:basis closed under intersections}
+    Suppose moreover that $\cal{B}$ is closed under finite intersections. Then $\cal{F} \in \PSh(\cal{B},\catD)$ is a sheaf if and only if, for every $B \in \cal{B}$ and every cover $B = \bigcup_\alpha B_\alpha$ by elements of $\cal{B}$, the diagram
+    \[\cal{F}(B) \to \prod_\alpha \cal{F}(B_\alpha) \rightrightarrows \prod_{\alpha, \beta} \cal{F}(B_\alpha \cap B_\beta)\]
+    is an equalizer diagram in $\catD$.
+\end{remark}
+
+\begin{theorem}\label{thm:chap:sheaves:sec:spaces:sheaves on a basis}
+    Restriction along the inclusion $\cal{B} \subseteq \Open(X)$ is an equivalence of categories
+    \[\Sh(X,\catD) \xrightarrow{\simeq} \Sh(\cal{B},\catD).\]
+\end{theorem}
+\begin{proof}
+    The inverse is given by right Kan extension along the inclusion $\cal{B} \to \Open(X)$: for $\cal{F} \in \Sh(\cal{B},\catD)$ and $U \in \Open(X)$, set
+    \[\widetilde{\cal{F}}(U) := \lim_{B \subseteq U} \cal{F}(B).\]
+    Then\footnote{Exercise!} $\widetilde{\cal{F}}$ is a sheaf on $X$, and the restriction of $\widetilde{\cal{F}}$ to $\cal{B}$ is (naturally isomorphic to) $\cal{F}$.
+\end{proof}
+
+The intuitive idea in the proof above is that \emph{any} open subset $U$ of $X$ may be covered by elements $B_\alpha$ of $\cal{B}$, and the intersections $B_\alpha \cap B_\beta$ may again be covered by elements of $\cal{B}$, allowing us to define $\widetilde{\cal{F}}(U)$ as the equalizer of
+\[\prod_\alpha \cal{F}(B_\alpha) \rightrightarrows \prod_{\alpha, \beta} \prod_\gamma \cal{F}(B_{\alpha, \beta, \gamma}).\]
+The only issue with this construction is that then the object $\widetilde{\cal{F}}(U)$ is only defined up to isomorphism, since each $U$ may admit many distinct covers $\{B_\alpha\}_\alpha$, and each intersection $B_\alpha \cap B_\beta$ may admit many distinct covers $\{B_{\alpha, \beta, \gamma}\}_\gamma$. The easy fix is to choose a specific canonical cover of $U$ by elements of $\cal{B}$, namely $U = \bigcup \{B \in \cal{B} : B \subseteq U\}$, and do likewise for the intersections. This is exactly what the Kan extension does for us.
+
+This theorem is a very useful tool for constructing sheaves in practice. For example, this is by far the easiest way to construct the structure sheaf of an affine scheme\footnote{We'll talk about this later in the notes when we introduce schemes.}. The structure sheaf on an arbitrary scheme is then ``glued'' together from the structure sheaves of its affine open subschemes, so it is also worth discussing how we may glue sheaves together.
+
+\begin{theorem}\label{thm:chap:sheaves:sec:spaces:gluing sheaves}
+    Let $X$ be a space, let $\catD$ be an algebraic category, and let $\{U_\alpha\}_\alpha$ be an open cover of $X$. Write $U_{\alpha,\beta} := U_\alpha \cap U_\beta$ and $U_{\alpha,\beta,\gamma} := U_\alpha \cap U_\beta \cap U_\gamma$. Suppose we are given:
+    \begin{enumerate}[label=(\roman*)]
+        \item For each $\alpha$, a sheaf $\cal{F}_\alpha \in \Sh(U_\alpha,\catD)$, and
+        \item For each pair $\alpha,\beta$, an isomorphism
+              \[\varphi_{\alpha,\beta} : \cal{F}_\beta|_{U_{\alpha,\beta}} \xrightarrow{\cong} \cal{F}_\alpha|_{U_{\alpha,\beta}}\]
+              in $\Sh(U_{\alpha,\beta},\catD)$,
+    \end{enumerate}
+    satisfying the \emph{cocycle condition}: for all $\alpha,\beta,\gamma$,
+    \[\varphi_{\alpha,\beta}|_{U_{\alpha,\beta,\gamma}} \circ \varphi_{\beta,\gamma}|_{U_{\alpha,\beta,\gamma}} = \varphi_{\alpha,\gamma}|_{U_{\alpha,\beta,\gamma}}\]
+    as morphisms $\cal{F}_\gamma|_{U_{\alpha,\beta,\gamma}} \to \cal{F}_\alpha|_{U_{\alpha,\beta,\gamma}}$.
+
+    Then there is a sheaf $\cal{F} \in \Sh(X,\catD)$, together with isomorphisms
+    \[\psi_\alpha : \cal{F}|_{U_\alpha} \xrightarrow{\cong} \cal{F}_\alpha\]
+    in $\Sh(U_\alpha,\catD)$, such that
+    \[\varphi_{\alpha,\beta} \circ \left(\psi_\beta|_{U_{\alpha,\beta}}\right) = \psi_\alpha|_{U_{\alpha,\beta}}\]
+    for all $\alpha,\beta$. Moreover, the data $\left(\cal{F},(\psi_\alpha)\right)$ is unique up to unique isomorphism (in the appropriate sense).
+\end{theorem}
+\begin{remark}\label{remark:chap:sheaves:sec:spaces:cocycle condition implies normalized}
+    It follows from the cocycle condition\footnote{Exercise!} that $\varphi_{\alpha,\alpha} = \id_{\cal{F}_\alpha}$ for all $\alpha$, and that $\varphi_{\beta,\alpha} = \varphi_{\alpha,\beta}^{-1}$ for all $\alpha,\beta$.
+\end{remark}
+\begin{proof}
+    Define $\cal{F}$ to be the equalizer of
+    \[\prod_\alpha (i_\alpha)_* \cal{F}_\alpha \rightrightarrows \prod_{\alpha,\beta} (i_{\alpha,\beta})_* \cal{F}_\alpha|_{U_{\alpha,\beta}}\]
+    where $i_\alpha : U_\alpha \to X$ and $i_{\alpha,\beta} : U_{\alpha,\beta} \to X$ are the inclusions, and the two maps are given on local sections by
+    \begin{align*}
+        f_V, g_V : \prod_\alpha \cal{F}_\alpha(V \cap U_\alpha) & \to \prod_{\alpha,\beta} \cal{F}_\alpha(V \cap U_{\alpha,\beta})                                                 \\
+        f_V = (s_\alpha)_\alpha                                 & \mapsto (s_\alpha|_{V \cap U_{\alpha,\beta}})_{\alpha,\beta},                                                    \\
+        g_V = (s_\alpha)_\alpha                                 & \mapsto ((\varphi_{\alpha,\beta})_{V \cap U_{\alpha,\beta}}(s_\beta|_{V \cap U_{\alpha,\beta}}))_{\alpha,\beta}.
+    \end{align*}
+    Note that $(\alpha,\beta)$-component of $f$ is simply the projection
+    \[\prod_\gamma (i_\gamma)_* \cal{F}_\gamma \to (i_\alpha)_* \cal{F}_\alpha\]
+    onto the $\alpha$-component followed by $(i_\alpha)_*$ applied to the unit
+    \[\cal{F}_\alpha \to j_* j^{-1}_\pre \cal{F}_\alpha,\]
+    of the adjunction $j^{-1}_\pre \dashv j_*$, where $j : U_{\alpha,\beta} \to U_\alpha$ is the inclusion. Similarly, the $(\alpha,\beta)$-component of $g$ is the projection onto the $\beta$-component, followed by $(i_\beta)_*$ applied to the unit $\cal{F}_\beta \to k_* k^{-1}_\pre \cal{F}_\beta$ (where $k : U_{\alpha,\beta} \to U_\beta$ is the inclusion), followed by $(i_{\alpha,\beta})_*$ applied to $\varphi_{\alpha,\beta}$. Thus, $f$ and $g$ are morphisms of presheaves, and $\cal{F}$ is a well-defined sheaf.
+
+    Note that, when $V \subseteq U_\alpha$, any section $(s_\beta)_\beta \in \cal{F}(V)$ satisfies
+    \begin{equation}\tag{\(\dagger\)}\label{eq:chap:sheaves:sec:spaces:gluing sheaves:compatibility of sections}
+        s_\beta = (\varphi_{\beta,\alpha})_{V \cap U_\beta}(s_\alpha|_{V \cap U_\beta})
+    \end{equation}
+    for all $\beta$, by considering the $(\beta,\alpha)$-component of the equality $f_V((s_\beta)_\beta) = g_V((s_\beta)_\beta)$. We define\footnote{More abstractly: $\cal{F}$ comes equipped with maps $\cal{F} \to (i_\alpha)_* \cal{F}_\alpha$ for all $\alpha$. By the adjunction $(i_\alpha)^{-1}_\pre \dashv (i_\alpha)_*$, these correspond to maps $\cal{F}|_{U_\alpha} \to \cal{F}_\alpha$, which are the $\psi_\alpha$'s.} $\psi_\alpha : \cal{F}|_{U_\alpha} \to \cal{F}_\alpha$ by $(\psi_\alpha)_V = (s_\beta)_\beta \mapsto s_\alpha$ for all $V \in \Open(U_\alpha)$, and note that we have just shown that $\psi_\alpha$ is injective.
+
+    To show that $\psi_\alpha$ is surjective, we let $V \subseteq U_\alpha$ be an arbitrary open set and $t \in \cal{F}_\alpha(V)$ an arbitrary section. Then define \[s_\beta := (\varphi_{\beta,\alpha})_{V \cap U_\beta}(t|_{V \cap U_\beta}) \in \cal{F}_\beta(V \cap U_\beta)\] for each $\beta$. First, we claim that $(s_\beta)_\beta \in \cal{F}(V)$. Indeed, we have
+    \begin{multline*}
+        f_V((s_\beta)_\beta)
+        = (s_\beta|_{V \cap U_{\beta,\gamma}})_{\beta, \gamma}
+        = ((\varphi_{\beta,\alpha})_{V \cap U_\beta}(t|_{V \cap U_\beta})|_{V \cap U_{\beta,\gamma}})_{\beta, \gamma} \\
+        = ((\varphi_{\beta,\alpha})_{V \cap U_{\beta,\gamma}}(t|_{V \cap U_{\beta,\gamma}}))_{\beta, \gamma}
+    \end{multline*}
+    and also
+    \begin{multline*}
+        g_V((s_\beta)_\beta)
+        = ((\varphi_{\beta,\gamma})_{V \cap U_{\beta, \gamma}}(s_\gamma|_{V \cap U_{\beta, \gamma}}))_{\beta, \gamma} \\
+        = ((\varphi_{\beta,\gamma})_{V \cap U_{\beta, \gamma}}((\varphi_{\gamma,\alpha})_{V \cap U_\gamma}(t|_{V \cap U_\gamma})|_{V \cap U_{\beta, \gamma}}))_{\beta, \gamma} \\
+        = ((\varphi_{\beta,\gamma})_{V \cap U_{\beta, \gamma}}((\varphi_{\gamma,\alpha})_{V \cap U_{\beta,\gamma}}(t|_{V \cap U_{\beta, \gamma}})))_{\beta, \gamma} \\
+        = ((\varphi_{\beta,\alpha})_{V \cap U_{\beta,\gamma}}(t|_{V \cap U_{\beta, \gamma}}))_{\beta, \gamma},
+    \end{multline*}
+    with the last equality coming from the cocycle condition. This shows that $(s_\beta)_\beta \in \cal{F}(V)$, and we have
+    \[(\psi_\alpha)_V((s_\beta)_\beta) = s_\alpha = (\varphi_{\alpha,\alpha})_{V \cap U_\alpha}(t|_{V \cap U_\alpha}) = (\varphi_{\alpha,\alpha})_V(t) = t.\]
+    The last equality here comes again from the cocycle condition. Thus $(\psi_\alpha)_V((s_\beta)_\beta) = t$, and we have shown that $(\psi_\alpha)_V$ is surjective. This shows that $\psi_\alpha$ is an isomorphism. Next, we must show that $\varphi_{\alpha,\beta} \circ \left(\psi_\beta|_{U_{\alpha,\beta}}\right) = \psi_\alpha|_{U_{\alpha,\beta}}$. This is a consequence of \eqref{eq:chap:sheaves:sec:spaces:gluing sheaves:compatibility of sections}: when $W \subseteq U_{\alpha,\beta}$ is open, any section $(s_\gamma)_\gamma \in \cal{F}(W)$ satisfies
+    \begin{align*}
+        (\psi_\alpha)_W (s_\gamma)_\gamma & = s_\alpha                                                              \\
+                                          & = (\varphi_{\alpha,\beta})_{W \cap U_\beta}(s_\beta|_{W \cap U_\alpha}) \\
+                                          & = (\varphi_{\alpha,\beta})_W(s_\beta)                                   \\
+                                          & = (\varphi_{\alpha,\beta})_W ((\psi_\beta)_W(s_\gamma)_\gamma).
+    \end{align*}
+    Finally, we must establish the uniqueness of $(\cal{F}, (\psi_\alpha)_\alpha)$, up to unique isomorphism. Suppose $(\cal{F}', (\psi'_\alpha)_\alpha)$ is another such datum. Then the maps $\psi'_\alpha : \cal{F}'|_{U_\alpha} \to \cal{F}_\alpha$ correspond to maps $\cal{F}' \to (i_\alpha)_* \cal{F}_\alpha$ for each $\alpha$, giving us a map
+    \[\cal{F}' \to \prod_\alpha (i_\alpha)_* \cal{F}_\alpha.\]
+    The compatibility condition $\varphi_{\alpha,\beta} \circ \left(\psi'_\beta|_{U_{\alpha,\beta}}\right) = \psi'_\alpha|_{U_{\alpha,\beta}}$ says exactly that this map factors through the equalizer $\cal{F}$. The morphism $\cal{F}' \to \cal{F}$ becomes an isomorphism after restriction to each $U_\alpha$, since
+    \[\cal{F}_\alpha \xrightarrow{(\psi_\alpha')^{-1}} \cal{F}'|_{U_\alpha} \to \cal{F}|_{U_\alpha} \xrightarrow{\psi_\alpha} \cal{F}_\alpha\]
+    is the identity by construction. We therefore obtain a unique isomorphism $\cal{F}' \xrightarrow{\cong} \cal{F}$ compatible with the $\psi_\alpha$'s and $\psi'_\alpha$'s, as desired.
+\end{proof}
+
+\begin{remark}\label{remark:chap:sheaves:sec:spaces:Sh is a stack}
+    \Cref{thm:chap:sheaves:sec:spaces:gluing sheaves} says, in a sense that can be made precise, that the functor
+    \[\Sh(X,\catD) \to \lim\left(\prod_\alpha \Sh(U_\alpha,\catD) \rightrightarrows \prod_{\alpha,\beta} \Sh(U_{\alpha,\beta},\catD) \triplerightarrow \prod_{\alpha,\beta,\gamma} \Sh(U_{\alpha,\beta,\gamma},\catD)\right)\]
+    is an equivalence, where the limit is taken in the $2$-category of categories. In other words, $U \mapsto \Sh(U,\catD)$ is some sort of ``higher categorical'' sheaf on $X$; it is in fact an example of a \emph{stack}.
+
+    Notice that triple intersections have appeared here for the first time. For a sheaf of sets, the agreement of two sections on a double overlap is a \emph{condition}, and the sheaf condition stops there. For a sheaf of categories, the agreement of two sheaves on a double overlap is \emph{data} --- namely the isomorphisms $\varphi_{\alpha,\beta}$ --- and so a coherence condition must be imposed on that data one level up, on triple overlaps.
+\end{remark}
 
 %TODO \subsection{Closed Embeddings}
 
@@ -622,7 +736,7 @@ We note that this theorem does not hold for presheaves on $X$! In part, this the
 \end{exercise}
 
 \begin{exercise}
-    Show that the functor $\calF$ in \Cref{example:chap:sheaves:sec:spaces:non representable sheaf on Top} is a well-defined subfunctor of $\Hom({-},S^1)$ which satisfies the sheaf condition. If needed, also prove the point-set topology lemma used in that proof: if $f \circ g$ is a quotient map, then $f$ is a quotient map.
+    Show that the functor $\cal{F}$ in \Cref{example:chap:sheaves:sec:spaces:non representable sheaf on Top} is a well-defined subfunctor of $\Hom({-},S^1)$ which satisfies the sheaf condition. If needed, also prove the point-set topology lemma used in that proof: if $f \circ g$ is a quotient map, then $f$ is a quotient map.
 \end{exercise}
 
 \begin{exercise}
@@ -630,20 +744,19 @@ We note that this theorem does not hold for presheaves on $X$! In part, this the
 \end{exercise}
 
 \begin{exercise}
-    Let $X$ and $Y_1$ be topological spaces with $X \neq \varnothing$. Let $Y_2$ be a set. Let $\calF_1$ and $\calF_2$ be the presheaves on $X$ defined by $\calF_1(U) = \Hom_\Top(U,Y_1)$ and $\calF_2(U) = Y_2$. Show that $\calF_1$ and $\calF_2$ are not isomorphic unless $\lvert Y_1 \rvert = \lvert Y_2 \rvert = 1$.
+    Let $X$ and $Y_1$ be topological spaces with $X \neq \varnothing$. Let $Y_2$ be a set. Let $\cal{F}_1$ and $\cal{F}_2$ be the presheaves on $X$ defined by $\cal{F}_1(U) = \Hom_\Top(U,Y_1)$ and $\cal{F}_2(U) = Y_2$. Show that $\cal{F}_1$ and $\cal{F}_2$ are not isomorphic unless $\lvert Y_1 \rvert = \lvert Y_2 \rvert = 1$.
 \end{exercise}
 
-% TODO When we get to locally ringed spaces, add an exercise about defining smooth manifolds via structure sheaves.
-\begin{exercise}
-    Let $X$ be a smooth manifold. Let $\calO$ denote the sheaf of smooth functions on $X$, i.e.\ $\calO(U) = \Hom_{\Man}(U,\RR)$ for each open set $U \subseteq X$. Show that a continuous function $f : Y \to X$ from a smooth manifold $Y$ is smooth if and only if the composite
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:smooth structure determined by smooth functions}
+    Let $X$ be a smooth manifold. Let $C^\infty_X$ denote the sheaf of smooth functions on $X$, i.e.\ $C^\infty_X(U) = \Hom_{\Man}(U,\RR)$ for each open set $U \subseteq X$. Show that a continuous function $f : Y \to X$ from a smooth manifold $Y$ is smooth if and only if the composite
     \[Y \xrightarrow{f} X \xrightarrow{\varphi} \RR\]
-    is smooth for all global sections $\varphi \in \calO(X)$.
+    is smooth for all global sections $\varphi \in C^\infty_X(X)$.
 
-    In this way, $\calO$ determines the smooth structure of $X$.
+    In this way, $C^\infty_X$ determines the smooth structure of $X$.
 \end{exercise}
 
 \begin{exercise}
-    Show that the functor $\calS_\pi$ defined in \Cref{example:chap:sheaves:sec:spaces:sheaf of sections} is indeed a well-defined sheaf.
+    Show that the functor $\cal{S}_\pi$ defined in \Cref{example:chap:sheaves:sec:spaces:sheaf of sections} is indeed a well-defined sheaf.
 \end{exercise}
 
 \begin{exercise}
@@ -681,12 +794,16 @@ We note that this theorem does not hold for presheaves on $X$! In part, this the
 \end{exercise}
 
 \begin{exercise}
-    Let $\pi : E \to X$ be a covering space. Show that, for all $x \in X$, the stalk $(\calS_\pi)_x$ is in bijection with the fiber $\pi^{-1}(x)$.
+    Let $\pi : E \to X$ be a covering space. Show that, for all $x \in X$, the stalk $(\cal{S}_\pi)_x$ is in bijection with the fiber $\pi^{-1}(x)$.
 \end{exercise}
 
 \begin{exercise}
-    Let $f : X \to Y$ be a continuous map of spaces. Show that $f^{-1}_\pre : \PSh(Y,\catD) \to \PSh(X,\catD)$ preserves stalks, i.e. for all $x \in X$ and $\calF \in \PSh(Y,\catD)$, we have a canonical isomorphism
-    \[(f^{-1}_\pre \calF)_x \cong \calF_{f(x)}.\]
+    Give an example of two sheaves on a space $X$ which are not isomorphic, but which have isomorphic stalks at every point of $X$.
+\end{exercise}
+
+\begin{exercise}
+    Let $f : X \to Y$ be a continuous map of spaces. Show that $f^{-1}_\pre : \PSh(Y,\catD) \to \PSh(X,\catD)$ preserves stalks, i.e. for all $x \in X$ and $\cal{F} \in \PSh(Y,\catD)$, we have a canonical isomorphism
+    \[(f^{-1}_\pre \cal{F})_x \cong \cal{F}_{f(x)}.\]
 \end{exercise}
 
 \begin{exercise}
@@ -702,18 +819,67 @@ We note that this theorem does not hold for presheaves on $X$! In part, this the
 \end{exercise}
 
 \begin{exercise}\label{exercise:chap:sheaves:sec:spaces:sheaves of spaces are bad}
-    In this exercise, you will show that \Cref{thm:chap:sheaves:sec:spaces:facts about sheaves}(iv) can fail badly for sheaves valued in a category which is not algebraic, even one which is complete and cocomplete. We take $\catD = \Top$, and read \Cref{def:chap:sheaves:sec:spaces:sheaf with values in algebraic category} verbatim, with the equalizer taken in $\Top$. That is: $\calF \in \PSh(X,\Top)$ is a sheaf if, for every open set $U \subseteq X$ and every open cover $\{U_\alpha\}_\alpha$ of $U$, the map
-    \[\calF(U) \to \prod_\alpha \calF(U_\alpha)\]
+    In this exercise, you will show that \Cref{thm:chap:sheaves:sec:spaces:facts about sheaves}(iv) can fail badly for sheaves valued in a category which is not algebraic, even one which is complete and cocomplete. We take $\catD = \Top$, and read \Cref{def:chap:sheaves:sec:spaces:sheaf with values in algebraic category} verbatim, with the equalizer taken in $\Top$. That is: $\cal{F} \in \PSh(X,\Top)$ is a sheaf if, for every open set $U \subseteq X$ and every open cover $\{U_\alpha\}_\alpha$ of $U$, the map
+    \[\cal{F}(U) \to \prod_\alpha \cal{F}(U_\alpha)\]
     is a topological embedding whose image is exactly the set of tuples agreeing on pairwise intersections.
 
-    For an open set $U \subseteq \RR$, write $C(U)$ for the set of continuous functions $U \to \RR$. Define presheaves $\calF_k, \calF_p \in \PSh(\RR, \Top)$ by letting $\calF_k(U)$ be $C(U)$ with the compact-open topology, letting $\calF_p(U)$ be $C(U)$ with the topology of pointwise convergence, and taking the usual restriction maps in both cases.
+    For an open set $U \subseteq \RR$, write $C(U)$ for the set of continuous functions $U \to \RR$. Define presheaves $\cal{F}_k, \cal{F}_p \in \PSh(\RR, \Top)$ by letting $\cal{F}_k(U)$ be $C(U)$ with the compact-open topology, letting $\cal{F}_p(U)$ be $C(U)$ with the topology of pointwise convergence, and taking the usual restriction maps in both cases.
     \begin{enumerate}[label=(\alph*)]
-        \item Show that $\calF_p$ is a sheaf.\\
+        \item Show that $\cal{F}_p$ is a sheaf.\\
               \textit{Recall:} The topology of pointwise convergence on $C(U)$ is the initial topology for the collection of evaluation maps $\{\mathrm{ev}_y : C(U) \to \RR\}_{y \in U}$.
-        \item Show that $\calF_k$ is a sheaf.\\
+        \item Show that $\cal{F}_k$ is a sheaf.\\
               \textit{Hint:} If $K \subseteq U$ is compact and $\{U_\alpha\}_\alpha$ covers $U$, then $K = K_1 \cup \cdots \cup K_n$ for finitely many compact sets $K_i$, each contained in some $U_{\alpha_i}$.
-        \item Show that the identity maps $C(U) \to C(U)$ assemble into a morphism $\varphi : \calF_k \to \calF_p$ in $\Sh(\RR,\Top)$, and that $\varphi$ is not an isomorphism.
-        \item Fix $x \in \RR$ and let $\calG_x$ denote the set of germs at $x$ of continuous real-valued functions defined near $x$. Show that $(\calF_k)_x$ and $(\calF_p)_x$ both have underlying set $\calG_x$, and that in both cases the topology on the stalk is the initial topology for the map $\calG_x \to \RR$ sending a germ to its value at $x$. Conclude that $\varphi_x$ is a homeomorphism for every $x \in \RR$.
+        \item Show that the identity maps $C(U) \to C(U)$ assemble into a morphism $\varphi : \cal{F}_k \to \cal{F}_p$ in $\Sh(\RR,\Top)$, and that $\varphi$ is not an isomorphism.
+        \item Fix $x \in \RR$ and let $\cal{G}_x$ denote the set of germs at $x$ of continuous real-valued functions defined near $x$. Show that $(\cal{F}_k)_x$ and $(\cal{F}_p)_x$ both have underlying set $\cal{G}_x$, and that in both cases the topology on the stalk is the initial topology for the map $\cal{G}_x \to \RR$ sending a germ to its value at $x$. Conclude that $\varphi_x$ is a homeomorphism for every $x \in \RR$.
         \item Conclude that $\varphi$ is a morphism of sheaves which is an isomorphism stalkwise, but is not an isomorphism.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Prove \Cref{prop:chap:sheaves:sec:spaces:sheaf determined by restriction to basis}.
+\end{exercise}
+
+\begin{exercise}
+    Give an example of a space $X$ and a basis $\cal{B}$ for its topology such that the restriction functor $\PSh(X,\catD) \to \PSh(\cal{B},\catD)$ is not fully faithful.
+\end{exercise}
+
+\begin{exercise}
+    Prove the claim in \Cref{remark:chap:sheaves:sec:spaces:cocycle condition implies normalized}.
+\end{exercise}
+
+\begin{exercise}
+    Show that $\widetilde{\cal{F}}$ in \Cref{thm:chap:sheaves:sec:spaces:sheaves on a basis} is indeed a sheaf on $X$.
+\end{exercise}
+
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:manifolds as ringed spaces}
+    A \emph{ringed space} is a pair $(X,\cal{O}_X)$ of a topological space $X$ and a sheaf $\cal{O}_X \in \Sh(X,\CRing)$, called the \emph{structure sheaf}. A \emph{morphism of ringed spaces} $(X,\cal{O}_X) \to (Y,\cal{O}_Y)$ is a pair $(f,f^\sharp)$ consisting of a continuous map $f : X \to Y$ together with a morphism $f^\sharp : \cal{O}_Y \to f_* \cal{O}_X$ of sheaves of rings on $Y$.
+
+    For $M$ a smooth manifold, write $C^\infty_M$ for the sheaf $\Hom_\Man({-},\RR)$ of smooth functions on $M$ as in \Cref{exercise:chap:sheaves:sec:spaces:smooth structure determined by smooth functions}; note that $(M, C^\infty_M)$ is a ringed space.
+
+    Let us call a ringed space $(X,\cal{O}_X)$ an \emph{$n$-dimensional smooth space} if $X$ is Hausdorff and second countable\footnote{We also make these point-set assumptions about smooth manifolds.}, and every point of $X$ admits an open neighborhood $U$ for which there is an isomorphism of ringed spaces
+    \[(U, \cal{O}_X|_U) \cong (\RR^n, C^\infty_{\RR^n}).\]
+    A \emph{smooth space} is an $n$-dimensional smooth space for some $n \geq 0$. A morphism of smooth spaces is simply a morphism of ringed spaces.
+
+    In this exercise, you will show that the category of smooth spaces is equivalent to the category of smooth manifolds. The upshot is that this gives a definition of smooth manifolds (not necessarily embedded in $\RR^n$!) which does \emph{not} require explicitly recording/choosing charts and atlases.
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $X$ be a smooth $n$-manifold.
+              \begin{enumerate}[label=(\roman*)]
+                  \item Show that $(X,C^\infty_X)$ is an $n$-dimensional smooth space.
+                  \item Show that $C^\infty_X$ is a sheaf of $\RR$-algebras\footnote{You may add the category of $\RR$-algebras to the list of ``algebraic categories''. Alternatively, a sheaf of $\RR$-algebras can be defined as a sheaf $\cal{F}$ of commutative rings together with a morphism $\underline{\RR} \to \cal{F}$, where $\underline{\RR}$ denotes the constant presheaf of commutative rings with value $\RR$.} in a unique way.\\
+                        \textit{Hint:} Use the fact that the only ring endomorphism of $\RR$ is the identity.
+              \end{enumerate}
+        \item Let $(f,f^\sharp) : (\RR^n, C^\infty_{\RR^n}) \to (\RR^m, C^\infty_{\RR^m})$ be a morphism of ringed spaces.
+              \begin{enumerate}[label=(\roman*)]
+                  \item Show that $f^\sharp$ is a morphism of sheaves of $\RR$-algebras.
+                  \item For all $V \in \Open(\RR^m)$ and all $\varphi \in C^\infty_{\RR^m}(V)$, show that \[f^\sharp_V(\varphi) = \varphi \circ f|_{f^{-1}(V)}.\]
+                        \textit{Hint:} Let $x \in f^{-1}(V)$ and $s \in \RR$ with $s \neq \varphi(f(x))$. It suffices to show that $(f^\sharp_V\varphi)(x) \neq s$. Use the fact that $\varphi - s$ is nonzero on some open neighborhood of $f(x)$.
+              \end{enumerate}
+        \item Let $f : X \to Y$ be a smooth map between smooth manifolds. Show that there is a unique morphism $f^\sharp : C^\infty_Y \to f_* C^\infty_X$ of sheaves of rings on $Y$, and that $f^\sharp$ happens to be a morphism of sheaves of $\RR$-algebras.
+        \item Let $(X,\cal{O}_X)$ be an $n$-dimensional smooth space. Show that $X$ has a unique smooth $n$-manifold structure such that:
+              \begin{description}
+                  \item[$(\star)$] For every open set $U \subseteq X$ and every isomorphism of ringed spaces $(\RR^n, C^\infty_{\RR^n}) \xrightarrow{\cong} (U, \cal{O}_X|_U)$, the underlying map $\RR^n \to U$ is a diffeomorphism.
+              \end{description}
+              Then, show that $\cal{O}_X \cong C^\infty_X$ as sheaves of rings.
+        \item Let $(f, f^\sharp) : (X,\cal{O}_X) \to (Y,\cal{O}_Y)$ be a morphism of smooth spaces. Show that $f : X \to Y$ is smooth, where we view $X$ and $Y$ as smooth manifolds by (d). Conclude that the category of smooth manifolds is equivalent to the category of smooth spaces.
     \end{enumerate}
 \end{exercise}

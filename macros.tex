@@ -3,14 +3,6 @@
 
 %% Mathcal
 \let\cal\mathcal
-\newcommand{\calE}{\cal{E}}
-\newcommand{\calF}{\cal{F}}
-\newcommand{\calG}{\cal{G}}
-\newcommand{\calH}{\cal{H}}
-\newcommand{\calI}{\cal{I}}
-\newcommand{\calO}{\cal{O}}
-\newcommand{\calS}{\cal{S}}
-\newcommand{\calV}{\cal{V}}
 
 %% Categories
 \let\cat\mathsf
@@ -39,6 +31,9 @@
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\res}{res}
+
+%% Everything inside a `draft' environment is typeset in red.
+\newenvironment{draft}{\color{red}}{}
 
 %% Other
 \newcommand{\pt}{\mathrm{pt}}
@@ -143,3 +138,10 @@
     \quad\hrulefill}%
   \par\medskip
 }
+
+% Stacked arrows
+\newcommand*{\triple}[2][.1ex]{%
+  \mathrel{\vcenter{\offinterlineskip%
+      \hbox{$#2$}\vskip#1\hbox{$#2$}\vskip#1\hbox{$#2$}}}}
+
+\newcommand*{\triplerightarrow}{\triple{\rightarrow}}
