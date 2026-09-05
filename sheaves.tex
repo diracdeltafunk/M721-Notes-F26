@@ -514,6 +514,10 @@ The fact that $i^{-1}_\pre : \Sh(X,\catD) \to \Sh(U,\catD)$ is well-defined when
     Elementary.
 \end{proof}
 
+\begin{remark}\label{remark:chap:sheaves:sec:spaces:open maps and adjunctions}
+    In fact, for any open map $f : X \to Y$, the functor $f^{-1} : \Open(Y) \to \Open(X)$ is right adjoint to the functor $f : \Open(X) \to \Open(Y)$. So, the work in this subsection can be generalized to this more general situation.
+\end{remark}
+
 \begin{proposition}\label{prop:chap:sheaves:sec:spaces:adjunction between presheaves induced by adjunction between categories}
     Let $\catC$ and $\catC'$ be small categories, and let $\catD$ be any category. Let
     % https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGNhdEMiXSxbMCwxLCJcXGNhdEMnIl0sWzAsMSwiRiIsMix7Im9mZnNldCI6Mn1dLFsxLDAsIkciLDIseyJvZmZzZXQiOjJ9XSxbMiwzLCIiLDAseyJsZXZlbCI6MSwic3R5bGUiOnsibmFtZSI6ImFkanVuY3Rpb24ifX1dXQ==
@@ -706,6 +710,17 @@ This theorem is a very useful tool for constructing sheaves in practice. For exa
     The compatibility condition $\varphi_{\alpha,\beta} \circ \left(\psi'_\beta|_{U_{\alpha,\beta}}\right) = \psi'_\alpha|_{U_{\alpha,\beta}}$ says exactly that this map factors through the equalizer $\cal{F}$. The morphism $\cal{F}' \to \cal{F}$ becomes an isomorphism after restriction to each $U_\alpha$, since
     \[\cal{F}_\alpha \xrightarrow{(\psi_\alpha')^{-1}} \cal{F}'|_{U_\alpha} \to \cal{F}|_{U_\alpha} \xrightarrow{\psi_\alpha} \cal{F}_\alpha\]
     is the identity by construction. We therefore obtain a unique isomorphism $\cal{F}' \xrightarrow{\cong} \cal{F}$ compatible with the $\psi_\alpha$'s and $\psi'_\alpha$'s, as desired.
+\end{proof}
+
+\begin{corollary}
+    Let $X$ be a space, let $\catD$ be an algebraic category, and let $\cal{F}, \cal{F}' \in \Sh(X,\catD)$. Let $\{U_\alpha\}_\alpha$ be an open cover of $X$, and suppose we are given morphisms
+    \[\varphi_\alpha : \cal{F}|_{U_\alpha} \to \cal{F}'|_{U_\alpha}\]
+    in $\Sh(U_\alpha,\catD)$ for each $\alpha$, such that
+    \[\varphi_\alpha|_{U_{\alpha} \cap U_{\beta}} = \varphi_\beta|_{U_{\alpha} \cap U_{\beta}}\]
+    for all $\alpha,\beta$. Then there is a unique morphism $\varphi : \cal{F} \to \cal{F}'$ in $\Sh(X,\catD)$ such that $\varphi|_{U_\alpha} = \varphi_\alpha$ for all $\alpha$.
+\end{corollary}
+\begin{proof}
+    Apply \Cref{thm:chap:sheaves:sec:spaces:gluing sheaves} to the sheaves $\cal{F}|_{U_\alpha}$ and $\cal{F}'|_{U_\alpha}$ to reconstruct $\cal{F}$ and $\cal{F}'$ (up to isomorphism) from their restrictions. The maps $\varphi_\alpha$ assemble into a morphism between these reconstructions.
 \end{proof}
 
 \begin{remark}\label{remark:chap:sheaves:sec:spaces:Sh is a stack}
