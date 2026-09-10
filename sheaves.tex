@@ -823,7 +823,44 @@ Local homeomorphisms are a very nice class of maps, and can be viewed as a gener
     The property of being a local homeomorphism is preserved under pullback\footnote{Exercise!}, so $\pi^{-1}(x) \to \pt$ is a local homeomorphism. Now any point $\ast \in \pi^{-1}(x)$ has an open neighborhood $V \subseteq \pi^{-1}(x)$ such that $\pi|_V : V \to \pt$ is a homeomorphism. This implies that $V = \{\ast\}$, so $\pi^{-1}(x)$ is discrete.
 \end{proof}
 
-The espace étalé $E_\cal{F}$ gives a canonical way to build a sheaf from a presheaf: first construct the espace étalé, and then take the sheaf of sections of the canonical projection. In fact, it would not be too hard to show that this is a correct construction of the sheafification functor right now, but it will be nice to first know that the second step (``take the sheaf of sections'') is not losing information. In other words, it is really the construction of the espace étalé that is doing the work of sheafification.
+The espace étalé $E_\cal{F}$ gives a canonical way to build a sheaf from a presheaf: first construct the espace étalé, and then take the sheaf of sections of the canonical projection. In fact, the second step (``take the sheaf of sections'') is not doing anything at all; it is really the construction of the espace étalé that is doing the work of sheafification.
+
+\begin{definition}
+Let $\Top^{\mathrm{lh}}$ denote the category of spaces with local homeomorphisms between them. For $X$ a space, $\Top^{\mathrm{lh}}/X$ (the slice category of local homeomorphisms over $X$) is the category whose objects are local homeomorphisms $E \to X$ and whose morphisms are commutative triangles
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJFIl0sWzIsMCwiRSciXSxbMSwxLCJYIl0sWzEsMiwiZyJdLFswLDEsIlxcdmFycGhpIl0sWzAsMiwiZiIsMl1d
+\[\begin{tikzcd}[column sep=tiny]
+	E && {E'} \\
+	& X
+	\arrow["\varphi", from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=2-2]
+	\arrow["g", from=1-3, to=2-2]
+\end{tikzcd}\]
+with $\varphi$ a local homeomorphism.
+\end{definition}
+
+\startlecture[Sep 15, 2026]
+
+\begin{proposition}
+\label{prop:chap:sheaves:sec:spaces:ToplhX is full in TopX}
+$\Top^{\mathrm{lh}}/X$ is equal to the full subcategory of $\Top/X$ spanned by the local homeomorphisms with codomain $X$. In other words, in the above commutative triangle, it is equivalent to require only that $\varphi$ is continuous (it will then automatically be a local homeomorphism).
+\end{proposition}
+\begin{proof}
+Exericse.
+\end{proof}
+
+\begin{proposition}
+The espace étalé construction $\cal{F} \mapsto E_{\cal{F}}$ is functorial $\PSh(X) \to \Top^{\mathrm{lh}}/X$.
+\end{proposition}
+\begin{proof}
+Given a morphism of presheaves $\varphi : \cal{F} \to \cal{F}'$, we obtain morphisms of stalks $\varphi_x : \cal{F}_x \to \cal{F}_x$, which together give a function $E_\varphi : E_{\cal{F}} \to E_{\cal{F}'}$ which commutes with the canonical projections. It is left as an exericse to show that $E_\varphi$ is continuous, etc.
+\end{proof}
+
+\begin{proposition}
+The sheaf of sections construction $p \mapsto \cal{S}_p$ is functorial $\Top/X \to \Sh(X)$.
+\end{proposition}
+\begin{proof}
+Given a morphism $\varphi : E \to E'$ between maps $p : E \to X, p' : E' \to X$, we may define a morphism of sheaves $\cal{S}_{\varphi} : \cal{S}_p \to \cal{S}_{p'}$ on local sections by $s \mapsto \varphi \circ s$. It is left as an exercise to show that $\cal{S}_{\varphi}$ is well-defined, etc.
+\end{proof}
 
 \begin{proposition}
     \label{prop:chap:sheaves:sec:spaces:stalks of local homeo are fibers}
@@ -833,29 +870,31 @@ The espace étalé $E_\cal{F}$ gives a canonical way to build a sheaf from a pre
     Let $x \in X$ and $t \in p^{-1}(x)$ be arbitrary. Since $p$ is a local homeomorphism, there is an open neighborhood $U \subseteq E$ of $t$ such that $p|_U : U \to p(U)$ is a homeomorphism. Now $(p|_U)^{-1} : p(U) \to U$ is a local section of $p$ whose value at $x$ is $t$. Thus, the map $s_x \mapsto s(x) : (\cal{S}_p)_x \to p^{-1}(x)$ is surjective. For injectivity, suppose $s_x \in (\cal{S}_p)_x$ is such that $s(x) = t$. Now $s^{-1}(U)$ is an open neighborhood of $x$, and we may assume without loss of generality that $s$ is defined on $s^{-1}(U)$. In particular, the image of $s$ is contained in $U$. Now $p|_U \circ s = \id_{s^{-1}(U)}$, so $s = (p|_U)^{-1}|_{s^{-1}(U)}$.
 \end{proof}
 
+Now we are ready to define the sheafification functor.
+
+\begin{definition}
+Let $\cal{F} \in \PSh(X)$. The \emph{sheafification} of $\cal{F}$, denoted $\cal{F}^{++}$ is the sheaf of sections of the canonical projection $E_{\cal{F}} \to X$. In other words, the sheafification functor is the composite
+\[\PSh(X) \to \Top^{\mathrm{lh}}/X \to \Sh(X).\]
+\end{definition}
+
+\begin{proposition}
+There is a natural transformation $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ given on local sections by $s \mapsto (u \mapsto (u, s_u))$. The induced map on stalks $\cal{F}_x \to \cal{F}^{++}_x$ is an isomorphism for all $x \in X$.
+\end{proposition}
+\begin{proof}
+$\eta_{\cal{F}}$ is well-defined by \Cref{prop:chap:sheaves:sec:spaces:local section of presheaf is local section of espace etale}. Naturality is left as an exercise. The isomorphism on stalks is \Cref{prop:chap:sheaves:sec:spaces:stalks of local homeo are fibers}.
+\end{proof}
+
+Consequently, $\eta_{\cal{F}}$ is an isomorphism if and only if $\cal{F}$ is a sheaf.
+
 \begin{theorem}
     \label{thm:chap:sheaves:sec:spaces:sheaves are local homeos}
-    The espace étalé construction gives an equivalence of categories
-    \[\Sh(X) \to \Top^{\mathrm{lh}}/X,\]
-    where $\Top^{\mathrm{lh}}$ is the category of topological spaces with local homeomorphisms between them, and $\Top^{\mathrm{lh}}/X$ is the slice category of local homeomorphisms over $X$. The inverse is given by taking the sheaf of sections of a local homeomorphism.
+    The espace étalé construction and the sheaf of sections construction give an equivalence of categories
+    \[\Sh(X) \simeq \Top^{\mathrm{lh}}/X.\]
 \end{theorem}
 \begin{proof}
-    First of all, we must show that both constructions are actually functorial. In short, this works as follows: given a morphism of sheaves $\varphi : \cal{F} \to \cal{F}'$, we get a map of stalks $\varphi_x : \cal{F}_x \to \cal{F}'_x$ for each $x \in X$, which gives us a map of espaces étalés $E_\varphi : E_\cal{F} \to E_{\cal{F}'}$, and one can check that this gives a morphism in $\Top^{\mathrm{lh}}/X$. Conversely, given a commutative triangle
-    % https://q.uiver.app/#q=WzAsMyxbMSwxLCJYIl0sWzIsMCwiRSciXSxbMCwwLCJFIl0sWzEsMCwiZyJdLFsyLDEsIlxccHNpIl0sWzIsMCwiZiIsMl1d
-    \[\begin{tikzcd}[ampersand replacement=\&]
-            E \&\& {E'} \\
-            \& X
-            \arrow["\psi", from=1-1, to=1-3]
-            \arrow["f"', from=1-1, to=2-2]
-            \arrow["g", from=1-3, to=2-2]
-        \end{tikzcd}\]
-    in $\Top$, there is a well-defined map $\cal{S}_f \to \cal{S}_g$ of sheaves of sections, given on local sections by $s \mapsto \psi \circ s$. We must now show that these two constructions are inverse to each other.
+    In one direction, $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ is an isomorphism whenever $\cal{F}$ is a sheaf.
 
-    For $\cal{F} \in \Sh(X)$, we have a well-defined natural\footnote{Check!} map $\alpha : \cal{F} \to \cal{S}_\pi$ given on local sections by $s \mapsto (x \mapsto (x,s_x))$. Composing the induced map on stalks
-    \[\alpha_x : \cal{F}_x \to (\cal{S}_\pi)_x\]
-    with the canonical bijection $(\cal{S}_\pi)_x \to \pi^{-1}(x) = \cal{F}_x$ (from \Cref{prop:chap:sheaves:sec:spaces:stalks of local homeo are fibers}) yields the identity map $\cal{F}_x \to \cal{F}_x$ by construction. By \Cref{thm:chap:sheaves:sec:spaces:facts about sheaves}, $\alpha$ is an isomorphism of sheaves.
-
-    For $p : E \to X$ a local homeomorphism, we have a well-defined\footnote{Make sure you can see that $\beta$ is continuous, cf. \Cref{exercise:chap:sheaves:sec:spaces:maps over X between local homeos}.} map $\beta : E_{\cal{S}_p} \to E$ given by
+    In the other direction, let $p : E \to X$ a local homeomorphism. We have a well-defined\footnote{Make sure you can see that $\beta$ is continuous, cf. \Cref{exercise:chap:sheaves:sec:spaces:maps over X between local homeos}.} map $\beta : E_{\cal{S}_p} \to E$ given by
     $(x,s_x) \mapsto s(x)$.
     By \Cref{prop:chap:sheaves:sec:spaces:stalks of local homeo are fibers}, this map is a fiberwise bijection over $X$, so $\beta$ is bijective. It now suffices to show that $\beta^{-1}$ is continuous. So, let $s[U]$ be a subbasic open set in $E_{\cal{S}_p}$. We have
     \[\beta(s[U]) = \{s(x) : x \in U\} = s(U),\]
@@ -864,15 +903,11 @@ The espace étalé $E_\cal{F}$ gives a canonical way to build a sheaf from a pre
     It follows that the image of $s|_W : W \to E$ is an open neighborhood of $s(u)$ contained in $s(U)$.
 \end{proof}
 
-The functor $\Sh(X) \to \Top^{\mathrm{lh}}/X$ sending a sheaf to its espace étalé can of course be generalized -- it is actually the composite $\Sh(X) \to \PSh(X) \to \Top^{\mathrm{lh}}/X$ of the inclusion $\Sh(X) \hookrightarrow \PSh(X)$ and the functor $\PSh(X) \to \Top^{\mathrm{lh}}/X$ sending a presheaf to its espace étalé. The other composite $\PSh(X) \to \Top^{\mathrm{lh}}/X \to \Sh(X)$ sending a presheaf to the sheaf of sections of its espace étalé is the sheafification functor.
-
 \begin{theorem}\label{thm:chap:sheaves:sec:spaces:sheafification}
-    The functor sending a presheaf $\cal{F} \in \PSh(X)$ to the sheaf of sections $\cal{S}_\pi$ of its espace étalé $\pi : E_\cal{F} \to X$ is left adjoint to the inclusion $\Sh(X) \hookrightarrow \PSh(X)$. We call this functor \emph{sheafification}, and denote it $\cal{F} \mapsto \cal{F}^{++}$.
+    Sheafification is left adjoint to the inclusion $\Sh(X) \hookrightarrow \PSh(X)$.
 \end{theorem}
 \begin{proof}
-    From the proof of \Cref{thm:chap:sheaves:sec:spaces:sheaves are local homeos}, we have a natural map $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ given on local sections by $s \mapsto (x \mapsto (x,s_x))$, which induces isomorphisms on stalks. In particular, $\eta_{\cal{F}}$ is an isomorphism whenever $\cal{F}$ is a sheaf.
-
-    Now let $\cal{F} \to \cal{G}$ be a morphism of presheaves with $\cal{G}$ a sheaf. We obtain a naturality square
+    Let $\cal{F} \to \cal{G}$ be a morphism of presheaves with $\cal{G}$ a sheaf. We obtain a naturality square
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGNhbHtGfSJdLFsxLDAsIlxcY2Fse0d9Il0sWzAsMSwiXFxjYWx7Rn1eeysrfSJdLFsxLDEsIlxcY2Fse0d9XnsrK30iXSxbMCwyLCJcXGV0YV97XFxjYWx7Rn19IiwyXSxbMSwzLCJcXGNvbmciXSxbMCwxLCJcXHZhcnBoaSJdLFsyLDMsIlxcdmFycGhpXnsrK30iLDJdLFsxLDMsIlxcZXRhX3tcXGNhbHtHfX0iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
     \[\begin{tikzcd}[ampersand replacement=\&]
             {\cal{F}} \& {\cal{G}} \\
@@ -883,7 +918,7 @@ The functor $\Sh(X) \to \Top^{\mathrm{lh}}/X$ sending a sheaf to its espace éta
             \arrow["{\eta_{\cal{G}}}"', draw=none, from=1-2, to=2-2]
             \arrow["{\varphi^{++}}"', from=2-1, to=2-2]
         \end{tikzcd}\]
-    and thus a morphism $\eta_{\cal{G}}^{-1} \circ \varphi^{++} : \cal{F}^{++} \to \cal{G}$ of sheaves such that $\eta_{\cal{G}}^{-1} \circ \varphi^{++} \circ \eta_{\cal{F}} = \varphi$. In particular, we have a well-defined injection
+    and thus a morphism $\eta_{\cal{G}}^{-1} \circ \varphi^{++} : \cal{F}^{++} \to \cal{G}$ of sheaves such that $(\eta_{\cal{G}}^{-1} \circ \varphi^{++}) \circ \eta_{\cal{F}} = \varphi$. In particular, we have a well-defined injection
     \begin{align*}
         \Hom_{\PSh(X)}(\cal{F},\cal{G}) & \to \Hom_{\Sh(X)}(\cal{F}^{++},\cal{G})         \\
         \varphi                         & \mapsto \eta_{\cal{G}}^{-1} \circ \varphi^{++}.
@@ -1091,7 +1126,7 @@ The functor $\Sh(X) \to \Top^{\mathrm{lh}}/X$ sending a sheaf to its espace éta
 \end{exercise}
 
 \begin{exercise}\label{exercise:chap:sheaves:sec:spaces:maps over X between local homeos}
-    Let $f : E \to X$ and $g : E' \to X$ be local homeomorphisms, and let $\psi : E \to E'$ be a continuous map with $g \circ \psi = f$. Show that $\psi$ is itself a local homeomorphism.
+    Prove \Cref{prop:chap:sheaves:sec:spaces:ToplhX is full in TopX}. That is: let $f : E \to X$ and $g : E' \to X$ be local homeomorphisms, and let $\psi : E \to E'$ be a continuous map with $g \circ \varphi = f$. Show that $\varphi$ is itself a local homeomorphism.
 \end{exercise}
 
 \begin{exercise}\label{exercise:chap:sheaves:sec:spaces:espace etale is functorial}
