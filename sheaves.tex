@@ -729,7 +729,7 @@ This theorem is a very useful tool for constructing sheaves in practice. For exa
 \begin{remark}\label{remark:chap:sheaves:sec:spaces:Sh is a stack}
     \Cref{thm:chap:sheaves:sec:spaces:gluing sheaves} and \Cref{cor:chap:sheaves:sec:spaces:gluing morphisms of sheaves} say, in a sense that can be made precise, that the functor
     \[\Sh(X,\catD) \to \lim\left(\prod_\alpha \Sh(U_\alpha,\catD) \rightrightarrows \prod_{\alpha,\beta} \Sh(U_{\alpha,\beta},\catD) \triplerightarrow \prod_{\alpha,\beta,\gamma} \Sh(U_{\alpha,\beta,\gamma},\catD)\right)\]
-    is an equivalence, where the limit\footnote{technically, a \emph{pseudo-limit}} is taken in the $2$-category of categories. In other words, $U \mapsto \Sh(U,\catD)$ is some sort of ``higher categorical'' sheaf\footnote{If you want a fancy word, $U \mapsto \Sh(U,\catD)$ is an example of a \emph{stack}.} on $X$.
+    is an equivalence, where the limit\footnote{Technically, a \emph{pseudo-limit}} is taken in the $2$-category of categories. In other words, $U \mapsto \Sh(U,\catD)$ is some sort of ``higher categorical'' sheaf\footnote{If you want a fancy word, $U \mapsto \Sh(U,\catD)$ is an example of a \emph{stack}.} on $X$.
 
     Notice that triple intersections have appeared here for the first time. For a sheaf of sets $\cal{F} \in \Sh(X)$, the agreement of two sections $s \in \cal{F}(U), s' \in \cal{F}(V)$ on a double intersection $U \cap V$ is a \emph{condition}; we either have $s|_{U \cap V} = s'|_{U \cap V}$ or not. For a ``sheaf of categories'' like $U \mapsto \Sh(U,\catD)$, the agreement of two sections $\cal{F} \in \Sh(U,\catD), \cal{F}' \in \Sh(V,\catD)$ on a double intersection is \emph{data} (a choice of isomorphism $\varphi : \cal{F}'|_{U \cap V} \to \cal{F}|_{U \cap V}$); if two sheaves on $U \cap V$ are isomorphic, they may be isomorphic in many different ways. We therefore need to enforce that these isomorphisms themselves agree on triple intersections (this is the cocycle condition). An agreement between two isomorphisms is just a condition, however: two isomorphisms are either equal or not. So, we can stop there, and we don't need to consider quadruple intersections. In general, you could imagine that a ``sheaf of $n$-categories'' would require agreement data specified up to $(n+1)$-fold intersections, and agreement conditions on $(n+2)$-fold intersections.
 \end{remark}
@@ -826,40 +826,42 @@ Local homeomorphisms are a very nice class of maps, and can be viewed as a gener
 The espace étalé $E_\cal{F}$ gives a canonical way to build a sheaf from a presheaf: first construct the espace étalé, and then take the sheaf of sections of the canonical projection. In fact, the second step (``take the sheaf of sections'') is not doing anything at all; it is really the construction of the espace étalé that is doing the work of sheafification.
 
 \begin{definition}
-Let $\Top^{\mathrm{lh}}$ denote the category of spaces with local homeomorphisms between them. For $X$ a space, $\Top^{\mathrm{lh}}/X$ (the slice category of local homeomorphisms over $X$) is the category whose objects are local homeomorphisms $E \to X$ and whose morphisms are commutative triangles
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJFIl0sWzIsMCwiRSciXSxbMSwxLCJYIl0sWzEsMiwiZyJdLFswLDEsIlxcdmFycGhpIl0sWzAsMiwiZiIsMl1d
-\[\begin{tikzcd}[column sep=tiny]
-	E && {E'} \\
-	& X
-	\arrow["\varphi", from=1-1, to=1-3]
-	\arrow["f"', from=1-1, to=2-2]
-	\arrow["g", from=1-3, to=2-2]
-\end{tikzcd}\]
-with $\varphi$ a local homeomorphism.
+    Let $\Top^{\mathrm{lh}}$ denote the category of spaces with local homeomorphisms between them. For $X$ a space, $\Top^{\mathrm{lh}}/X$ (the slice category of local homeomorphisms over $X$) is the category whose objects are local homeomorphisms $E \to X$ and whose morphisms are commutative triangles
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJFIl0sWzIsMCwiRSciXSxbMSwxLCJYIl0sWzEsMiwiZyJdLFswLDEsIlxcdmFycGhpIl0sWzAsMiwiZiIsMl1d
+    \[\begin{tikzcd}[column sep=tiny]
+            E && {E'} \\
+            & X
+            \arrow["\varphi", from=1-1, to=1-3]
+            \arrow["f"', from=1-1, to=2-2]
+            \arrow["g", from=1-3, to=2-2]
+        \end{tikzcd}\]
+    with $\varphi$ a local homeomorphism.
 \end{definition}
 
 \startlecture[Sep 15, 2026]
 
 \begin{proposition}
-\label{prop:chap:sheaves:sec:spaces:ToplhX is full in TopX}
-$\Top^{\mathrm{lh}}/X$ is equal to the full subcategory of $\Top/X$ spanned by the local homeomorphisms with codomain $X$. In other words, in the above commutative triangle, it is equivalent to require only that $\varphi$ is continuous (it will then automatically be a local homeomorphism).
+    \label{prop:chap:sheaves:sec:spaces:ToplhX is full in TopX}
+    $\Top^{\mathrm{lh}}/X$ is equal to the full subcategory of $\Top/X$ spanned by the local homeomorphisms with codomain $X$. In other words, in the above commutative triangle, it is equivalent to require only that $\varphi$ is continuous (it will then automatically be a local homeomorphism).
 \end{proposition}
 \begin{proof}
-Exericse.
+    Exercise.
 \end{proof}
 
 \begin{proposition}
-The espace étalé construction $\cal{F} \mapsto E_{\cal{F}}$ is functorial $\PSh(X) \to \Top^{\mathrm{lh}}/X$.
+    \label{prop:chap:sheaves:sec:spaces:espace etale is functorial}
+    The espace étalé construction $\cal{F} \mapsto E_{\cal{F}}$ is functorial $\PSh(X) \to \Top^{\mathrm{lh}}/X$.
 \end{proposition}
 \begin{proof}
-Given a morphism of presheaves $\varphi : \cal{F} \to \cal{F}'$, we obtain morphisms of stalks $\varphi_x : \cal{F}_x \to \cal{F}_x$, which together give a function $E_\varphi : E_{\cal{F}} \to E_{\cal{F}'}$ which commutes with the canonical projections. It is left as an exericse to show that $E_\varphi$ is continuous, etc.
+    Given a morphism of presheaves $\varphi : \cal{F} \to \cal{F}'$, we obtain morphisms of stalks $\varphi_x : \cal{F}_x \to \cal{F}'_x$, which together give a function $E_\varphi : E_{\cal{F}} \to E_{\cal{F}'}$ which commutes with the canonical projections. It is left as an exercise to show that $E_\varphi$ is continuous, etc.
 \end{proof}
 
 \begin{proposition}
-The sheaf of sections construction $p \mapsto \cal{S}_p$ is functorial $\Top/X \to \Sh(X)$.
+    \label{prop:chap:sheaves:sec:spaces:sheaf of sections is functorial}
+    The sheaf of sections construction $p \mapsto \cal{S}_p$ is functorial $\Top/X \to \Sh(X)$.
 \end{proposition}
 \begin{proof}
-Given a morphism $\varphi : E \to E'$ between maps $p : E \to X, p' : E' \to X$, we may define a morphism of sheaves $\cal{S}_{\varphi} : \cal{S}_p \to \cal{S}_{p'}$ on local sections by $s \mapsto \varphi \circ s$. It is left as an exercise to show that $\cal{S}_{\varphi}$ is well-defined, etc.
+    Given a morphism $\varphi : E \to E'$ between maps $p : E \to X, p' : E' \to X$, we may define a morphism of sheaves $\cal{S}_{\varphi} : \cal{S}_p \to \cal{S}_{p'}$ on local sections by $s \mapsto \varphi \circ s$. It is left as an exercise to show that $\cal{S}_{\varphi}$ is well-defined, etc.
 \end{proof}
 
 \begin{proposition}
@@ -873,15 +875,15 @@ Given a morphism $\varphi : E \to E'$ between maps $p : E \to X, p' : E' \to X$,
 Now we are ready to define the sheafification functor.
 
 \begin{definition}
-Let $\cal{F} \in \PSh(X)$. The \emph{sheafification} of $\cal{F}$, denoted $\cal{F}^{++}$ is the sheaf of sections of the canonical projection $E_{\cal{F}} \to X$. In other words, the sheafification functor is the composite
-\[\PSh(X) \to \Top^{\mathrm{lh}}/X \to \Sh(X).\]
+    Let $\cal{F} \in \PSh(X)$. The \emph{sheafification} of $\cal{F}$, denoted $\cal{F}^{++}$, is the sheaf of sections of the canonical projection $E_{\cal{F}} \to X$. In other words, the sheafification functor is the composite
+    \[\PSh(X) \to \Top^{\mathrm{lh}}/X \to \Sh(X).\]
 \end{definition}
 
 \begin{proposition}
-There is a natural transformation $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ given on local sections by $s \mapsto (u \mapsto (u, s_u))$. The induced map on stalks $\cal{F}_x \to \cal{F}^{++}_x$ is an isomorphism for all $x \in X$.
+    There is a natural transformation $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ given on local sections by $s \mapsto (u \mapsto (u, s_u))$. The induced map on stalks $\cal{F}_x \to \cal{F}^{++}_x$ is an isomorphism for all $x \in X$.
 \end{proposition}
 \begin{proof}
-$\eta_{\cal{F}}$ is well-defined by \Cref{prop:chap:sheaves:sec:spaces:local section of presheaf is local section of espace etale}. Naturality is left as an exercise. The isomorphism on stalks is \Cref{prop:chap:sheaves:sec:spaces:stalks of local homeo are fibers}.
+    $\eta_{\cal{F}}$ is well-defined by \Cref{prop:chap:sheaves:sec:spaces:local section of presheaf is local section of espace etale}. Naturality is left as an exercise. The isomorphism on stalks is \Cref{prop:chap:sheaves:sec:spaces:stalks of local homeo are fibers}.
 \end{proof}
 
 Consequently, $\eta_{\cal{F}}$ is an isomorphism if and only if $\cal{F}$ is a sheaf.
@@ -894,13 +896,15 @@ Consequently, $\eta_{\cal{F}}$ is an isomorphism if and only if $\cal{F}$ is a s
 \begin{proof}
     In one direction, $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ is an isomorphism whenever $\cal{F}$ is a sheaf.
 
-    In the other direction, let $p : E \to X$ a local homeomorphism. We have a well-defined\footnote{Make sure you can see that $\beta$ is continuous, cf. \Cref{exercise:chap:sheaves:sec:spaces:maps over X between local homeos}.} map $\beta : E_{\cal{S}_p} \to E$ given by
-    $(x,s_x) \mapsto s(x)$.
-    By \Cref{prop:chap:sheaves:sec:spaces:stalks of local homeo are fibers}, this map is a fiberwise bijection over $X$, so $\beta$ is bijective. It now suffices to show that $\beta^{-1}$ is continuous. So, let $s[U]$ be a subbasic open set in $E_{\cal{S}_p}$. We have
-    \[\beta(s[U]) = \{s(x) : x \in U\} = s(U),\]
-    so it suffices to show that $s(U)$ is open in $E$. For this, let $u \in U$ be arbitrary, so that $s(u) \in s(U)$ is arbitrary. Since $p$ is a local homeomorphism, there is an open neighborhood $V \subseteq E$ of $s(u)$ such that $p|_V : V \to p(V)$ is a homeomorphism. Set $W = U \cap p(V) \cap s^{-1}(V)$. Now $p(s(y)) = y = p((p|_V)^{-1}(y))$ for all $y \in W$ says that
-    \[s|_W = (p|_V)^{-1}|_W.\]
-    It follows that the image of $s|_W : W \to E$ is an open neighborhood of $s(u)$ contained in $s(U)$.
+    In the other direction, let $p : E \to X$ be a local homeomorphism. We have a well-defined function $\beta : E_{\cal{S}_p} \to E$ given by
+    $(x,s_x) \mapsto s(x)$
+    which commutes with the projections $\pi : E_{\cal{S}_p} \to X$, $p : E \to X$. On fibers, this is exactly the isomorphism $\pi^{-1}(x) = (\cal{S}_p)_x \to p^{-1}(x)$ of \Cref{prop:chap:sheaves:sec:spaces:stalks of local homeo are fibers}, so $\beta$ is a bijection. If we can establish that $\beta$ is continuous, we will know automatically that it is a local homeomorphism by \Cref{prop:chap:sheaves:sec:spaces:ToplhX is full in TopX}, from which it follows (since local homeomorphisms are open) that $\beta$ is an isomorphism in $\Top^{\mathrm{lh}}/X$.
+
+    For this, let $V \subseteq E$ be open, and take an arbitrary element $(x, g) \in \beta^{-1}(V)$. Choose an open neighborhood $U$ of $x$ and a local section $s \in \cal{S}_p(U)$ be such that $s_x = g$. Then $W := s^{-1}(V)$ is an open neighborhood of $x$. Now $(s|_W)[W]$ is open in $E_{\cal{S}_p}$, contains
+    \[(x,g) = (x,s_x) = (x, (s|_W)_x),\]
+    and is contained in $\beta^{-1}(V)$, since for all $w \in W$, we have
+    \[\beta(w, (s|_W)_w) = (s|_W)(w) = s(w) \in V.\]
+    This shows that $\beta^{-1}(V)$ is open, so $\beta$ is continuous.
 \end{proof}
 
 \begin{theorem}\label{thm:chap:sheaves:sec:spaces:sheafification}
@@ -918,14 +922,18 @@ Consequently, $\eta_{\cal{F}}$ is an isomorphism if and only if $\cal{F}$ is a s
             \arrow["{\eta_{\cal{G}}}"', draw=none, from=1-2, to=2-2]
             \arrow["{\varphi^{++}}"', from=2-1, to=2-2]
         \end{tikzcd}\]
-    and thus a morphism $\eta_{\cal{G}}^{-1} \circ \varphi^{++} : \cal{F}^{++} \to \cal{G}$ of sheaves such that $(\eta_{\cal{G}}^{-1} \circ \varphi^{++}) \circ \eta_{\cal{F}} = \varphi$. In particular, we have a well-defined injection
+    and thus a morphism $\eta_{\cal{G}}^{-1} \circ \varphi^{++} : \cal{F}^{++} \to \cal{G}$ of sheaves such that
+    \[(\eta_{\cal{G}}^{-1} \circ \varphi^{++}) \circ \eta_{\cal{F}} = \varphi.\]
+    In particular, we have a well-defined injection
     \begin{align*}
-        \Hom_{\PSh(X)}(\cal{F},\cal{G}) & \to \Hom_{\Sh(X)}(\cal{F}^{++},\cal{G})         \\
-        \varphi                         & \mapsto \eta_{\cal{G}}^{-1} \circ \varphi^{++}.
+        \Hom_{\PSh(X)}(\cal{F},\cal{G}) & \to \Hom_{\Sh(X)}(\cal{F}^{++},\cal{G})        \\
+        \varphi                         & \mapsto \eta_{\cal{G}}^{-1} \circ \varphi^{++}
     \end{align*}
+    which is natural in both $\cal{F}$ and $\cal{G}$ by naturality of $\eta$ and functoriality of $(-)^{++}$.
+
     For surjectivity, let $\psi : \cal{F}^{++} \to \cal{G}$ be a morphism of sheaves. Then $\psi \circ \eta_{\cal{F}} : \cal{F} \to \cal{G}$ is a morphism of presheaves, and we have
     \[\eta_{\cal{G}}^{-1} \circ (\psi \circ \eta_{\cal{F}})^{++} = \eta_{\cal{G}}^{-1} \circ \psi^{++} \circ \eta_{\cal{F}}^{++}.\]
-    We claim that $\eta_{\cal{F}}^{++} = \eta_{\cal{F}^{++}}$, from which it follows that the composite above is $\psi$. To see this, note that both $\eta_{\cal{F}}^{++}$ and $\eta_{\cal{F}^{++}}$ are morphisms of sheaves $\cal{F}^{++} \to (\cal{F}^{++})^{++}$, and that they fit in a naturality square.
+    It suffices to show that this composite is equal to $\psi$. We claim that $\eta_{\cal{F}}^{++} = \eta_{\cal{F}^{++}}$. To see this, note that both $\eta_{\cal{F}}^{++}$ and $\eta_{\cal{F}^{++}}$ are morphisms of sheaves $\cal{F}^{++} \to (\cal{F}^{++})^{++}$, and that they fit in a naturality square
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGNhbHtGfSJdLFsxLDAsIlxcY2Fse0Z9XnsrK30iXSxbMSwxLCIoXFxjYWx7Rn1eeysrfSleeysrfSJdLFswLDEsIlxcY2Fse0Z9XnsrK30iXSxbMCwxLCJcXGV0YV97XFxjYWx7Rn19Il0sWzEsMiwiXFxldGFfe1xcY2Fse0Z9XnsrK319Il0sWzAsMywiXFxldGFfe1xcY2Fse0Z9fSIsMl0sWzMsMiwiXFxldGFfe1xcY2Fse0Z9fV57Kyt9IiwyXV0=
     \[\begin{tikzcd}[ampersand replacement=\&]
             {\cal{F}} \& {\cal{F}^{++}} \\
@@ -935,18 +943,145 @@ Consequently, $\eta_{\cal{F}}$ is an isomorphism if and only if $\cal{F}$ is a s
             \arrow["{\eta_{\cal{F}^{++}}}", from=1-2, to=2-2]
             \arrow["{\eta_{\cal{F}}^{++}}"', from=2-1, to=2-2]
         \end{tikzcd}\]
-    Using the fact that $\eta_{\cal{F}}$ is an isomorphism on stalks, we learn that $\eta_{\cal{F}}^{++}$ and $\eta_{\cal{F}^{++}}$ agree on stalks. Thus, $\eta_{\cal{F}}^{++} = \eta_{\cal{F}^{++}}$ by \Cref{thm:chap:sheaves:sec:spaces:facts about sheaves}, and we are done.
+    Using the fact that $\eta_{\cal{F}}$ is an isomorphism on stalks, we learn that $\eta_{\cal{F}}^{++}$ and $\eta_{\cal{F}^{++}}$ agree on stalks. Thus, $\eta_{\cal{F}}^{++} = \eta_{\cal{F}^{++}}$ by \Cref{thm:chap:sheaves:sec:spaces:facts about sheaves}. Now the naturality square
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGNhbHtGfV57Kyt9Il0sWzAsMSwiKFxcY2Fse0Z9XnsrK30pXnsrK30iXSxbMSwxLCJcXGNhbHtHfV57Kyt9Il0sWzEsMCwiXFxjYWx7R30iXSxbMCwzLCJcXHBzaSJdLFszLDIsIlxcZXRhX3tcXGNhbHtHfX0iXSxbMSwyLCJcXHBzaV57Kyt9IiwyXSxbMCwxLCJcXGV0YV97XFxjYWx7Rn1eeysrfX0iLDJdXQ==
+    \[\begin{tikzcd}[ampersand replacement=\&]
+            {\cal{F}^{++}} \& {\cal{G}} \\
+            {(\cal{F}^{++})^{++}} \& {\cal{G}^{++}}
+            \arrow["\psi", from=1-1, to=1-2]
+            \arrow["{\eta_{\cal{F}^{++}}}"', from=1-1, to=2-1]
+            \arrow["{\eta_{\cal{G}}}", from=1-2, to=2-2]
+            \arrow["{\psi^{++}}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+    shows that
+    \[\eta_{\cal{G}}^{-1} \circ \psi^{++} \circ \eta_{\cal{F}}^{++} = \eta_{\cal{G}}^{-1} \circ \psi^{++} \circ \eta_{\cal{F}^{++}} = \psi,\]
+    and we are done.
 \end{proof}
 
-%TODO \subsection{Sheafification in Two Steps}
+By construction, the unit of the adjunction is the map $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ for $\cal{F}$ a presheaf, and the counit of the adjunction is $\eta_{\cal{F}}^{-1} : \cal{F}^{++} \to \cal{F}$ for $\cal{F}$ a sheaf.
 
-%TODO \section{Sites}
+\startlecture[Sep 17, 2026]
 
-%TODO \subsection{Points}
+With the power of sheafification at our disposal, it becomes easy to define the left adjoint to $f_* : \Sh(X) \to \Sh(Y)$ for any continuous map $f : X \to Y$.
 
-%TODO \subsection{Sheaves with Values in Abelian Categories}
+\begin{definition}
+    Let $f : X \to Y$ be a continuous map of topological spaces. The left adjoint to $f_* : \Sh(X) \to \Sh(Y)$ is denoted $f^{-1}$, and given by the composite
+    \[\Sh(Y) \hookrightarrow \PSh(Y) \xrightarrow{f^{-1}_\pre} \PSh(X) \xrightarrow{(-)^{++}} \Sh(X).\]
+    We call this functor \emph{inverse image} or \emph{pullback} along $f$.
+\end{definition}
 
-%TODO \subsection{Closed Embeddings, Recollements, Artin Gluing}
+\begin{proposition}
+    $f^{-1} : \Sh(Y) \to \Sh(X)$ preserves stalks, i.e. for all points $x \in X$ there is a natural isomorphism
+    \[(f^{-1} \cal{F})_x \cong \cal{F}_{f(x)}.\]
+\end{proposition}
+\begin{proof}
+    The inclusion $\Sh(Y) \to \PSh(Y)$, the functor $f^{-1}_\pre : \PSh(Y) \to \PSh(X)$, and the sheafification functor $(-)^{++} : \PSh(X) \to \Sh(X)$ all preserve stalks.
+\end{proof}
+
+It also becomes easy to prove important facts about the category of sheaves. Here are a few nice results that follow easily from the espace étalé construction.
+
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:category of sheaves is cocomplete}
+    $\Sh(X)$ is cocomplete. Moreover, the Yoneda embedding $y : \Open(X) \to \Sh(X)$ is a (not-necessarily free) cocompletion, i.e. it is fully faithful and its image generates $\Sh(X)$ under colimits (in a canonical way).
+\end{proposition}
+\begin{proof}
+    For the first claim, take a diagram $D : \cal{I} \to \Sh(X)$ with $\cal{I}$ a small category. Form its colimit $\colim D$ in $\PSh(X)$, and then sheafify to get $(\colim D)^{++} \in \Sh(X)$. Since sheafification is a left adjoint functor, this computes $\colim_{i \in \cal{I}} D(i)^{++}$ in $\Sh(X)$. Since $D(i)$ is already a sheaf, we have a natural isomorphism $D(i) \cong D(i)^{++}$, and thus $(\colim D)^{++}$ computes the colimit of $D$ in $\Sh(X)$.
+
+    For the second claim, we use the fact that the Yoneda embedding $y : \Open(X) \to \PSh(X)$ is a free cocompletion, i.e. every presheaf on $X$ is a small colimit (in a canonical way) of presheaves of the form $y(U)$ for $U \subseteq X$ open. Since sheafification is a left adjoint functor, it preserves colimits, so every sheaf on $X$ is a small colimit of sheaves of the form $y(U)^{++}$. But $y(U)$ is already a sheaf, so $y(U)^{++} \cong y(U)$.
+\end{proof}
+
+\begin{proposition}
+    Let $\cal{F}$ be a sheaf on $X$. The slice category $\Sh(X)/\cal{F}$ is equivalent to the category of sheaves on the espace étalé $E_{\cal{F}}$, and in particular is complete and cocomplete.
+\end{proposition}
+\begin{proof}
+    By \Cref{thm:chap:sheaves:sec:spaces:sheaves are local homeos}, we have an equivalence of categories $\Sh(X) \simeq \Top^{\mathrm{lh}}/X$. Under this equivalence, the slice category $\Sh(X)/\cal{F}$ corresponds to the slice category $(\Top^{\mathrm{lh}}/X)/E_{\cal{F}}$, which is equivalent to $\Top^{\mathrm{lh}}/E_{\cal{F}}$ by inspection. Finally, by \Cref{thm:chap:sheaves:sec:spaces:sheaves are local homeos} again, we have an equivalence of categories $\Top^{\mathrm{lh}}/E_{\cal{F}} \simeq \Sh(E_{\cal{F}})$.
+\end{proof}
+
+\begin{corollary}
+    The slice category $\Sh(X)/y(U)$ is equivalent to $\Sh(U)$.
+\end{corollary}
+
+\begin{proposition}
+    Let $f : X \to Y$ be a continuous function. The composite
+    \[\Top^{\mathrm{lh}}/Y \simeq \Sh(Y) \xrightarrow{f^{-1}} \Sh(X) \simeq \Top^{\mathrm{lh}}/X\]
+    is given simply by pulling back morphisms along $f$.
+\end{proposition}
+\begin{proof}
+    We have already seen (cf.\ \Cref{exercise:chap:sheaves:sec:spaces:local homeos stable under pullback}) that local homeomorphisms are stable under pullback and that (cf.\ \Cref{prop:chap:sheaves:sec:spaces:ToplhX is full in TopX}) $\Top^{\mathrm{lh}}/X$ is a full subcategory of $\Top/X$, so ``pullback along $f$'' is a well-defined functor $\Top^{\mathrm{lh}}/Y \to \Top^{\mathrm{lh}}/X$. Let this functor be denoted $f^*$ (just for this proof). We already know that $f^*$ agrees with $f^{-1}$ when $f = i_y : \pt \to Y$ is the inclusion of a point; in particular these ``fiber functors'' $i_y^* : \Top^{\mathrm{lh}}/Y \to \Top^{\mathrm{lh}}/\pt \simeq \Set$ (which agree with the stalk functors $i_y^{-1} : \Sh(Y) \to \Set$) preserve colimits. We now claim that $f^*$ preserves colimits in general.
+
+    Let $D : \cal{I} \to \Top^{\mathrm{lh}}/Y$ be a diagram. There is a natural map \[\colim (f^* \circ D) \to f^* (\colim D)\] in $\Top^{\mathrm{lh}}/X$. Letting $x \in X$ be arbitrary and using the fact that fiber functors preserve colimits, we see that the induced map on fibers is isomorphic to the identity
+    \begin{multline*}
+        i_{f(x)}^*(\colim D) \cong \colim(i_{f(x)}^* \circ D) \cong \colim (i_x^* \circ f^* \circ D)
+        \cong i_x^* (\colim (f^* \circ D))\\
+        \to i_x^* (f^* (\colim D))
+        \cong (f \circ i_x)^* (\colim D)
+        = i_{f(x)}^* (\colim D).
+    \end{multline*}
+    Thus, the map $\colim (f^* \circ D) \to f^* (\colim D)$ is an isomorphism.
+
+    We have now shown that $f^*$ preserves colimits. By \Cref{prop:chap:sheaves:sec:spaces:category of sheaves is cocomplete}, in order to show that $f^*$ and $f^{-1}$ agree, it now suffices to show that they agree (via a natural isomorphism) on the sheaves $y(U)$ for $U \subseteq Y$ open. For this, we note that $y(U) \in \Sh(Y)$ corresponds to the inclusion $U \hookrightarrow Y$ in $\Top^{\mathrm{lh}}/Y$. Pulling back this inclusion along $f$ gives the inclusion $f^{-1}(U) \hookrightarrow X$, which corresponds to the sheaf $y(f^{-1}(U)) \in \Sh(X)$. On the other hand,
+    \begin{align*}
+        \Hom_{\Sh(X)}(y(f^{-1}(U)),\cal{G}) & \cong \cal{G}(f^{-1}(U))                 \\
+                                            & = (f_* \cal{G})(U)                       \\
+                                            & \cong \Hom_{\Sh(Y)}(y(U),f_* \cal{G})    \\
+                                            & \cong \Hom_{\Sh(X)}(f^{-1} y(U),\cal{G})
+    \end{align*}
+    establishes that $y(f^{-1}(U)) \cong f^{-1} y(U)$ naturally in $U \in \Open(Y)$.
+\end{proof}
+
+So, the preimage functor $f^{-1}$ is very easy to understand from the perspective of the espace étalé construction: it is just given by pullback! On the other hand, the direct image functor $f_*$ is kind of tricky to define from the perspective of the espace étalé. The good news is $f_*$ is easy to understand at the level of presheaves. Since we have both perspectives at our disposal, this is a good situation to be in.
+
+We can also generalize \Cref{prop:chap:sheaves:sec:spaces:extension by zero} to arbitrary local homeomorphisms (instead of just open embeddings).
+
+\begin{proposition}
+    Let $f : X \to Y$ be a local homeomorphism. Then there is an adjoint triple
+    \[f_! \dashv f^{-1} \dashv f_*\]
+    between categories of sheaves, where $f_! : \Sh(X) \simeq \Top^{\mathrm{lh}}/X \to \Top^{\mathrm{lh}}/Y \simeq \Sh(Y)$ is the functor given by postcomposition with $f$.
+\end{proposition}
+\begin{proof}
+    This is a general fact: postcomposition is always left adjoint to pullback (as a functor between slice categories), whenever pullback is well-defined.
+\end{proof}
+
+% TODO Move this into the sites section, once appropriate.
+% \subsection{Sheafification in Two Steps}
+
+% We now describe an entirely different construction of sheafification, which is more abstract but also more general. The failure of a presheaf $\cal{F}$ to be a sheaf is measured by the failure of the maps
+% \[\cal{F}(U) \to \operatorname{Eq}\left(\prod_\alpha \cal{F}(U_\alpha) \rightrightarrows \prod_{\alpha,\beta} \cal{F}(U_\alpha \cap U_\beta)\right)\]
+% to be isomorphisms for all open covers $\{U_\alpha\}_\alpha$ of $U \in \Open(X)$. There are, of course, two ways for a function to fail to be a bijection: it can fail to be injective, or it can fail to be surjective. These correspond to two different ways in which a presheaf can fail to be a sheaf:
+% \begin{itemize}
+%     \item One might have two sections $s, t \in \cal{F}(U)$ which restrict to the same local sections $s|_{U_\alpha} = t|_{U_\alpha}$, and yet $s \neq t$.
+%     \item One might have a compatible family of sections $(s_\alpha \in \cal{F}(U_\alpha))_\alpha$, i.e.\ $s_\alpha|_{U_\alpha \cap U_\beta} = s_\beta|_{U_\alpha \cap U_\beta}$ for all $\alpha, \beta$, but which does not glue to a section $s \in \cal{F}(U)$.
+% \end{itemize}
+% Some texts use these two conditions as separate axioms in the definition of ``sheaf''. The first axiom (two sections which agree locally are equal) is called the \emph{separatedness} condition, and corresponds to the map from $\cal{F}(U)$ to the equalizer being injective. A presheaf satisfying this condition is called a \emph{separated presheaf}. The second axiom (compatible families of local sections glue to a global section) is called the \emph{gluing} condition, and corresponds to the map from $\cal{F}(U)$ to the equalizer being surjective.
+
+% In this subsection, we will describe the \emph{plus construction}, which takes a presheaf $\cal{F}$ and produces a separated presheaf $\cal{F}^+$, and then show that the sheafification $\cal{F}^{++}$ is obtained by applying the plus construction again to $\cal{F}^+$. This construction works for presheaves with values in any algebraic category $\catD$ (where, note, the discussion above about injectivity, surjectivity, separatedness, etc. all makes sense).
+
+% \begin{definition}
+%     Let $X$ be a topological space, and let $U \in \Open(X)$. Define $\mathsf{Cov}(U)$ to be the set of all open covers of $U$, where by an open cover we mean a set $\cal{U} \subseteq \Open(U)$ with $\bigcup \cal{U} = U$. We make $\mathsf{Cov}(U)$ into a preorder, and hence a category, by refinement: $\cal{U} \leq \cal{V}$ if every $W \in \cal{U}$ is contained in some $W' \in \cal{V}$. Note that this is only a preorder, not a poset: distinct covers may refine each other.
+% \end{definition}
+
+% \begin{proposition}
+%     For $\cal{U} \in \mathsf{Cov}(U)$ an open cover of $U \in \Open(X)$, let $\cal{F}(\cal{U})$ denote the equalizer
+%     \[\cal{F}(\cal{U}) = \operatorname{Eq}\left(\prod_{W \in \cal{U}} \cal{F}(W) \rightrightarrows \prod_{W, W' \in \cal{U}} \cal{F}(W \cap W')\right).\]
+%     If $\cal{U} \leq \cal{V}$, then any function $\lambda : \cal{U} \to \cal{V}$ with $W \subseteq \lambda(W)$ for all $W \in \cal{U}$ induces a map
+%     \[\cal{F}(\cal{V}) \to \cal{F}(\cal{U}), \qquad (s_{W'})_{W' \in \cal{V}} \mapsto \left(s_{\lambda(W)}|_W\right)_{W \in \cal{U}},\]
+%     and this map does not depend on the choice of $\lambda$. Consequently, the assignment $\cal{U} \mapsto \cal{F}(\cal{U})$ defines a functor $\mathsf{Cov}(U)^\op \to \Set$.
+% \end{proposition}
+% \begin{proof}
+%     Exercise.
+% \end{proof}
+
+% \begin{proposition}
+%     The natural maps $\cal{F}(U) \to \cal{F}(\cal{U})$ for $\cal{U} \in \mathsf{Cov}(U)$ are compatible with refinement of covers, i.e.\ induce a natural map
+%     \[\cal{F}(U) \to \colim_{\cal{U} \in \mathsf{Cov}(U)^\op} \cal{F}(\cal{U}).\]
+%     Note that this colimit is filtered, since any two covers of $U$ have a common refinement.
+% \end{proposition}
+% \begin{proof}
+%     Exercise.
+% \end{proof}
+
+% \begin{proposition}
+%     The assignment $U \mapsto \colim_{\cal{U} \in \mathsf{Cov}(U)^\op} \cal{F}(\cal{U})$ defines a presheaf $\cal{F}^+$ on $X$, called the \emph{plus construction} of $\cal{F}$. The natural maps $\cal{F}(U) \to \colim_{\cal{U} \in \mathsf{Cov}(U)^\op} \cal{F}(\cal{U})$ define a natural transformation $\alpha : \cal{F} \to \cal{F}^+$.
+% \end{proposition}
 
 \subsection*{Exercises}
 \addcontentsline{toc}{subsection}{Exercises}
@@ -1126,15 +1261,35 @@ Consequently, $\eta_{\cal{F}}$ is an isomorphism if and only if $\cal{F}$ is a s
 \end{exercise}
 
 \begin{exercise}\label{exercise:chap:sheaves:sec:spaces:maps over X between local homeos}
-    Prove \Cref{prop:chap:sheaves:sec:spaces:ToplhX is full in TopX}. That is: let $f : E \to X$ and $g : E' \to X$ be local homeomorphisms, and let $\psi : E \to E'$ be a continuous map with $g \circ \varphi = f$. Show that $\varphi$ is itself a local homeomorphism.
+    Prove \Cref{prop:chap:sheaves:sec:spaces:ToplhX is full in TopX}. That is: let $f : E \to X$ and $g : E' \to X$ be local homeomorphisms, and let $\varphi : E \to E'$ be a continuous map with $g \circ \varphi = f$. Show that $\varphi$ is itself a local homeomorphism.
 \end{exercise}
 
-\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:espace etale is functorial}
-    Check that the two functors $\Sh(X) \leftrightarrows \Top^\mathrm{lh}/X$ in \Cref{thm:chap:sheaves:sec:spaces:sheaves are local homeos} are in fact well-defined functors.
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:prove espace etale is functorial}
+    Complete the proof of \Cref{prop:chap:sheaves:sec:spaces:espace etale is functorial}.
 \end{exercise}
 
-\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:unit of sheafification}
-    Let $\cal{F} \in \PSh(X)$ be a presheaf of sets, with espace étalé $\pi : E_{\cal{F}} \to X$. Show that
-    \[s \mapsto \left(x \mapsto (x,s_x)\right)\]
-    defines a morphism of presheaves $\alpha : \cal{F} \to \cal{S}_\pi$, and that $\alpha$ is natural in $\cal{F}$.
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:prove sheaf of sections is functorial}
+    Complete the proof of \Cref{prop:chap:sheaves:sec:spaces:sheaf of sections is functorial}.
 \end{exercise}
+
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:prove sheafification unit is natural}
+    Show that the unit map $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ is natural in $\cal{F} \in \PSh(X)$.
+\end{exercise}
+
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:counit of espace etale is natural}
+    Show that the map $\beta$ constructed in the proof of \Cref{thm:chap:sheaves:sec:spaces:sheaves are local homeos} is natural in $p \in \Top^{\mathrm{lh}}/X$.
+\end{exercise}
+
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:constant sheaves}
+    A \emph{constant sheaf} on a space $X$ is a sheaf $\cal{F}$ such that there exists a set $S$ with $\cal{F} \cong \underline{S}^{++}$, where $\underline{S}$ is the constant presheaf with value $S$. Show that $\underline{S}$ is a sheaf on $X$ if and only if $\lvert S \rvert = 1$.
+\end{exercise}
+
+\section{Sites}
+
+We began the course by discussing ``sheaves on the category of sets'', which is certainly not a special case of $\Sh(X)$ for $X$ a topological space, since $\Set$ is not equivalent to $\Open(X)$ for any topological space $X$. In this section, we will discuss a generalization of the notion of sheaf which encompasses both sheaves on topological spaces and sheaves on the category of sets. For this, we must replace $\Open(X)$ and $\Set$ with a more general datum called a \emph{site}. A site is a category together with a collection of ``covering families'' -- these covering families specify exactly which equalizers should appear in the sheaf condition. It will turn out that every category can be equipped with a canonical choice of covering families, and that sheaves on $\Set$ or $\Open(X)$ with respect to these canonical covering families are exactly the sheaves we have already discussed.
+
+%TODO \subsection{Points}
+
+%TODO \subsection{Sheaves with Values in Abelian Categories}
+
+%TODO \subsection{Closed Embeddings, Recollements, Artin Gluing}
