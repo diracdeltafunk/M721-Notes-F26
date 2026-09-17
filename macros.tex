@@ -18,6 +18,10 @@
 \newcommand{\Open}{\cat{Open}}
 \newcommand{\Sh}{\cat{Sh}}
 \newcommand{\PSh}{\cat{PSh}}
+\newcommand{\Cat}{\cat{Cat}}
+% `Large' versions of Set and Cat, for the appendix
+\newcommand{\SET}{\cat{SET}}
+\newcommand{\CAT}{\cat{CAT}}
 % And related
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\pre}{\mathrm{pre}}
@@ -31,6 +35,9 @@
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\mor}{mor}
 \DeclareMathOperator{\res}{res}
 
 %% Everything inside a `draft' environment is typeset in red.
@@ -38,6 +45,8 @@
 
 %% Other
 \newcommand{\pt}{\mathrm{pt}}
+% Definitional equality `:=' with a vertically centered, tightly kerned colon.
+\newcommand{\coloneq}{\mathrel{\mathop{:}}\mathrel{\mkern-1.2mu}=}
 
 %% Amsthm
 % normal theorem style
@@ -61,6 +70,14 @@
 
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem*{remark*}{Remark}
+
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem*{axiom*}{Axiom}
+\Crefname{axiom}{Axiom}{Axioms}
+
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem*{convention*}{Convention}
+\Crefname{convention}{Convention}{Conventions}
 
 \newtheorem{exercise}{Exercise}[section]
 \Crefname{exercise}{Exercise}{Exercises}

@@ -1,13 +1,10 @@
 \chapter{Size Issues in Category Theory}
 
-%TODO This is taken from a short note I started writing once but never finished. Perhaps eventually it will be included as an appendix to these lecture notes.
+In an introduction to category theory, one often learns that a category $\catC$ consists of a \emph{collection} of objects (together with morphisms, composition operations, etc. satisfying some axioms). Often in mathematics, the word ``collection'' is synonymous with the word ``set'', but not here! What is meant precisely by the word ``collection'' in the definition of a category depends slightly on how one wishes to formalize their set-theoretic foundations for category theory, and there are generally two popular approaches here. We will work in ZFC set theory.
 
-\section{Classes, Sets, and Universes}
-In an introduction to category theory, one often learns that a category $\catC$ consists of a \emph{collection} of objects (together with morphisms, composition operations, etc. satisfying some axioms). Often in mathematics, the word ``collection'' is synonymous with the word ``set'', but not here! What is meant precisely by the word ``collection'' in the definition of a category depends slightly on how one wishes to formalize their set-theoretic foundations for category theory, and there are generally two popular approaches here. We will work in ZFC set theory. For readers already comfortable with the notions of small/large categories and Grothendieck universes, this section may be safely skipped.
+\section{Classes}
 
-\subsection{Classes}
-
-A famous argument of Russel shows that there is no set of sets, i.e.
+A famous argument of Russell shows that there is no set of all sets, i.e.
 
 \begin{equation}\label{eq:russel}
     \nexists A \forall x (x \in A).
@@ -18,7 +15,7 @@ We quickly recount the proof.
 \begin{proof}
     Suppose (towards a contradiction) that the set $A$ of all sets did exist, i.e. $\exists A \forall x (x \in A)$. Then one could form the set
     \[B \coloneq \{x \in A : x \notin x\}.\]
-    Now by construction, $B \in B \iff B \notin B$, which is a contradiction.
+    Now by construction (and since $B \in A$), we have $B \in B \iff B \notin B$, which is a contradiction.
 \end{proof}
 
 We emphasize that \eqref{eq:russel} is a statement in the language of set theory, and so its proof relies on some axioms of set theory. In this case, the proof of \eqref{eq:russel} relies on only one axiom (schema), the \emph{axiom schema of restricted comprehension}.
@@ -37,11 +34,11 @@ to denote this set. Indeed, the axiom schema of restricted comprehension is what
 \[\{x \in \mathbb{R} : \lvert x \rvert < 1\},\]
 you were using the axiom schema of restricted comprehension. The tool of set-builder notation is crucial for developing almost any piece of mathematics, and so the axiom schema of restricted comprehension is essential in any useful theory of sets.
 
-Now the key point is that the axiom schema of restricted comprehension allows us to build \emph{subsets} $\{x \in A : \varphi(x)\}$ of any \emph{pre-existing set} $A$, but it does \emph{not} allow us to construct new sets which are not subsets of a pre-existing sets! In particular, the axiom schema does not \textbf{not} allow us to interpret
+Now the key point is that the axiom schema of restricted comprehension allows us to build \emph{subsets} $\{x \in A : \varphi(x)\}$ of any \emph{pre-existing set} $A$, but it does \emph{not} allow us to construct new sets which are not subsets of a pre-existing set! In particular, the axiom schema does \textbf{not} allow us to interpret
 \[\{x : x \notin x\}\]
 (for example) as a well-defined set\footnote{This expression is an example of an \emph{unrestricted} comprehension, which our axiom says nothing about.}. Indeed, as we have seen, the axiom schema of restricted comprehension allows us to prove that no such set exists! On the other hand, for any \emph{given} set $A$, one \emph{may} form
 \[A_\top \coloneq \{x \in A : x \notin x\},\]
-i.e. the set of all elements of $A$ which do not contain themselves\footnote{Using the \emph{foundation} and \emph{pairing} axioms of ZFC, one may prove $\forall x (x \notin x)$, and conclude that $A_\top = A$ for any set $A$.}. This is simply the set whose existence is guaranteed by the axiom schema of restricted comprehension applied to the formula $\varphi(x) = ``x \notin x"$. For a more extreme example, one may not interpret
+i.e. the set of all elements of $A$ which do not contain themselves\footnote{Using the \emph{foundation} and \emph{pairing} axioms of ZFC, one may prove $\forall x (x \notin x)$, and conclude that $A_\top = A$ for any set $A$.}. This is simply the set whose existence is guaranteed by the axiom schema of restricted comprehension applied to the formula $\varphi(x)$ given by ``$x \notin x$''. For a more extreme example, one may not interpret
 \[\{x : x = x\}\]
 as a set (it would be the ``set of all sets'', which we have shown does not exist), but one may form the set $\{x \in A : x = x\}$ given any set $A$ (which will always be equal to $A$).
 
@@ -61,7 +58,7 @@ as a \emph{class}, and we call this class the \emph{class of all sets}. Now it i
 \[\forall y (y \in \{x : x  = x\})\]
 since this is just shorthand for $\forall y (y = y)$, which is true! Simply put, classes are \emph{unrestricted} comprehensions, and they behave just like sets (for any given set $S$ and any given class $C$, the statement $S \in C$ is either true or false), except that they are not sets (e.g. one may not quantify over classes -- the variables appearing in a formula in the language of set theory are sets!). For example, we have a class $C = \{x : x \notin x\}$, but we cannot consider the statement ``$C \in C$'' to derive a contradiction: it does not make sense to ask if one class is an element of another! The elements of a class are sets.
 
-Now consider the class $\{x : x \neq x\}$. One can just as easily prove that $\forall y (y \notin \{x : x \neq x\})$, since this is shorthand for $\forall y(\lnot (y \neq y))$, which is true. In other words, we should think of $\{x : x \neq x\}$ as the ``empty class''. There is also the empty set $\varnothing$\footnote{The existence of $\varnothing$ follows (in ZFC) from the axiom of infinity together with the axiom schema of specification.}, and we note that
+Now consider the class $\{x : x \neq x\}$. One can just as easily prove that $\forall y (y \notin \{x : x \neq x\})$, since this is shorthand for $\forall y(\lnot (y \neq y))$, which is true. In other words, we should think of $\{x : x \neq x\}$ as the ``empty class''. There is also the empty set $\varnothing$\footnote{The existence of $\varnothing$ follows (in ZFC) from the axiom of infinity together with the axiom schema of restricted comprehension.}, and we note that
 \[\forall y (y \in \varnothing \iff y \in \{x : x \neq x\})\]
 holds. In other words, the class $\{x : x \neq x\}$ has the same elements as the set $\varnothing$! We should therefore formally identify the class $\{x : x \neq x\}$ with the set $\varnothing$, and in general identify any class $C$ with any set $S$ whenever $C$ and $S$ have the same elements.
 
@@ -83,7 +80,7 @@ Of course, here the text ``$(G,\star)\text{ is a group}$'' stands in for a very 
 \begin{equation}\label{eq:class of groups 2}
     \{(G,\star) : (G,\star)\text{ is a group}\}
 \end{equation}
-for this class, abusing notation since this is not precisely in the form $\{x : \phi(x)\}$. It's not a big deal, because there is a canonical procedure to rewrite \eqref{eq:class of groups 2} in the standard form \eqref{eq:class of groups 1}.
+for this class, abusing notation since this is not precisely in the form $\{x : \varphi(x)\}$. It's not a big deal, because there is a canonical procedure to rewrite \eqref{eq:class of groups 2} in the standard form \eqref{eq:class of groups 1}.
 
 In the other direction, we have seen an example of a non-proper class, i.e. a class which is also a set, namely $\{x : x \neq x\}$ (which is equal to $\varnothing$).
 
@@ -100,13 +97,13 @@ Note that this extends the subset relation between sets, since every set is also
     Let $C$ and $C'$ be classes. We denote by $C \times C'$ the class
     \[\{(x,y) : x \in C \land y \in C'\},\]
     which (as a reminder) is shorthand for
-    $$\{p : \exists x \exists y (x \in C \land y \in C' \land p = (x,y))\}.$$
+    \[\{p : \exists x \exists y (x \in C \land y \in C' \land p = (x,y))\}.\]
 \end{definition}
 
 \begin{definition}
     Let $C$ and $C'$ be classes. By a \emph{function} $C \to C'$ we will mean a class $f \subseteq C \times C'$ such that
     \[\forall x (x \in C \implies \exists! y (y \in C' \land (x,y) \in f))\]
-    hold.
+    holds.
 \end{definition}
 
 Note that when $C$ and $C'$ are sets, this recovers exactly the notion of a function between sets. In any case, when $f : C \to C'$ is a function between classes and $x \in C$ is an element, we denote by $f(x)$ the unique element of $C'$ such that $(x,f(x)) \in f$.
@@ -123,7 +120,7 @@ Note that when $C$ and $C'$ are sets, this recovers exactly the notion of a func
     \end{itemize}
     satisfying the following axioms:
     \begin{enumerate}
-        \item for all $x \in \ob \catC$, we have $\dom \id x = x = \cod \id x$,
+        \item For all $x \in \ob \catC$, we have $\dom \id x = x = \cod \id x$,
         \item For all $f \in \mor \catC$, we have $f \circ \id \dom f = f = \id \cod f \circ f$,
         \item $\circ$ is associative, i.e. $f \circ (g \circ h) = (f \circ g) \circ h$ whenever this makes sense.
     \end{enumerate}
@@ -142,40 +139,45 @@ It is important to note that small categories are necessarily locally small, but
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    First, suppose $\catC$ is small, i.e. $\mor \catC$ is a set. Then for all $x,y \in \catC$ we have
+    First, suppose $\catC$ is small, i.e. $\mor \catC$ is a set. Then for all $x,y \in \ob \catC$ we have
     \[\Hom_\catC(x,y) \subseteq \mor \catC\]
     and since $\mor \catC$ is a set it follows that $\Hom_\catC(x,y)$ is a set\footnote{exercise!}. Thus, $\catC$ is locally small.
 
     Next, since $\mor \catC$ is a set, we have that
-    \[I \coloneq \{f \in \mor \catC : \exists x \in \ob \catC (f = \id x)\} \subseteq \mor \catC\]
+    \[I \coloneq \{f \in \mor \catC : \exists x \in \ob \catC \,(f = \id x)\} \subseteq \mor \catC\]
     is a set\footnote{by the same exercise!}. Now
     \[\ob \catC = \{\dom f : f \in I\}\]
     and $\{\dom f : f \in I\}$ is a set\footnote{by ZFC's \emph{axiom schema of replacement}}.
 
-    In the other direction, suppose $\catC$ is locally small and that $\ob \catC$ is a set. Now\footnote{by the \emph{union} axiom of ZFC} we obtain the set
+    In the other direction, suppose $\catC$ is locally small and that $\ob \catC$ is a set. Now\footnote{by the \emph{union} axiom of ZFC, applied to the family produced by the axiom schema of replacement} we obtain the set
     \[\bigcup_{x \in \ob \catC} \bigcup_{y \in \ob \catC} \Hom_\catC(x,y),\]
     which equals $\mor \catC$.
 \end{proof}
 
-This allows us to produce the category $\Set$ of all sets, the category $\mathsf{Grp}$ of all groups, etc. We may also produce the category $\Cat$ of all \emph{small} categories! That's because the data of a small category consists of sets and functions between them, so there is a class of all small categories. On the other hand, we may \emph{not} produce the category of all categories, since the data of an arbitrary large category consists of proper classes and functions between them, and so there is no class of large categories (the elements of a class must be sets!).
+This allows us to produce the category $\Set$ of all sets, the category $\Grp$ of all groups, etc. We may also produce the category $\Cat$ of all \emph{small} categories! That's because the data of a small category consists of sets and functions between them, so there is a class of all small categories. On the other hand, we may \emph{not} produce the category of all categories, since the data of an arbitrary large category consists of proper classes and functions between them, and so there is no class of large categories (the elements of a class must be sets!).
 
-\subsection{Universes}
+\section{Universes}
 
 Classes are somewhat elegant and useful, but also a bit troublesome: sometimes we \emph{would} like to have access to the category of all categories! For example, it would be convenient to have a functor which sends a category $\catC$ to its presheaf category $\Fun(\catC^{\op}, \Set)$. Even if $\catC$ is a small category, its presheaf category can be large (e.g. take $\catC$ to be the terminal category)! The formalism of classes allows us to construct large collections of sets, but it doesn't allow us to construct (even small) collections of classes. To obviate this difficulty, Grothendieck introduced the idea of \emph{universes}, which allow us to filter the class of all sets into layers which we might call ``small sets'', ``large sets'', ``huge sets'', etc. Each of these layers will be a set, i.e. there will be a set of all small sets, and a set of all large sets, and a set of all huge sets, etc!
 
 To be more precise: Grothendieck defined a notion of \emph{universe}, which is just a condition any given set may or may not satisfy. If a set $U$ is a universe, then we should think about $U$ as ``the set of all $U$-small sets''. If we have two universes $U_1$ and $U_2$ with $U_1 \subsetneq U_2$, then we might (for convenience) call the elements of $U_1$ ``small sets'' and the elements of $U_2$ ``large sets''. If we have three universes, ... you get the idea.
 
-Then if we have a universe $U_1$, we can define a ``$U_1$-small category'' to be a category whose class of morphisms is an element of $U_1$ (and in particular is a set). If $U_1 \subsetneq U_2$, it will turn out that the class of all $U_1$-small categories is an element of $U_2 \setminus U_1$, and we will be able to define the category of all $U_1$-small categories, which will itself be $U_2$-small (but not $U_1$-small). And so on, and so forth. Importantly, no matter how many nested universes we have, each universe is a \emph{set}, and so we can deal with its elements and subsets and so on with ordinary set-theory, without ever mentioning classes!
+Then if we have a universe $U_1$, we can define a ``$U_1$-small category'' to be a category whose class of morphisms is an element of $U_1$ (and in particular is a set). If $U_1 \subsetneq U_2$, it will turn out that the class of all $U_1$-small categories is an element of $U_2 - U_1$, and we will be able to define the category of all $U_1$-small categories, which will itself be $U_2$-small (but not $U_1$-small). And so on, and so forth. Importantly, no matter how many nested universes we have, each universe is a \emph{set}, and so we can deal with its elements and subsets and so on with ordinary set-theory, without ever mentioning classes!
 
 The final philosophical point to make, before we actually define universes, is that at the end of the day, it will always suffice to prove our theorems in some sufficiently large universe -- it is never actually necessary to consider the entire class of sets all at once. After all, any particular mathematical object has a fixed size. So, the plan for setting up category theory with Grothendieck universes is to \emph{only} use small categories (as defined in the previous subsection), but to treat certain sets as ``small'' (these small sets will include e.g. all topological spaces of interest to us in some mathematical context) and other sets as ``large'' (these large sets will include e.g. the set of all small sets).
 
 \begin{definition}
     A set $U$ is said to be a \emph{(Grothendieck) universe} if
     \begin{enumerate}
-        \item $U$ is transitive, i.e. $$\forall x \forall y (x \in y \in U \implies x \in U),$$
-        \item $U$ is closed under forming pairs, i.e. $$\forall x,y \in U (\{x,y\} \in U),$$
-        \item $U$ is closed under forming power sets, i.e. $$\forall x \in U (\mathcal{P}(x) \in U),$$ where $\mathcal{P}(x)$ denotes the power set of $x$,
-        \item $U$ is closed under unions, i.e. $$\forall I \in U \forall f : I \to U \left(\bigcup_{i \in I} f(i) \in U\right),$$
+        \item $U$ is transitive, i.e.
+              \[\forall x \forall y (x \in y \in U \implies x \in U),\]
+        \item $U$ is closed under forming pairs, i.e.
+              \[\forall x,y \in U (\{x,y\} \in U),\]
+        \item $U$ is closed under forming power sets, i.e.
+              \[\forall x \in U (\mathcal{P}(x) \in U),\]
+              where $\mathcal{P}(x)$ denotes the power set of $x$,
+        \item $U$ is closed under unions, i.e.
+              \[\forall I \in U \,\forall f : I \to U \left(\bigcup_{i \in I} f(i) \in U\right),\]
         \item $\omega \in U$, where $\omega = \{0,1,2,\dots\}$ is the set of finite (von Neumann) ordinals.
     \end{enumerate}
 \end{definition}
@@ -188,11 +190,11 @@ There are other equivalent ways to express these axioms, but the point is that w
 
 We note that there is a set of all $U$-small sets (namely, $U$), and there is a set of all $U$-small categories, but of course neither the set of all $U$-small sets nor the set of all $U$-small categories will be $U$-small.
 
-It is worth pointing out that universes are quite large: every set you've ever seen is $U$-small for \emph{every} universe $U$. That's because every set you've ever explicitly constructed has been built from some iterated application of basic set theory constructions, beginning with the empty set and the set $\omega$, and $U$ is closed under all such constructions\footnote{The only missing step here is to show that $\varnothing \in U$ for all universes $U$: exercise!}! Basic set theory considerations tell us that there are sets much larger than any set you've ever explicitly constructed, and Russel's paradox tells us that we cannot hope to deal with the enormity of the collection of absolutely all sets, but the point of universes is that we don't have to: we can instead restrict our attention to a universe $U$, which will contain every set we care about, and simply work within that universe.
+It is worth pointing out that universes are quite large: every set you've ever seen is $U$-small for \emph{every} universe $U$. That's because every set you've ever explicitly constructed has been built from some iterated application of basic set theory constructions, beginning with the empty set and the set $\omega$, and $U$ is closed under all such constructions\footnote{The only missing step here is to show that $\varnothing \in U$ for all universes $U$: exercise!}! Basic set theory considerations tell us that there are sets much larger than any set you've ever explicitly constructed, and Russell's paradox tells us that we cannot hope to deal with the enormity of the collection of absolutely all sets, but the point of universes is that we don't have to: we can instead restrict our attention to a universe $U$, which will contain every set we care about, and simply work within that universe.
 
-There is only one problem: it is impossible to prove that universes exist\footnote{Unless ZFC is inconsistent, of course. More precisely, ZF plus ``there exists at least one universe'' proves that ZFC is consistent.}. Instead, we a new axiom to our set theory which imposes their existence.
+There is only one problem: it is impossible to prove that universes exist\footnote{Unless ZFC is inconsistent, of course. More precisely, ZFC plus ``there exists at least one universe'' proves that ZFC is consistent.}. Instead, we add a new axiom to our set theory which imposes their existence.
 
-\begin{axiom}[Axiom of Universes]
+\begin{axiom}[Axiom of Universes]\label{ax:universes}
     For all sets $x$, there exists a universe $U$ such that $x \in U$.
 \end{axiom}
 
@@ -202,11 +204,11 @@ It is possible in principle that the universe axiom is inconsistent with the oth
     In ZFC, the following two statements are equivalent:
     \begin{enumerate}
         \item The universe axiom holds,
-        \item For all cardinals $\kappa$, there exists a strongly inaccessible\footnote{A cardinal $n$ is said to be \emph{strongly inaccessible} if it is uncountable, every unbounded subset of $n$ has cardinality $n$, and for all cardinals $x$, $x < n$ implies $2^x < n$.} cardinal $\lambda$ such that $\lambda > \kappa$.
+        \item For all cardinals $\kappa$, there exists a strongly inaccessible\footnote{A cardinal $\mu$ is said to be \emph{strongly inaccessible} if it is uncountable, every unbounded subset of $\mu$ has cardinality $\mu$, and $2^\nu < \mu$ for every cardinal $\nu < \mu$.} cardinal $\lambda$ such that $\lambda > \kappa$.
     \end{enumerate}
 \end{proposition}
 
-Statement (2) above is an example of what set theorists call a \emph{large cardinal axiom}, which are an important topic in modern set theory. In fact, it turns out that universes are in bijective correspondence with strongly inaccessible cardinals -- for every strongly inaccessible cardinal $\lambda$, the von Neumann stage $V_\lambda$ is a universe, and every universe is equal to $V_\lambda$ for some strongly inaccessible cardinal $\lambda$\footnote{Precisely, for $\lambda$ equal to the cardinality of the universe.}. To summarize: \textbf{the best experts believe strongly that the universe axiom is not inconsistent with the other axioms of ZFC}, but it impossible to prove this using the axioms of ZFC unless ZFC is itself inconsistent!
+Statement (2) above is an example of what set theorists call a \emph{large cardinal axiom}, which are an important topic in modern set theory. In fact, it turns out that universes are in bijective correspondence with strongly inaccessible cardinals -- for every strongly inaccessible cardinal $\lambda$, the von Neumann stage $V_\lambda$ is a universe, and every universe is equal to $V_\lambda$ for some strongly inaccessible cardinal $\lambda$\footnote{Precisely, for $\lambda$ equal to the cardinality of the universe.}. To summarize: \textbf{the best experts believe strongly that the universe axiom is not inconsistent with the other axioms of ZFC}, but it is impossible to prove this using the axioms of ZFC unless ZFC is itself inconsistent!
 
 Some mathematicians tend to feel uncomfortable with this situation. This fear comes from a good place, but if you find yourself unsettled by this, please note that one could raise the exact same objection about (e.g.) the power set axiom, which simply asserts that every set has a power set. Just as we should be happy to assume (axiomatically) that power sets exist, we should be happy to assume (axiomatically) that universes exist.
 
@@ -220,13 +222,18 @@ Then we have (for example) that $\Set$ is an object of $\CAT$ (exercise!), and w
 
 So, our notation here conflicts with our earlier choice to use $\Set$ to denote the category of \emph{all} sets. Besides this kind of notational conflict, the theory of classes does not interfere with the theory of universes in any way -- i.e. it is perfectly fine to discuss proper classes in a setting where one has assumed the universe axiom.
 
-We note now that this setup allows us to define the free cocompletion functor \[Y : \Cat \to \CAT\] which sends any $U_1$-small category $\catC \in \ob \Cat$ to the category of presheaves $\Fun(\catC^\mathrm{op}, \Set)$, which will be $U_2$-small. Since $\Cat$ is a full subcategory of $\CAT$, we can use this to prove a generalized version of the Yoneda lemma!
+We note now that this setup allows us to define the free cocompletion functor
+\[Y : \Cat \to \CAT,\]
+which sends a $U_1$-small category $\catC \in \ob \Cat$ to its category of presheaves $\Fun(\catC^\op, \Set)$, and which sends a functor $f : \catC \to \catD$ to left Kan extension along $f^\op$. Note that $Y(\catC)$ is $U_2$-small but typically not $U_1$-small, so $Y$ really does need $\CAT$ (rather than $\Cat$) as its target. We should also be clear that $Y(\catC)$ is the free \emph{$U_1$-cocompletion} of $\catC$, i.e. $Y(\catC)$ admits all $U_1$-small colimits, and all objects of $Y(\catC)$ are $U_1$-small colimits of representable presheaves. Since $\Cat$ is a full subcategory of $\CAT$, we may now compare $Y$ with the inclusion $i : \Cat \hookrightarrow \CAT$, and thereby express the Yoneda embedding as a single natural transformation -- a statement which we could not even write down using classes alone.
 
 \begin{proposition}
-    Let $i$ denote the inclusion of the full subcategory $\Cat \subseteq \CAT$. There is a natural transformation $y$ from $i$ to the free cocompletion functor $Y := \Fun({(-)}^\mathrm{op}, \Set)$ given componentwise by the Yoneda embedding\footnote{One should carefully define the Yoneda embedding and note that it is well-defined: since $\catC$ is $U_1$-small, each hom-set $\Hom_\catC(x,y)$ is indeed an object of $\Set$.}
-    \[y_\catC : \catC \to \Fun(\catC^\mathrm{op}, \Set) = Y(\catC).\]
-    Moreover, the isomorphisms of the Yoneda lemma
-    \[\Psi_{\catC, x, F} : \Hom_{Y(\catC)}(y_\catC(x), F) \xrightarrow{\cong} F(x)\]
-    assemble into a natural isomorphism between the functors
-    \[(x,F) \mapsto F(x)\]
+    Let $i : \Cat \hookrightarrow \CAT$ denote the inclusion of the full subcategory of $U_1$-small categories. The Yoneda embeddings\footnote{One should of course carefully define the Yoneda embedding and check that it is well-defined: since $\catC$ is $U_1$-small, each hom-set $\Hom_\catC(x,y)$ is indeed an object of $\Set$.}
+    \[y_\catC : \catC \to \Fun(\catC^\op, \Set) = Y(\catC)\]
+    are the components of a natural transformation $y : i \Rightarrow Y$.
 \end{proposition}
+
+The Yoneda lemma itself (the family of bijections $\Hom_{Y(\catC)}(y_\catC(x), F) \cong F(x)$) can be packaged in the same spirit, as a natural isomorphism between two functors defined on a suitable category of triples $(\catC, x, F)$ with $\catC \in \ob \Cat$, $x \in \ob \catC$, and $F \in \ob Y(\catC)$.
+
+\begin{slogan}
+    Size issues are unavoidable. However you choose to deal with them, you must always pay attention to which things are large and which things are small.
+\end{slogan}
