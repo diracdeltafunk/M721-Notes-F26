@@ -763,7 +763,7 @@ Actually, this desired left adjoint comes from the fact that the inclusion $\Sh(
 The most efficient way to construct the sheafification functor is to use the \emph{espace étalé}\footnote{This is French terminology. \emph{Espace} means ``space'' and \emph{étalé} means something like ``spread out''.} construction. This is a very intuitive construction, with only two downsides:
 \begin{itemize}
     \item It only makes sense to apply directly to sheaves of sets. This is not such a big deal, since (as mentioned previously) we can always view a sheaf with values in $\catD$ (for $\catD$ any algebraic category) as a sheaf of sets with extra structure, and it will be easy to see that the sheafification procedure preserves this extra structure.
-    \item It does not generalize very easily to sheaves on sites (which we'll discuss later in the course), or at least the generalization to sites is not as intuitive.
+    \item It does not generalize very easily to sheaves on sites (which we'll discuss later in the course), or at least the generalization to sites is not as intuitive. We'll introduce a different construction of sheafification later in the course that works for sheaves on sites.
 \end{itemize}
 
 So, for the rest of this subsection, we will restrict our attention to the case $\catD = \Set$.
@@ -970,6 +970,15 @@ With the power of sheafification at our disposal, it becomes easy to define the 
     We call this functor \emph{inverse image} or \emph{pullback} along $f$.
 \end{definition}
 
+To check that $f^{-1}$ is indeed left adjoint to $f_*$, we simply see that
+\begin{align*}
+    \Hom_{\Sh(X)}(f^{-1} \cal{F}, \cal{G}) & = \Hom_{\Sh(X)}((f^{-1}_\pre \cal{F})^{++}, \cal{G}) \\
+                                           & \cong \Hom_{\PSh(X)}(f^{-1}_\pre \cal{F}, \cal{G})   \\
+                                           & \cong \Hom_{\PSh(Y)}(\cal{F}, f_* \cal{G})           \\
+                                           & \cong \Hom_{\Sh(Y)}(\cal{F}, f_* \cal{G})
+\end{align*}
+naturally in $\cal{F} \in \Sh(Y)$ and $\cal{G} \in \Sh(X)$.
+
 \begin{proposition}
     $f^{-1} : \Sh(Y) \to \Sh(X)$ preserves stalks, i.e. for all points $x \in X$ there is a natural isomorphism
     \[(f^{-1} \cal{F})_x \cong \cal{F}_{f(x)}.\]
@@ -999,6 +1008,9 @@ It also becomes easy to prove important facts about the category of sheaves. Her
 \begin{corollary}
     The slice category $\Sh(X)/y(U)$ is equivalent to $\Sh(U)$.
 \end{corollary}
+\begin{proof}
+    The representable sheaf $y(U)$ corresponds to the inclusion $U \hookrightarrow X$ in $\Top^{\mathrm{lh}}/X$.
+\end{proof}
 
 \begin{proposition}
     Let $f : X \to Y$ be a continuous function. The composite
@@ -1030,6 +1042,8 @@ It also becomes easy to prove important facts about the category of sheaves. Her
 
 So, the preimage functor $f^{-1}$ is very easy to understand from the perspective of the espace étalé construction: it is just given by pullback! On the other hand, the direct image functor $f_*$ is kind of tricky to define from the perspective of the espace étalé. The good news is $f_*$ is easy to understand at the level of presheaves. Since we have both perspectives at our disposal, this is a good situation to be in.
 
+\startlecture[Sep 22, 2026]
+
 We can also generalize \Cref{prop:chap:sheaves:sec:spaces:extension by zero} to arbitrary local homeomorphisms (instead of just open embeddings).
 
 \begin{proposition}
@@ -1040,6 +1054,8 @@ We can also generalize \Cref{prop:chap:sheaves:sec:spaces:extension by zero} to 
 \begin{proof}
     This is a general fact: postcomposition is always left adjoint to pullback (as a functor between slice categories), whenever pullback is well-defined.
 \end{proof}
+
+As mentioned at the start of this subsection, much of this discussion generalizes to presheaves with values in any algebraic category $\catD$. In particular, there is a sheafification functor $(-)^{++} : \PSh(X;\catD) \to \Sh(X;\catD)$ which is left adjoint to the inclusion $\Sh(X;\catD) \hookrightarrow \PSh(X;\catD)$, and an inverse image functor $f^{-1} : \Sh(Y;\catD) \to \Sh(X;\catD)$ which is left adjoint to the direct image functor $f_* : \Sh(X;\catD) \to \Sh(Y;\catD)$. In \Cref{exercise:chap:sheaves:sec:spaces:abelian sheaves}, you will work through this generalization (and its consequences) for sheaves of abelian groups. In the next section of the notes, we will discuss a procedure for sheafification which works directly for sheaves with values in an arbitrary algebraic category $\catD$.
 
 % TODO Move this into the sites section, once appropriate.
 % \subsection{Sheafification in Two Steps}
@@ -1284,12 +1300,190 @@ We can also generalize \Cref{prop:chap:sheaves:sec:spaces:extension by zero} to 
     A \emph{constant sheaf} on a space $X$ is a sheaf $\cal{F}$ such that there exists a set $S$ with $\cal{F} \cong \underline{S}^{++}$, where $\underline{S}$ is the constant presheaf with value $S$. Show that $\underline{S}$ is a sheaf on $X$ if and only if $\lvert S \rvert = 1$.
 \end{exercise}
 
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:sheafification preserves finite limits}
+    Show that the sheafification functor $\PSh(X) \to \Sh(X)$ preserves finite limits. Deduce that $f^{-1} : \Sh(Y) \to \Sh(X)$ preserves finite limits for any continuous map $f : X \to Y$.
+\end{exercise}
+
+\begin{exercise}\label{exercise:chap:sheaves:sec:spaces:abelian sheaves}
+    From \Cref{exercise:chap:sheaves:sec:spaces:ShAb is AbSh}, we know that $\Sh(X,\Ab) \simeq \Ab(\Sh(X))$. By \Cref{thm:chap:sheaves:sec:spaces:sheaves are local homeos}, we have $\Sh(X,\Ab) \simeq \Ab(\Top^{\mathrm{lh}}/X)$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Describe concretely what an abelian group object in $\Top^{\mathrm{lh}}/X$ is. Show that each fiber of an abelian group object in $\Top^{\mathrm{lh}}/X$ is an abelian group in a natural way, and this computes the stalks of the corresponding sheaf of abelian groups.
+        \item Show that the sheafification functor $\PSh(X) \to \Sh(X)$ preserves abelian group objects (make precise what this means), and deduce that there is an induced functor $\PSh(X,\Ab) \to \Sh(X,\Ab)$. Show that this functor is left adjoint to the inclusion $\Sh(X,\Ab) \hookrightarrow \PSh(X,\Ab)$.
+        \item Show that the sheafification functor $\PSh(X,\Ab) \to \Sh(X,\Ab)$ preserves finite limits.
+        \item Show that $\PSh(X,\Ab)$ and $\Sh(X,\Ab)$ are both abelian categories. Then show that:
+              \begin{enumerate}[label=(\roman*)]
+                  \item Exactness in $\PSh(X,\Ab)$ is checked on local sections, i.e. a sequence $\cal{F} \to \cal{G} \to \cal{H}$ in $\PSh(X,\Ab)$ is exact if and only if for every open set $U \subseteq X$, the sequence $\cal{F}(U) \to \cal{G}(U) \to \cal{H}(U)$ is exact in $\Ab$.
+                  \item Exactness in $\Sh(X,\Ab)$ is checked on stalks, i.e. a sequence $\cal{F} \to \cal{G} \to \cal{H}$ in $\Sh(X,\Ab)$ is exact if and only if for every point $x \in X$, the sequence $\cal{F}_x \to \cal{G}_x \to \cal{H}_x$ is exact in $\Ab$.
+                  \item The inclusion $\Sh(X,\Ab) \hookrightarrow \PSh(X,\Ab)$ is left exact, but not right exact in general.
+                  \item The sheafification functor $\PSh(X,\Ab) \to \Sh(X,\Ab)$ is exact.
+                  \item Let $f : X \to Y$ be a continuous map. Show that $f_* : \Sh(X) \to \Sh(Y)$ preserves abelian group objects, and thus induces a map $f_* : \Sh(X,\Ab) \to \Sh(Y,\Ab)$. Show that $f_* : \Sh(X,\Ab) \to \Sh(Y,\Ab)$ is left exact, but not right exact in general.
+                  \item Let $f : X \to Y$ be a continuous map. Show that $f^{-1} : \Sh(Y) \to \Sh(X)$ preserves abelian group objects, and thus induces a map $f^{-1} : \Sh(Y,\Ab) \to \Sh(X,\Ab)$ which is left adjoints to $f_*$. Show that $f^{-1} : \Sh(Y,\Ab) \to \Sh(X,\Ab)$ is exact.
+                  \item Let $f : X \to Y$ be a local homeomorphism. Show that $f_! : \Sh(X) \to \Sh(Y)$ does \emph{not} lift to a functor on abelian group objects. Nevertheless, show that $f^{-1} : \Sh(Y,\Ab) \to \Sh(X,\Ab)$ admits a left adjoint $f_!^{\Ab} : \Sh(X,\Ab) \to \Sh(Y,\Ab)$, which is exact. Conclude that $f^{-1}$ preserves injective objects.
+              \end{enumerate}
+    \end{enumerate}
+\end{exercise}
+
 \section{Sites}
 
 We began the course by discussing ``sheaves on the category of sets'', which is certainly not a special case of $\Sh(X)$ for $X$ a topological space, since $\Set$ is not equivalent to $\Open(X)$ for any topological space $X$. In this section, we will discuss a generalization of the notion of sheaf which encompasses both sheaves on topological spaces and sheaves on the category of sets. For this, we must replace $\Open(X)$ and $\Set$ with a more general datum called a \emph{site}. A site is a category together with a collection of ``covering families'' -- these covering families specify exactly which equalizers should appear in the sheaf condition. It will turn out that every category can be equipped with a canonical choice of covering families, and that sheaves on $\Set$ or $\Open(X)$ with respect to these canonical covering families are exactly the sheaves we have already discussed.
+
+\subsection{Grothendieck Topologies and the Sheaf Condition}
+
+\begin{definition}
+    Let $\catC$ be a category. A \emph{sieve} on an object $x \in \catC$ is a subfunctor $S \subseteq y(x)$ of the representable presheaf $y(x) = \Hom_\catC({-},x)$. That is, for all objects $c \in \catC$, we have a subset $S(c) \subseteq \Hom_\catC(c,x)$, and for all morphisms $f : c' \to c$ in $\catC$, we have $g \circ f \in S(c')$ for all $g \in S(c)$.
+\end{definition}
+
+\begin{warning}
+    If $\catC$ is a large category, then $\PSh(\catC)$ is not necessarily a category in the usual sense (its hom-sets may in fact be proper classes). However, the notions of presheaf and subfunctor still make sense, so in particular it is fine to talk about sieves. I will try to be careful about size issues in what follows, but we'll be forced to return to this technical point again soon, and it is always worth thinking about which things are ``small'' and ``large''! This is a spot where the theory of Grothendieck universes would be very useful to make things precise, but I don't want to assume knowledge of Grothendieck universes in this course.
+\end{warning}
+
+A sieve is, in other words, a collection of morphisms into $x$ which is closed under precomposition. It's clear that the collection of sieves on $x$ is closed under arbitrary intersection (the empty intersection is the maximum sieve $y(x)$). Thus, we may talk about the sieve on $x$ generated by a collection of morphisms $\{f_\alpha\}_\alpha$ with codomain $x$, which is the smallest sieve containing all of the $f_\alpha$. Explicitly, the sieve generated by $\{f_\alpha\}_\alpha$ consists of all morphisms which factor through some $f_\alpha$, i.e.
+\[S(c) = \{g \in \catC(c,x) : g = f_\alpha \circ h \text{ for some } \alpha \text{ and some }h : c \to \dom(f_\alpha)\}.\]
+
+\begin{example}\label{example:chap:sheaves:sec:sites:sieve generated by open cover}
+    Let $X$ be a topological space, and let $U \subseteq X$ be an open set. Let $\{U_\alpha\}_\alpha$ be an open cover of $U$. The sieve on $U \in \Open(X)$ generated by the inclusions $U_\alpha \hookrightarrow U$ is the subfunctor $S \subseteq y(U)$ defined by
+    \[S(V) = \{V \hookrightarrow U : V \subseteq U_\alpha \text{ for some } \alpha\}.\]
+\end{example}
+
+If $S$ is a sieve on $x$ and $f : x' \to x$ is a morphism in $\catC$, we may define the \emph{pullback sieve} $f^* S$ on $x'$ by
+\[(f^* S)(z) = \{g \in \catC(z,x') : f \circ g \in S(z)\}.\]
+
+\begin{example}
+    Let $X$ be a topological space, let $U \subseteq X$ be an open set, and let $\{U_\alpha\}_\alpha$ be an open cover of $U$. Let $S \subseteq y(U)$ be the sieve generated by the inclusions $U_\alpha \hookrightarrow U$. Let $V \subseteq U$ be an open subset. Then the pullback sieve $V^* S$ on $V$ is the sieve generated by the inclusions $V \cap U_\alpha \hookrightarrow V$, i.e.
+    \[(V^* S)(W) = \{W \hookrightarrow V : W \subseteq V \cap U_\alpha \text{ for some } \alpha\}.\]
+\end{example}
+
+\begin{definition}
+    Let $\catC$ be a category. A \emph{Grothendieck topology} $\cal{J}$ on $\catC$ is a choice of a collection\footnote{Potentially a proper class!} of sieves $\cal{J}(x)$ on each object $x \in \catC$, called the \emph{covering sieves}, such that:
+    \begin{enumerate}[label=(T\arabic*)]
+        \item For all $S \in \cal{J}(x)$ and all morphisms $f : y \to x$, $f^* S \in \cal{J}(y)$.
+        \item For all $S \in \cal{J}(x)$ and all sieves $T$ on $x$, if $f^* T \in \cal{J}(y)$ for all $f : y \to x$ in $S$, then $T \in \cal{J}(x)$.
+        \item $y(x) \in \cal{J}(x)$ for all $x \in \catC$.
+    \end{enumerate}
+    A \emph{site} is a pair $(\catC, \cal{J})$ of a category $\catC$ and a Grothendieck topology $\cal{J}$ on $\catC$.
+\end{definition}
+
+\begin{example}\label{example:canonical topology on OpenX}
+    Let $X$ be a topological space. There is a Grothendieck topology $\cal{J}$ on $\Open(X)$ defined by declaring the covering sieves on $U$ to be precisely the sieves generated by open covers of $U$, as in \Cref{example:chap:sheaves:sec:sites:sieve generated by open cover}.
+\end{example}
+
+\begin{example}
+    There is a Grothendieck topology on $\Set$ defined by declaring the covering sieves $S \in \cal{J}(X)$ to be precisely those for which the morphisms in $S$ are jointly surjective, i.e.\ for all $x \in X$ there exists some $f : Y \to X$ in $S(Y)$ and some $y \in Y$ such that $f(y) = x$.
+\end{example}
+
+\begin{remark}
+    One sometimes sees sites defined in a slightly different way, in terms of \emph{Grothendieck pre-topologies}. Here, instead of specifying covering sieves, one specifies covering families $\{f_\alpha : x_\alpha \to x\}_\alpha$ of morphisms with codomain $x$. These covering families are required to satisfy the following axioms:
+    \begin{enumerate}[label=(PT\arabic*)]
+        \item For all covering families $\{f_\alpha : x_\alpha \to x\}_\alpha$ and all morphisms $g : y \to x$, $\{x_\alpha \times_x y \to y\}_\alpha$ is a covering family.
+        \item For all covering families $\{f_\alpha : x_\alpha \to x\}_\alpha$ and all collections of covering families $\{g_{\alpha,\beta} : x_{\alpha,\beta} \to x_\alpha\}_\beta$, the family $\{f_\alpha \circ g_{\alpha,\beta} : x_{\alpha,\beta} \to x\}_{\alpha,\beta}$ is a covering family.
+        \item The singleton family $\{\id_x : x \to x\}$ is a covering family for all $x$.
+    \end{enumerate}
+    Any Grothendieck pre-topology generates a Grothendieck topology by declaring a sieve $S$ on $x$ to be covering if and only if it contains a covering family\footnote{It is worth taking the time to understand how the axioms PT1-PT3 translate to the axioms T1-T3 via this construction!}. There are two downsides to this approach:
+    \begin{itemize}
+        \item Many distinct pre-topologies may generate the same topology, and the eventual definition of ``sheaves on a site'' that we will use only depends on the Grothendieck topology, not the pre-topology.
+        \item The axioms of a Grothendieck pre-topology assume the existence of (at least some) pullbacks in $\catC$, while the axioms of a Grothendieck topology do not.
+    \end{itemize}
+\end{remark}
+
+Suppose for a moment that $\catC$ is small. The Yoneda lemma says that
+\[\cal{F}(x) \cong \Hom_{\PSh(\catC)}(y(x),\cal{F})\]
+for all presheaves $\cal{F} \in \PSh(\catC)$. Consequently, for any sieve $S \subseteq y(x)$, we have a canonical map
+\[\cal{F}(x) \cong \Hom_{\PSh(\catC)}(y(x),\cal{F}) \to \Hom_{\PSh(\catC)}(S,\cal{F}).\]
+We say that $\cal{F}$ \emph{satisfies the sheaf condition with respect to $S$} or \emph{is local with respect to $S$} if this map is a bijection. We will write $\cal{F}(S)$ as shorthand for $\Hom_{\PSh(\catC)}(S,\cal{F})$.
+
+If $\catC$ is not a small category, the version of the Yoneda lemma we have stated (\Cref{prop:Yoneda}) does not apply. However, much of it still holds:
+\begin{itemize}
+    \item It is still true that $\Hom(y(x),\cal{F}) \cong \cal{F}(x)$ naturally in presheaves $\cal{F}$ and objects $x$; in particular, $\Hom(y(x),\cal{F})$ is a set.
+    \item It is still true that every presheaf $\cal{F}$ is a colimit of representable presheaves in a canonical way (this colimit is indexed by a potentially large category, but it does exist).
+\end{itemize}
+In this case, we can still obtain a canonical map $\cal{F}(x) \to \cal{F}(S) := \Hom(S,\cal{F})$ for any sieve $S$ on $x$, but $\cal{F}(S)$ may be a proper class. Still, it makes sense to ask whether or not $\cal{F}$ satisfies the sheaf condition with respect to $S$!
+
+If $S$ is generated by a set of morphisms, then we can guarantee that $\cal{F}(S)$ is a set. Many sites encountered in practice have the property that all covering sieves are generated by sets.
+
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:FS is a set for small sieves}
+    Let $S$ be a sieve on $x \in \catC$. If $S$ is generated by a set of morphisms $\{f_i : c_i \to x\}_i$, then
+    \[\cal{F}(S) := \Hom(S,\cal{F})\]
+    is a set for any presheaf $\cal{F} \in \PSh(\catC)$.
+\end{proposition}
+\begin{proof}
+    The key is that, in this case, the morphism
+    \[\coprod_i y(c_i) \to S\]
+    determined by the elements $f_i \in S(c_i)$ is an epimorphism in $\PSh(\catC)$; i.e.\ it is a natural transformation whose components are all surjections. To see this, note that the image of this map $\coprod_i y(c_i) \to S$ is a well-defined subfunctor of $S$ (thus in particular a sieve on $x$) which contains all of the $f_i$; since $S$ is the smallest sieve containing all of the $f_i$, it follows that this image must be all of $S$. It follows that the induced map
+    \[\cal{F}(S) = \Hom(S,\cal{F}) \to \Hom(\coprod_i y(c_i),\cal{F}) \cong \prod_i \Hom(y(c_i),\cal{F}) \cong \prod_i \cal{F}(c_i)\]
+    is injective, and thus $\Hom(S,\cal{F})$ is a set.
+\end{proof}
+
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:sheaf condition as limit}
+    Let $\catC$ be a category, and let $S$ be a sieve on $x \in \catC$. Let $S/x$ denote the full subcategory of $\catC/x$ spanned by the morphisms in $S$.
+
+    Then, for any presheaf $\cal{F}$, elements of $\cal{F}(S)$ are in bijection with compatible families $(s_f)_{f \in S}$, where $s_f \in \cal{F}(c)$ for each $f : c \to x$ in $S$. Here compatibility means that for all morphisms $g : f' \to f$ in $S/x$, we have $\cal{F}(g)(s_f) = s_{f'}$.
+\end{proposition}
+\begin{proof}
+    Given $\alpha : S \to \cal{F}$, set $s_f := \alpha_c(f) \in \cal{F}(c)$ for each $f : c \to x$ in $S$. This is compatible by naturality of $\alpha$. In the other direction, given a compatible family $(s_f)_{f \in S}$, define $\alpha_c : S(c) \to \cal{F}(c)$ by $\alpha_c(f) := s_f$. These are the components of a natural transformation $\alpha : S \to \cal{F}$ by the compatibility condition.
+\end{proof}
+
+This is almost just saying that $\cal{F}(S)$ is the limit of the diagram
+\[(\smallint S)^\op \cong (S/x)^\op \xrightarrow{\dom} \catC^\op \xrightarrow{\cal{F}} \Set,\]
+coming from the fact that $S$ is the colimit of the diagram
+\[\smallint S \cong S/x \xrightarrow{\dom} \catC \xrightarrow{y} \PSh(\catC).\]
+The only trouble is that the indexing category $\int S$ is potentially large, and so the desired limit does not necessarily exist in $\Set$, as we have discussed. However, the colimit defining $S$ does exist in $\PSh$, and we can describe directly what elements of $\cal{F}(S) = \Hom(S,\cal{F})$ are by the universal property of colimits. This gives the statement in the proposition.
+
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:sheaf condition as equalizer}
+    Let $\catC$ be a category, and let $S$ be a sieve on $x \in \catC$. Assume that the slice category $\catC/x$ admits binary products\footnote{These are just pullback squares with $x$ in the corner.} and that $S$ is generated by a set of morphisms $\{f_i : c_i \to x\}_i$. Then $\cal{F}(S)$ is naturally isomorphic to the equalizer of the diagram
+    \[\prod_{i} \cal{F}(c_i) \rightrightarrows \prod_{i,j} \cal{F}(c_i \times_x c_j).\]
+\end{proposition}
+\begin{proof}
+    Recall from the proof of \Cref{prop:chap:sheaves:sec:sites:FS is a set for small sieves} that restriction along the $f_i$ gives an injection $\cal{F}(S) \hookrightarrow \prod_i \cal{F}(c_i)$; we must identify its image with the equalizer, and for this we use the description of \Cref{prop:chap:sheaves:sec:sites:sheaf condition as limit}.
+
+    If $(s_f)_{f \in S}$ is a compatible family, then for all $i,j$ we have $f_i \circ p_1 = f_j \circ p_2$, where $p_1 : c_i \times_x c_j \to c_i$ and $p_2 : c_i \times_x c_j \to c_j$ are the canonical projections, so
+    \[\cal{F}(p_1)(s_{f_i}) = s_{f_i \circ p_1} = s_{f_j \circ p_2} = \cal{F}(p_2)(s_{f_j}).\]
+
+    Conversely, suppose $(s_i)_i$ satisfies $\cal{F}(p_1)(s_i) = \cal{F}(p_2)(s_j)$ for all $i,j$. Every $f : d \to x$ in $S$ factors as $f = f_i \circ h$ for some $i$ and some $h : d \to c_i$; set $s_f := \cal{F}(h)(s_i)$. This is independent of the factorization: if also $f = f_j \circ k$, then $(h,k)$ induces $r : d \to c_i \times_x c_j$ with $h = p_1 \circ r$ and $k = p_2 \circ r$, whence
+    \[\cal{F}(h)(s_i) = \cal{F}(r)(\cal{F}(p_1)(s_i)) = \cal{F}(r)(\cal{F}(p_2)(s_j)) = \cal{F}(k)(s_j).\]
+    The family $(s_f)_{f \in S}$ is compatible: if $g : f' \to f$ is a morphism in $S/x$ and $f = f_i \circ h$, then $f' = f_i \circ (h \circ g)$, so $s_{f'} = \cal{F}(h \circ g)(s_i) = \cal{F}(g)(s_f)$. Finally, taking $h = \id_{c_i}$ shows $s_{f_i} = s_i$.
+\end{proof}
+
+This understanding allows us to extend our sheaf condition so it applies to presheaves with values in any algebraic category.
+
+\begin{definition}
+    Let $\catC$ be a category, let $S$ be a sieve on $x \in \catC$, and let $\catD$ be an algebraic category. A presheaf $\cal{F} \in \PSh(\catC,\catD)$ is said to \emph{satisfy the sheaf condition with respect to $S$} (or be \emph{local with respect to $S$}) if its underlying $\Set$-valued presheaf (coming from the forgetful functor $\catD \to \Set$) is local with respect to $S$.
+\end{definition}
+
+We have same equalizer description of the sheaf condition in this more general setting, coming from the fact that limits in $\catD$ are computed in $\Set$.
+
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:sheaf condition as equalizer in algebraic category}
+    Let $\catD$ be an algebraic category. If $S$ is generated by a set of morphisms $\{f_i : c_i \to x\}_i$ and $\catC/x$ admits binary products, then $\cal{F} \in \PSh(\catC,\catD)$ is local with respect to $S$ if and only if
+    \[\cal{F}(x) \to \prod_i \cal{F}(c_i) \rightrightarrows \prod_{i,j} \cal{F}(c_i \times_x c_j)\]
+    is an equalizer diagram in $\catD$.
+\end{proposition}
+
+This allows us to define sheaves on a site with values in an algebraic category\footnote{Or, as before, any locally finitely presentable category, if you're willing to be more abstract.}.
+
+\begin{definition}\label{def:chap:sheaves:sec:sites:sheaf}
+    Let $(\catC, \cal{J})$ be a site, and let $\catD$ be an algebraic category. A presheaf $\cal{F} \in \PSh(\catC,\catD)$ is a \emph{sheaf} if it is local with respect to all covering sieves. We write $\Sh(\catC,\catD)$ for the full subcategory of $\PSh(\catC,\catD)$ spanned by the sheaves.
+\end{definition}
+
+Again, we warn that $\Sh(\catC,\catD)$ may fail to be a category in the traditional sense if $\catC$ is not small (because its hom-sets may be too large).
 
 %TODO \subsection{Points}
 
 %TODO \subsection{Sheaves with Values in Abelian Categories}
 
 %TODO \subsection{Closed Embeddings, Recollements, Artin Gluing}
+
+\subsection*{Exercises}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\begin{exercise}
+    Show that the collection of sieves in \Cref{example:canonical topology on OpenX} satisfies the axioms of a Grothendieck topology.
+\end{exercise}
+
+\begin{exercise}
+    Check that \Cref{def:chap:sheaves:sec:sites:sheaf} recovers \Cref{def:chap:sheaves:sec:spaces:sheaf with values in algebraic category} when $(\catC, \cal{J}) = (\Open(X), \cal{J})$ for a space $X$, where $\cal{J}$ is the topology defined in \Cref{example:canonical topology on OpenX}.
+\end{exercise}
+
+\begin{exercise}
+    For experts: if $\catD$ is an arbitrary category, we say that a presheaf $\cal{F} \in \PSh(\catC,\catD)$ is a sheaf if the $\Set$-valued presheaf
+    \[\Hom_\catD(d,\cal{F}({-})) : \catC^\op \to \Set\]
+    is a sheaf for all objects $d \in \catD$. Show that this recovers \Cref{def:chap:sheaves:sec:sites:sheaf} when $\catD$ is an algebraic category.
+\end{exercise}
