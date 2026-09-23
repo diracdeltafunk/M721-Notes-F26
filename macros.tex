@@ -41,7 +41,16 @@
 \DeclareMathOperator{\res}{res}
 
 %% Everything inside a `draft' environment is typeset in red.
-\newenvironment{draft}{\color{red}}{}
+%% (Proofs are mdframed boxes, and footnote text is typeset in the footnote area;
+%% both reset the text color, so we recolor them explicitly.)
+\makeatletter
+\newenvironment{draft}{%
+  \color{red}%
+  \mdfsetup{fontcolor=red}%
+  \let\draft@makefntext\@makefntext
+  \long\def\@makefntext##1{\draft@makefntext{\color{red}##1}}%
+}{}
+\makeatother
 
 %% Other
 \newcommand{\pt}{\mathrm{pt}}

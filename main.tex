@@ -2,6 +2,8 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{microtype}
 \usepackage{enumitem}
+\usepackage[backend=biber,style=alphabetic,url=false,isbn=false]{biblatex}
+\addbibresource{references.bib}
 \usepackage[colorlinks]{hyperref}
 \usepackage{footnotebackref}
 \usepackage{cleveref}
@@ -28,6 +30,11 @@
 \include{sheaves}
 
 \appendix
+\crefalias{chapter}{appendix}
+\crefalias{section}{appendix}
+\crefalias{subsection}{appendix}
 \include{universes}
+
+\printbibliography[heading=bibintoc]
 
 \end{document}
