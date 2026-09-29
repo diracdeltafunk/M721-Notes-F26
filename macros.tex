@@ -129,9 +129,11 @@
 {\bfseries \color{blue!70!black}} % HEADFONT
 {.}         % HEADPUNCT
 {5pt plus 1pt minus 1pt} % HEADSPACE
-{\faIcon{robot}~\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}          % CUSTOM-HEAD-SPEC
+{\disclaimericon~\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}          % CUSTOM-HEAD-SPEC
 \theoremstyle{disclaimer}
-\newtheorem*{disclaimer}{Disclaimer}
+\newtheorem*{disclaimerbase}{Disclaimer}
+% Usage: \begin{disclaimer}{\faIcon{robot}} ... \end{disclaimer}
+\newenvironment{disclaimer}[1]{\def\disclaimericon{#1}\begin{disclaimerbase}}{\end{disclaimerbase}}
 
 \mdfdefinestyle{leftbar}{
   hidealllines=true,
