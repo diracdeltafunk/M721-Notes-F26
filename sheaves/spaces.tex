@@ -660,7 +660,7 @@ Local homeomorphisms are a very nice class of maps, and can be viewed as a gener
 
 The espace étalé $E_\cal{F}$ gives a canonical way to build a sheaf from a presheaf: first construct the espace étalé, and then take the sheaf of sections of the canonical projection. In fact, the second step (``take the sheaf of sections'') is not doing anything at all; it is really the construction of the espace étalé that is doing the work of sheafification.
 
-\begin{definition}
+\begin{definition}\label{def:chap:sheaves:sec:spaces:local homeomorphisms over X}
     Let $\Top^{\mathrm{lh}}$ denote the category of spaces with local homeomorphisms between them. For $X$ a space, $\Top^{\mathrm{lh}}/X$ (the slice category of local homeomorphisms over $X$) is the category whose objects are local homeomorphisms $E \to X$ and whose morphisms are commutative triangles
     % https://q.uiver.app/#q=WzAsMyxbMCwwLCJFIl0sWzIsMCwiRSciXSxbMSwxLCJYIl0sWzEsMiwiZyJdLFswLDEsIlxcdmFycGhpIl0sWzAsMiwiZiIsMl1d
     \[\begin{tikzcd}[column sep=tiny]
@@ -709,12 +709,12 @@ The espace étalé $E_\cal{F}$ gives a canonical way to build a sheaf from a pre
 
 Now we are ready to define the sheafification functor.
 
-\begin{definition}
+\begin{definition}\label{def:chap:sheaves:sec:spaces:sheafification}
     Let $\cal{F} \in \PSh(X)$. The \emph{sheafification} of $\cal{F}$, denoted $\cal{F}^{++}$, is the sheaf of sections of the canonical projection $E_{\cal{F}} \to X$. In other words, the sheafification functor is the composite
     \[\PSh(X) \to \Top^{\mathrm{lh}}/X \to \Sh(X).\]
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:sheafification unit is an isomorphism on stalks}
     There is a natural transformation $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ given on local sections by $s \mapsto (u \mapsto (u, s_u))$. The induced map on stalks $\cal{F}_x \to \cal{F}^{++}_x$ is an isomorphism for all $x \in X$.
 \end{proposition}
 \begin{proof}
@@ -799,7 +799,7 @@ By construction, the unit of the adjunction is the map $\eta_{\cal{F}} : \cal{F}
 
 With the power of sheafification at our disposal, it becomes easy to define the left adjoint to $f_* : \Sh(X) \to \Sh(Y)$ for any continuous map $f : X \to Y$.
 
-\begin{definition}
+\begin{definition}\label{def:chap:sheaves:sec:spaces:inverse image of sheaves}
     Let $f : X \to Y$ be a continuous map of topological spaces. The left adjoint to $f_* : \Sh(X) \to \Sh(Y)$ is denoted $f^{-1}$, and given by the composite
     \[\Sh(Y) \hookrightarrow \PSh(Y) \xrightarrow{f^{-1}_\pre} \PSh(X) \xrightarrow{(-)^{++}} \Sh(X).\]
     We call this functor \emph{inverse image} or \emph{pullback} along $f$.
@@ -814,7 +814,7 @@ To check that $f^{-1}$ is indeed left adjoint to $f_*$, we simply see that
 \end{align*}
 naturally in $\cal{F} \in \Sh(Y)$ and $\cal{G} \in \Sh(X)$.
 
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:inverse image preserves stalks}
     $f^{-1} : \Sh(Y) \to \Sh(X)$ preserves stalks, i.e. for all points $x \in X$ there is a natural isomorphism
     \[(f^{-1} \cal{F})_x \cong \cal{F}_{f(x)}.\]
 \end{proposition}
@@ -833,21 +833,21 @@ It also becomes easy to prove important facts about the category of sheaves. Her
     For the second claim, we use the fact that the Yoneda embedding $y : \Open(X) \to \PSh(X)$ is a free cocompletion, i.e. every presheaf on $X$ is a small colimit (in a canonical way) of presheaves of the form $y(U)$ for $U \subseteq X$ open. Since sheafification is a left adjoint functor, it preserves colimits, so every sheaf on $X$ is a small colimit of sheaves of the form $y(U)^{++}$. But $y(U)$ is already a sheaf, so $y(U)^{++} \cong y(U)$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:slice over a sheaf}
     Let $\cal{F}$ be a sheaf on $X$. The slice category $\Sh(X)/\cal{F}$ is equivalent to the category of sheaves on the espace étalé $E_{\cal{F}}$, and in particular is complete and cocomplete.
 \end{proposition}
 \begin{proof}
     By \Cref{thm:chap:sheaves:sec:spaces:sheaves are local homeos}, we have an equivalence of categories $\Sh(X) \simeq \Top^{\mathrm{lh}}/X$. Under this equivalence, the slice category $\Sh(X)/\cal{F}$ corresponds to the slice category $(\Top^{\mathrm{lh}}/X)/E_{\cal{F}}$, which is equivalent to $\Top^{\mathrm{lh}}/E_{\cal{F}}$ by inspection. Finally, by \Cref{thm:chap:sheaves:sec:spaces:sheaves are local homeos} again, we have an equivalence of categories $\Top^{\mathrm{lh}}/E_{\cal{F}} \simeq \Sh(E_{\cal{F}})$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{cor:chap:sheaves:sec:spaces:slice over a representable}
     The slice category $\Sh(X)/y(U)$ is equivalent to $\Sh(U)$.
 \end{corollary}
 \begin{proof}
     The representable sheaf $y(U)$ corresponds to the inclusion $U \hookrightarrow X$ in $\Top^{\mathrm{lh}}/X$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:inverse image is pullback of local homeomorphisms}
     Let $f : X \to Y$ be a continuous function. The composite
     \[\Top^{\mathrm{lh}}/Y \simeq \Sh(Y) \xrightarrow{f^{-1}} \Sh(X) \simeq \Top^{\mathrm{lh}}/X\]
     is given simply by pulling back morphisms along $f$.
@@ -881,7 +881,7 @@ So, the preimage functor $f^{-1}$ is very easy to understand from the perspectiv
 
 We can also generalize \Cref{prop:chap:sheaves:sec:spaces:extension by zero} to arbitrary local homeomorphisms (instead of just open embeddings).
 
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:spaces:adjoint triple for a local homeomorphism}
     Let $f : X \to Y$ be a local homeomorphism. Then there is an adjoint triple
     \[f_! \dashv f^{-1} \dashv f_*\]
     between categories of sheaves, where $f_! : \Sh(X) \simeq \Top^{\mathrm{lh}}/X \to \Top^{\mathrm{lh}}/Y \simeq \Sh(Y)$ is the functor given by postcomposition with $f$.

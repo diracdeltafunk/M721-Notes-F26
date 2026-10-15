@@ -25,7 +25,7 @@ We quickly recount the proof.
 
 We emphasize that \eqref{eq:russel} is a statement in the language of set theory, and so its proof relies on some axioms of set theory. In this case, the proof of \eqref{eq:russel} relies on only one axiom (schema), the \emph{axiom schema of restricted comprehension}.
 
-\begin{axiom}[Axiom Schema of Restricted Comprehension\footnote{This is actually weaker than the standard axiom schema of restricted comprehension used in (e.g.) ZFC set theory, but the details are unimportant here.}]
+\begin{axiom}[Axiom Schema of Restricted Comprehension\footnote{This is actually weaker than the standard axiom schema of restricted comprehension used in (e.g.) ZFC set theory, but the details are unimportant here.}]\label{ax:appendix:size issues:restricted comprehension}
     Let $\varphi(x)$ be a formula in the language of set theory (i.e. $\varphi$ may have $x$ as a free variable and no other free variables).
 
     For all $A$, there exists $B$ such that for all $x$, $x \in B$ if and only if $x \in A$ and $\varphi(x)$ holds.
@@ -49,7 +49,7 @@ as a set (it would be the ``set of all sets'', which we have shown does not exis
 
 On the other hand, we would like to have access to the category of sets, which we will denote $\Set$. Somehow, every set should be an object of $\Set$, i.e. the collection of objects of $\Set$ should be the collection of all sets (whatever that means). We know that there is no set of all sets, so this ``collection of objects'' must not be a set, but instead something else.
 
-\begin{definition}
+\begin{definition}\label{def:appendix:size issues:class}
     A \emph{class} is an equivalence class of formulas (in the language of set theory) with one free variable, with respect to logical equivalence. We say that a formula $\varphi(x)$ is logically equivalent to another formula $\psi(x)$ if and only if
     \[\forall x (\varphi(x) \iff \psi(x))\]
     holds. We may write $\{x : \varphi(x)\}$ to denote the equivalence class of a formula $\varphi(x)$.
@@ -67,7 +67,7 @@ Now consider the class $\{x : x \neq x\}$. One can just as easily prove that $\f
 \[\forall y (y \in \varnothing \iff y \in \{x : x \neq x\})\]
 holds. In other words, the class $\{x : x \neq x\}$ has the same elements as the set $\varnothing$! We should therefore formally identify the class $\{x : x \neq x\}$ with the set $\varnothing$, and in general identify any class $C$ with any set $S$ whenever $C$ and $S$ have the same elements.
 
-\begin{convention}
+\begin{convention}\label{conv:appendix:size issues:classes which are sets}
     Let $C$ be a class and let $S$ be a set. If
     \[\forall x (x \in C \iff x \in S)\]
     holds, we identify $C$ with $S$ and (in particular) say that $C$ \emph{is a set}. If $C$ is not identified with any set $S$, i.e. if
@@ -91,21 +91,21 @@ In the other direction, we have seen an example of a non-proper class, i.e. a cl
 
 We may now make precise the definition of a category. Important for the definition will be the notion of a function between classes.
 
-\begin{definition}
+\begin{definition}\label{def:appendix:size issues:subclass}
     Let $C$ and $C'$ be classes. We say $C \subseteq C'$ if and only if
     \[\forall x (x \in C \implies x \in C').\]
 \end{definition}
 
 Note that this extends the subset relation between sets, since every set is also (identified with) a class!
 
-\begin{definition}
+\begin{definition}\label{def:appendix:size issues:product of classes}
     Let $C$ and $C'$ be classes. We denote by $C \times C'$ the class
     \[\{(x,y) : x \in C \land y \in C'\},\]
     which (as a reminder) is shorthand for
     \[\{p : \exists x \exists y (x \in C \land y \in C' \land p = (x,y))\}.\]
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def:appendix:size issues:function between classes}
     Let $C$ and $C'$ be classes. By a \emph{function} $C \to C'$ we will mean a class $f \subseteq C \times C'$ such that
     \[\forall x (x \in C \implies \exists! y (y \in C' \land (x,y) \in f))\]
     holds.
@@ -113,7 +113,7 @@ Note that this extends the subset relation between sets, since every set is also
 
 Note that when $C$ and $C'$ are sets, this recovers exactly the notion of a function between sets. In any case, when $f : C \to C'$ is a function between classes and $x \in C$ is an element, we denote by $f(x)$ the unique element of $C'$ such that $(x,f(x)) \in f$.
 
-\begin{definition}[Categories, Version 1]
+\begin{definition}[Categories, Version 1]\label{def:appendix:size issues:category version 1}
     A category $\catC$ consists of the following data:
     \begin{itemize}
         \item A class $\ob \catC$ of \emph{objects},
@@ -136,7 +136,7 @@ Note that when $C$ and $C'$ are sets, this recovers exactly the notion of a func
 
 It is important to note that small categories are necessarily locally small, but the converse does not hold in general.
 
-\begin{proposition}
+\begin{proposition}\label{prop:appendix:size issues:small iff locally small with a set of objects}
     Let $\catC$ be a category. The following are equivalent:
     \begin{enumerate}
         \item $\catC$ is small,
@@ -171,7 +171,7 @@ Then if we have a universe $U_1$, we can define a ``$U_1$-small category'' to be
 
 The final philosophical point to make, before we actually define universes, is that at the end of the day, it will always suffice to prove our theorems in some sufficiently large universe -- it is never actually necessary to consider the entire class of sets all at once. After all, any particular mathematical object has a fixed size. So, the plan for setting up category theory with Grothendieck universes is to \emph{only} use small categories (as defined in the previous subsection), but to treat certain sets as ``small'' (these small sets will include e.g. all topological spaces of interest to us in some mathematical context) and other sets as ``large'' (these large sets will include e.g. the set of all small sets).
 
-\begin{definition}
+\begin{definition}\label{def:appendix:size issues:universe}
     A set $U$ is said to be a \emph{(Grothendieck) universe} if
     \begin{enumerate}
         \item $U$ is transitive, i.e.
@@ -189,7 +189,7 @@ The final philosophical point to make, before we actually define universes, is t
 
 There are other equivalent ways to express these axioms, but the point is that when $U$ is a universe in ZFC set theory, $(U,\in)$ is a model of ZFC set theory. Some authors (including Grothendieck) do not require the last axiom (in which case $(U,\in)$ will be a model of ZFC minus the axiom of infinity). Another way to say this is that for any universe $U$, we can perform any set-theoretic construction with elements of $U$ and remain inside $U$.
 
-\begin{definition}
+\begin{definition}\label{def:appendix:size issues:U-small}
     Let $U$ be a universe. By a ``$U$-small set'' we will mean simply an element of $U$. By a ``$U$-small category'' we will mean simply a small category $\catC$ such that $\ob \catC \in U$ and $\mor \catC \in U$.
 \end{definition}
 
@@ -205,7 +205,7 @@ There is only one problem: it is impossible to prove that universes exist\footno
 
 It is possible in principle that the universe axiom is inconsistent with the other axioms of ZFC, but this is widely believed not to be the case. This belief is not weakly held; set theorists have actually spent a lot of time thinking about this axiom, in the following guise:
 
-\begin{proposition}
+\begin{proposition}\label{prop:appendix:size issues:universes and inaccessible cardinals}
     In ZFC, the following two statements are equivalent:
     \begin{enumerate}
         \item The universe axiom holds,
@@ -231,7 +231,7 @@ We note now that this setup allows us to define the free cocompletion functor
 \[Y : \Cat \to \CAT,\]
 which sends a $U_1$-small category $\catC \in \ob \Cat$ to its category of presheaves $\Fun(\catC^\op, \Set)$, and which sends a functor $f : \catC \to \catD$ to left Kan extension along $f^\op$. Note that $Y(\catC)$ is $U_2$-small but typically not $U_1$-small, so $Y$ really does need $\CAT$ (rather than $\Cat$) as its target. We should also be clear that $Y(\catC)$ is the free \emph{$U_1$-cocompletion} of $\catC$, i.e. $Y(\catC)$ admits all $U_1$-small colimits, and all objects of $Y(\catC)$ are $U_1$-small colimits of representable presheaves. Since $\Cat$ is a full subcategory of $\CAT$, we may now compare $Y$ with the inclusion $i : \Cat \hookrightarrow \CAT$, and thereby express the Yoneda embedding as a single natural transformation -- a statement which we could not even write down using classes alone.
 
-\begin{proposition}
+\begin{proposition}\label{prop:appendix:size issues:naturality of Yoneda embeddings}
     Let $i : \Cat \hookrightarrow \CAT$ denote the inclusion of the full subcategory of $U_1$-small categories. The Yoneda embeddings\footnote{One should of course carefully define the Yoneda embedding and check that it is well-defined: since $\catC$ is $U_1$-small, each hom-set $\Hom_\catC(x,y)$ is indeed an object of $\Set$.}
     \[y_\catC : \catC \to \Fun(\catC^\op, \Set) = Y(\catC)\]
     are the components of a natural transformation $y : i \Rightarrow Y$.
@@ -239,6 +239,6 @@ which sends a $U_1$-small category $\catC \in \ob \Cat$ to its category of presh
 
 The Yoneda lemma itself (the family of bijections $\Hom_{Y(\catC)}(y_\catC(x), F) \cong F(x)$) can be packaged in the same spirit, as a natural isomorphism between two functors defined on a suitable category of triples $(\catC, x, F)$ with $\catC \in \ob \Cat$, $x \in \ob \catC$, and $F \in \ob Y(\catC)$.
 
-\begin{slogan}
+\begin{slogan}\label{slogan:size issues are unavoidable}
     Size issues are unavoidable. However you choose to deal with them, you must always pay attention to which things are large and which things are small.
 \end{slogan}
