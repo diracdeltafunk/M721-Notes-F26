@@ -438,16 +438,13 @@ We should intuitively think of $\cal{F}^+$ as the presheaf of ``locally-defined 
     on $\catC/x$, where $[X = Y]$ denotes the space of paths from $X$ to $Y$. When $E$ is a presheaf of truth values, ``$E$ is covering'' means that $E$ has a compatible family on some covering sieve, and ``$E$ is maximal'' means that $E$ has a global section, so the condition (\faLink) translates exactly to $E$ being a sheaf.
 \end{remark*}
 
-\begin{proposition}
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:plus construction of a sheaf is an isomorphism}
     If $\cal{F}$ is a sheaf, then $\alpha : \cal{F} \to \cal{F}^+$ is an isomorphism.
 \end{proposition}
 \begin{proof}
-    We must show that each component
-    \begin{align*}
-        \alpha_x : \cal{F}(x) & \to \cal{F}^+(x)                             \\
-        a                     & \mapsto [y(x), (\cal{F}(f)(a))_{f \in y(x)}]
-    \end{align*}
-    is an isomorphism. Injectivity is \Cref{prop:chap:sheaves:sec:sites:plus construction local representatives}(a). For surjectivity, let $[S,s] \in \cal{F}^+(x)$. Since $\cal{F}$ is a sheaf, the compatible family $s \in \cal{F}(S)$ has a unique gluing $a \in \cal{F}(x)$, and then $\alpha_x(a) = [S,s]$ because $[y(x), (\cal{F}(f)(a))_{f \in y(x)}]$ and $[S,s]$ agree on the common refinement $S$ of $y(x)$ and $S$.
+    Let $x \in \catC$ be arbitrary. Since $\cal{F}$ is a sheaf, each covering sieve $S \in \tau(x)$ induces an isomorphism $\cal{F}(x) \to \cal{F}(S)$. The inverses of these isomorphisms are compatible with the transition maps $\cal{F}(S) \to \cal{F}(T)$ for $T \subseteq S$ (exercise!), so they induce a map
+    \[\cal{F}^+(x) = \colim_{S \in \tau(x)^\op} \cal{F}(S) \to \cal{F}(x),\]
+    which is inverse (exercise!) to $\alpha_x : \cal{F}(x) \to \cal{F}^+(x)$.
 \end{proof}
 
 We now have a construction $\cal{F} \to \cal{F}^{++}$ which takes any presheaf to a sheaf, and which is functorial in $\cal{F}$. Moreover, we have a natural transformation $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$ defined as the composite
@@ -456,43 +453,131 @@ which is an isomorphism if $\cal{F}$ is already a sheaf. To show that ${(-)}^{++
 
 \startlecture[Oct 20, 2026]
 
-% \begin{theorem}
-%     The functor $\cal{F} \mapsto \cal{F}^{++}$ is sheafification, i.e.\ it is left adjoint to the inclusion $\Sh_{\tau}(\catC) \hookrightarrow \PSh(\catC)$.
-% \end{theorem}
-% \begin{proof}
-%     As in \Cref{thm:chap:sheaves:sec:spaces:sheafification}, we must show that every morphism $\varphi : \cal{F} \to \cal{G}$ from a presheaf $\cal{F}$ to a sheaf $\cal{G}$ factors uniquely through $\alpha : \cal{F} \to \cal{F}^{++}$.
-% \end{proof}
+First, we make a quick note that there are actually two natural maps $\cal{F}^+ \to \cal{F}^{++}$ available to us: there is the map I have called $\alpha$ above, \emph{and} there is $\alpha^+ : \cal{F}^+ \to \cal{F}^{++}$, which is the image of $\alpha : \cal{F} \to \cal{F}^+$ under the functor $(-)^+$. These two maps are equal, so we do not need to worry about having defined $\eta_{\cal{F}}$ incorrectly.
 
-% TODO: Move the following draft material to after sheafification on sites has been constructed.
-% It makes precise the first observation at the start of this subsection (sheaves as a non-free cocompletion).
-% \begin{draft}
-%     \begin{proposition}\label{prop:chap:sheaves:sec:sites:universal property of sheaves}
-%         Let $(\catC,\tau)$ be a small site, and let $\cal{E}$ be a cocomplete category. Precomposition with the functor $\catC \to \Sh_{\tau}(\catC)$, $x \mapsto y(x)^{++}$, gives an equivalence between the category of cocontinuous functors $\Sh_{\tau}(\catC) \to \cal{E}$ and the full subcategory of $\Fun(\catC,\cal{E})$ spanned by the functors $F$ which \emph{send covering sieves to colimits}, meaning that for every covering sieve $S$ on every $x \in \catC$, the cocone $(F(f) : F(c) \to F(x))_{(f : c \to x) \in S}$ exhibits
-%         \[F(x) \cong \colim_{(f : c \to x) \in S/x} F(c).\]
-%     \end{proposition}
-%     \begin{proof}[Sketch of proof]
-%         By \Cref{prop:Yoneda}, a functor $F : \catC \to \cal{E}$ extends to a cocontinuous functor $\widehat{F} : \PSh(\catC) \to \cal{E}$, which has a right adjoint $e \mapsto \Hom_{\cal{E}}(F({-}),e)$. Since $S$ is the colimit of the representables $y(c)$ over $S/x$ (as observed after \Cref{prop:chap:sheaves:sec:sites:sheaf condition as limit}), the functor $\widehat{F}$ sends the inclusion $S \hookrightarrow y(x)$ to the comparison map $\colim_{S/x} F(c) \to F(x)$. It follows that $F$ sends covering sieves to colimits if and only if the right adjoint of $\widehat{F}$ takes values in sheaves, and this is exactly what is needed for $\widehat{F}$ to factor, uniquely up to isomorphism, through sheafification.
-%     \end{proof}
-%
-%     \begin{proposition}\label{prop:chap:sheaves:sec:sites:subcanonical iff fully faithful}
-%         Let $(\catC,\tau)$ be a small site. The functor $\catC \to \Sh_{\tau}(\catC)$, $x \mapsto y(x)^{++}$, is fully faithful if and only if $\tau$ is subcanonical.
-%     \end{proposition}
-%     \begin{proof}
-%         For $x, c \in \catC$, the adjunction and the Yoneda lemma give
-%         \[\Hom_{\Sh_{\tau}(\catC)}\left(y(x)^{++}, y(c)^{++}\right) \cong \Hom_{\PSh(\catC)}\left(y(x), y(c)^{++}\right) \cong y(c)^{++}(x),\]
-%         and under this identification, the map $\Hom_\catC(x,c) \to \Hom\left(y(x)^{++},y(c)^{++}\right)$ induced by the functor is the component at $x$ of the unit $\eta_{y(c)} : y(c) \to y(c)^{++}$. So the functor is fully faithful if and only if $\eta_{y(c)}$ is an isomorphism for every $c$, i.e.\ if and only if every representable presheaf is a sheaf.
-%     \end{proof}
-%
-%     This is a familiar phenomenon from presentations of algebraic objects: if we present an object by generators and relations, the generators map injectively into it exactly when the relations already held among them. Here the ``generators'' are the objects and morphisms of $\catC$, and the ``relations'' say that covering sieves become colimits. When $\tau$ is subcanonical, these relations are already true in $\catC$, so imposing them costs nothing, and $\catC$ embeds as a full subcategory of $\Sh_{\tau}(\catC)$. In this case \Cref{prop:chap:sheaves:sec:sites:universal property of sheaves} really does say that cocontinuous functors out of $\Sh_{\tau}(\catC)$ are the same as functors out of $\catC$ which \emph{preserve} the colimits designated by $\tau$, and we say that $\Sh_{\tau}(\catC)$ is a \emph{fully faithful} (not necessarily free) cocompletion of $\catC$, just as in \Cref{prop:chap:sheaves:sec:spaces:category of sheaves is cocomplete}. When $\tau$ is not subcanonical, the relations are genuinely new, and imposing them can collapse $\catC$.
-%
-%     In \Cref{example:chap:sheaves:sec:sites:dense topology}, the relation imposed by the sieve $S$ says that the induced map $y(\RR \setminus \{0\})^{++} \to y(\RR)^{++}$ is an isomorphism, even though $\RR \setminus \{0\} \hookrightarrow \RR$ is not an isomorphism in $\Open(\RR)$: imposing the relations has identified two distinct objects of $\Open(\RR)$.
-%
-%     \begin{remark}\label{remark:chap:sheaves:sec:sites:pullback stability and left exactness}
-%         The condition (T1) plays a second role, on the side of the category of sheaves. If we imposed the relations coming from an arbitrary collection of sieves, we would still obtain a reflective subcategory of $\PSh(\catC)$ with a universal property like that of \Cref{prop:chap:sheaves:sec:sites:universal property of sheaves}. Stability of the relations under pullback is what guarantees that the resulting sheafification functor preserves finite limits, which will be essential later. So the word ``universal'' in \Cref{def:chap:sheaves:sec:sites:colimit sieve} and the axiom (T1) express the same requirement, seen from the two sides.
-%     \end{remark}
-% \end{draft}
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:two natural maps from plus to double plus are equal}
+    Let $\cal{F}$ be a presheaf on $(\catC,\tau)$. The natural maps
+    \[\alpha : \cal{F}^+ \to \cal{F}^{++} \quad\text{and}\quad \alpha^+ : \cal{F}^+ \to \cal{F}^{++}\]
+    are equal.
+\end{proposition}
+\begin{proof}
+    Let $x \in \catC$, and let $[S,s] \in \cal{F}^+(x)$. Then
+    \[\alpha_x([S,s]) = [y(x), (\cal{F}^+(f)([S,s]))_{f \in y(x)}] = [y(x), ([f^* S, f^* s])_{f \in y(x)}].\]
+    On the other hand, from \Cref{prop:chap:sheaves:sec:sites:plus construction is a presheaf} we get that $\alpha^+_x([S,s])$ is represented by the compatible family
+    \begin{align*}
+        \alpha_x^+([S,s]) & = [S, (\alpha_{\dom(f)}(s_f))_{f \in S}]                              \\
+                          & = [S, ([y(\dom(f)), (\cal{F}(g)(s_f))_{g \in y(\dom(f))}])_{f \in S}] \\
+                          & = [S, ([y(\dom(f)), (s_{f \circ g})_{g \in y(\dom(f))}])_{f \in S}]
+    \end{align*}
+    Since $S \in \tau(x)$, it suffices to show that
+    \[[y(\dom(f)), (s_{f \circ g})_{g \in y(\dom(f))}] = [f^* S, f^* s]\]
+    in $\cal{F}^+(\dom(f))$ for all $f \in S$. Since $f^* S \in \tau(\dom(f))$, it suffices to show that
+    \[s_{f \circ g} = (f^* s)_g\]
+    for all $g \in f^* S$. This is simply the definition of $f^* s$.
+\end{proof}
 
-%TODO \subsection{Points}
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:factorization through plus construction}
+    Let $\cal{F}$ be a presheaf on $(\catC,\tau)$, and let $\cal{G}$ be a sheaf. Then every morphism $\varphi : \cal{F} \to \cal{G}$ factors uniquely through $\alpha : \cal{F} \to \cal{F}^+$.
+\end{proposition}
+\begin{proof}
+    First, we show existence of the factorization. Given $\varphi : \cal{F} \to \cal{G}$, we obtain a naturality square
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGNhbHtGfSJdLFsxLDAsIlxcY2Fse0d9Il0sWzAsMSwiXFxjYWx7Rn1eKyJdLFsxLDEsIlxcY2Fse0d9XisiXSxbMCwyLCJcXGFscGhhIiwyXSxbMCwxLCJcXHZhcnBoaSJdLFsxLDMsIlxcYWxwaGEiXSxbMiwzLCJcXHZhcnBoaV4rIiwyXV0=
+    \[\begin{tikzcd}[ampersand replacement=\&]
+            {\cal{F}} \& {\cal{G}} \\
+            {\cal{F}^+} \& {\cal{G}^+}
+            \arrow["\varphi", from=1-1, to=1-2]
+            \arrow["\alpha"', from=1-1, to=2-1]
+            \arrow["\alpha", from=1-2, to=2-2]
+            \arrow["{\varphi^+}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+    Since $\cal{G}$ is a sheaf, $\alpha : \cal{G} \to \cal{G}^+$ is an isomorphism, giving a factorization of $\varphi$ through $\alpha : \cal{F} \to \cal{F}^+$.
+
+    Next, we show that the factorization is unique. Suppose $\varphi : \cal{F} \to \cal{G}$ factors through $\alpha : \cal{F} \to \cal{F}^+$ via some morphism $\psi : \cal{F}^+ \to \cal{G}$, i.e. the top-left triangle in the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGNhbHtGfSJdLFsxLDAsIlxcY2Fse0d9Il0sWzAsMSwiXFxjYWx7Rn1eKyJdLFsxLDEsIlxcY2Fse0d9XisiXSxbMCwyLCJcXGFscGhhIiwyXSxbMCwxLCJcXHZhcnBoaSJdLFsyLDEsIlxccHNpIiwxXSxbMSwzLCJcXGFscGhhIl0sWzIsMywiXFx2YXJwaGleKyIsMl1d
+    \[\begin{tikzcd}[ampersand replacement=\&]
+            {\cal{F}} \& {\cal{G}} \\
+            {\cal{F}^+} \& {\cal{G}^+}
+            \arrow["\varphi", from=1-1, to=1-2]
+            \arrow["\alpha"', from=1-1, to=2-1]
+            \arrow["\alpha", from=1-2, to=2-2]
+            \arrow["\psi"{description}, from=2-1, to=1-2]
+            \arrow["{\varphi^+}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+    We want to show that the bottom-right triangle commutes, from which it will follow that $\psi$ is equal to the factorization we produced above. First, we apply the functor ${(-)}^+$ to the top-left triangle and obtain from \Cref{prop:chap:sheaves:sec:sites:two natural maps from plus to double plus are equal} that
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGNhbHtGfV4rIl0sWzIsMCwiXFxjYWx7R31eKyJdLFsxLDEsIlxcY2Fse0Z9XnsrK30iXSxbMCwyLCJcXGFscGhhIiwyXSxbMCwxLCJcXHZhcnBoaV4rIl0sWzIsMSwiXFxwc2leKyIsMl1d
+    \[\begin{tikzcd}[ampersand replacement=\&]
+            {\cal{F}^+} \&\& {\cal{G}^+} \\
+            \& {\cal{F}^{++}}
+            \arrow["{\varphi^+}", from=1-1, to=1-3]
+            \arrow["\alpha"', from=1-1, to=2-2]
+            \arrow["{\psi^+}"', from=2-2, to=1-3]
+        \end{tikzcd}\]
+    commutes. Now we consider the following naturality square:
+    % https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXGNhbHtHfSJdLFswLDAsIlxcY2Fse0Z9XisiXSxbMCwxLCJcXGNhbHtGfV57Kyt9Il0sWzEsMSwiXFxjYWx7R31eKyJdLFsxLDAsIlxccHNpIl0sWzEsMiwiXFxhbHBoYSIsMl0sWzAsMywiXFxhbHBoYSJdLFsyLDMsIlxccHNpXisiLDJdXQ==
+    \[\begin{tikzcd}[ampersand replacement=\&]
+            {\cal{F}^+} \& {\cal{G}} \\
+            {\cal{F}^{++}} \& {\cal{G}^+}
+            \arrow["\psi", from=1-1, to=1-2]
+            \arrow["\alpha"', from=1-1, to=2-1]
+            \arrow["\alpha", from=1-2, to=2-2]
+            \arrow["{\psi^+}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+    We just established that going around the bottom-left corner yields $\varphi^+$. Since this naturality square commutes, we are done.
+\end{proof}
+
+\begin{theorem}
+    The functor $\cal{F} \mapsto \cal{F}^{++}$ is sheafification, i.e.\ it is left adjoint to the inclusion $\Sh_{\tau}(\catC) \hookrightarrow \PSh(\catC)$.
+\end{theorem}
+\begin{proof}
+    As in \Cref{thm:chap:sheaves:sec:spaces:sheafification}, we must show that every morphism $\varphi : \cal{F} \to \cal{G}$ from a presheaf $\cal{F}$ to a sheaf $\cal{G}$ factors uniquely through $\eta_{\cal{F}} : \cal{F} \to \cal{F}^{++}$. By \Cref{prop:chap:sheaves:sec:sites:factorization through plus construction}, $\varphi$ factors uniquely through $\alpha : \cal{F} \to \cal{F}^+$. By the same proposition applied $\cal{F}^+$, this factorization itself factors uniquely through $\alpha : \cal{F}^+ \to \cal{F}^{++}$. This yields a factorization of $\varphi$ through $\eta_{\cal{F}}$, and uniqueness follows from the uniqueness of the two factorizations.
+\end{proof}
+
+All of this applies to (pre)sheaves with values in an algebraic category $\catD$. So, for example, we may sheafify a presheaf of abelian groups, and the result will be a sheaf of abelian groups. And, just as before, we obtain useful corollaries about the category of sheaves of sets on a small site.
+
+\begin{theorem}
+    Let $(\catC,\tau)$ be a small site. Then $\Sh_{\tau}(\catC)$ is complete and cocomplete, and sheafification $\PSh(\catC) \to \Sh_{\tau}(\catC)$ preserves all colimits and finite limits.
+\end{theorem}
+\begin{proof}
+    Analogous to \Cref{prop:chap:sheaves:sec:spaces:category of sheaves is cocomplete,exercise:chap:sheaves:sec:spaces:sheafification preserves finite limits}.
+\end{proof}
+
+Moreover, we find as before that $\Sh_\tau(\catC)$ is generated under colimits by the sheafifications of the representable presheaves, and we can completely classify cocontinuous functors out of $\Sh_\tau(\catC)$.
+
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:universal property of sheaves}
+    Let $(\catC,\tau)$ be a small site, and let $\cal{E}$ be a cocomplete category. Precomposition with the functor $x \mapsto y(x)^{++} : \catC \to \Sh_{\tau}(\catC)$ gives an equivalence between the category of cocontinuous functors $\Sh_{\tau}(\catC) \to \cal{E}$ and the full subcategory of $\Fun(\catC,\cal{E})$ spanned by the functors $F$ which \emph{send covering sieves to colimits}, meaning that for every covering sieve $S$ on every $x \in \catC$, the cocone $(F(f) : F(c) \to F(x))_{(f : c \to x) \in S}$ exhibits
+    \[F(x) \cong \colim_{(f : c \to x) \in S/x} F(c).\]
+\end{proposition}
+\begin{proof}
+    Since $\PSh(\catC)$ is the free cocompletion of $\catC$, a functor $F : \catC \to \cal{E}$ extends to a cocontinuous functor $\widehat{F} : \Sh_{\tau}(\catC) \to \cal{E}$, and it is equivalent to show that $\widehat{F}$ factors (uniquely up to isomorphism) through the sheafification functor if and only if $F$ sends covering sieves to colimits.
+
+    Since (as observed after \Cref{prop:chap:sheaves:sec:sites:sheaf condition as limit}) $S$ is the colimit of the representables $y(c)$ over $S/x$, the functor $\widehat{F}$ sends the inclusion $S \hookrightarrow y(x)$ to the comparison map $\colim_{(f : c \to x) \in S/x} F(c) \to F(x)$.
+
+    Now note that $\widehat{F}$ has a right adjoint $\widehat{G}$ given by $e \mapsto \Hom_\cal{E}(F(-),e)$. We see that $\widehat{G}$ takes values in sheaves if and only if
+    \begin{gather*}
+        \Hom(F(x), e) = \widehat{G}(e)(x) \\
+        \downarrow                        \\
+        \widehat{G}(e)(S)
+        = \lim_{(f : c \to x) \in (S/x)^\op} \Hom(F(c), e) = \Hom(\colim_{(f : c \to x) \in S/x} F(c), e)
+    \end{gather*}
+    is an isomorphism for all $e, x, S$. By the Yoneda lemma, this is equivalent to the comparison map $\colim_{(f : c \to x) \in S/x} F(c) \to F(x)$ being an isomorphism for all $x, S$, i.e.\ to $F$ sending covering sieves to colimits.
+
+    $\widehat{G}$ taking values in sheaves is equivalent to $\widehat{F}$ factoring through sheafification, so we are done.
+\end{proof}
+
+\begin{proposition}\label{prop:chap:sheaves:sec:sites:subcanonical iff fully faithful}
+    Let $(\catC,\tau)$ be a small site. The functor $\catC \to \Sh_{\tau}(\catC)$ given by $x \mapsto y(x)^{++}$ is fully faithful if and only if $\tau$ is subcanonical.
+\end{proposition}
+\begin{proof}
+    For $x, c \in \catC$, the adjunction and the Yoneda lemma give
+    \[\Hom_{\Sh_{\tau}(\catC)}\left(y(x)^{++}, y(c)^{++}\right) \cong \Hom_{\PSh(\catC)}\left(y(x), y(c)^{++}\right) \cong y(c)^{++}(x),\]
+    and under this identification, the map $\Hom_\catC(x,c) \to \Hom\left(y(x)^{++},y(c)^{++}\right)$ induced by the functor $x \mapsto y(x)^{++}$ is the $x$-component of $\eta_{y(c)} : y(c) \to y(c)^{++}$. Thus, the functor $x \mapsto y(x)^{++}$ is fully faithful if and only if $\eta_{y(c)}$ is an isomorphism for every $c$, i.e.\ if and only if every representable presheaf is a sheaf.
+\end{proof}
+
+This is a familiar phenomenon from algebra. Here we imagine that $\Sh_{\tau}(\catC)$ has a presentation (as a cocomplete category) where the ``generators'' are the objects and morphisms of $\catC$, and the ``relations'' say that covering sieves must be colimits. When $\tau$ is subcanonical, these relations are already true in $\catC$ (i.e.\ all covering sieves are already colimits), so $\catC$ embeds as a full subcategory of $\Sh_{\tau}(\catC)$. In this case \Cref{prop:chap:sheaves:sec:sites:universal property of sheaves} really does say that cocontinuous functors out of $\Sh_{\tau}(\catC)$ are the same as functors out of $\catC$ which preserve certain colimits, and we say that $\Sh_{\tau}(\catC)$ is a \emph{fully faithful} (not necessarily free) cocompletion of $\catC$, just as in \Cref{prop:chap:sheaves:sec:spaces:category of sheaves is cocomplete}.
+
+\subsection{Morphisms and Points}
+
+We now turn to the question of defining analogues of the functors $f^{-1}$, $f_*$, etc. from \Cref{sec:spaces}.
 
 %TODO \subsection{Sheaves with Values in Abelian Categories}
 
@@ -507,6 +592,12 @@ which is an isomorphism if $\cal{F}$ is already a sheaf. To show that ${(-)}^{++
 
 \begin{exercise}
     Show that the collection of sieves in \Cref{example:canonical topology on Set} satisfies the axioms of a Grothendieck topology.
+\end{exercise}
+
+\begin{exercise}\label{exercise:chap:sheaves:sec:sites:finitary topology}
+    Let $\tau$ be a Grothendieck topology on a category $\catC$ which admits pullbacks. For $x$ an object of $\catC$, define
+    \[\tau^{\mathrm{fin}} (x) \coloneq \{S \in \tau(x) : S \text{ is finitely generated}\}.\]
+    Show that $\tau^{\mathrm{fin}}$ is a Grothendieck topology on $\catC$.
 \end{exercise}
 
 \begin{exercise}
@@ -540,6 +631,49 @@ which is an isomorphism if $\cal{F}$ is already a sheaf. To show that ${(-)}^{++
     \end{enumerate}
 \end{exercise}
 
+\begin{exercise}[Condensed Sets]\label{exercise:chap:sheaves:sec:sites:condensed sets}
+    Let $\mathsf{ProFin}$ denote the category of profinite sets, i.e.\ the full subcategory of $\Top$ spanned by the compact, Hausdorff, totally disconnected spaces.
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that a finite set of morphisms
+              \[\{f_i : X_i \to Y\}_{i \in I}\]
+              in $\mathsf{ProFin}$ generates a covering sieve in the canonical topology if and only if the induced map $\coprod_i X_i \to Y$ is surjective.
+        \item Show that $\tau_{\mathrm{can}}^{\mathrm{fin}}$ (defined in \Cref{exercise:chap:sheaves:sec:sites:finitary topology}) consists precisely of sieves generated by finite sets of morphisms $\{f_i : X_i \to Y\}_{i \in I}$ such that $\coprod_i X_i \to Y$ is surjective.
+        \item Let $F : \mathsf{ProFin}^\op \to \Set$ be a presheaf. Show that $F$ is a sheaf with respect to $\tau_{\mathrm{can}}^{\mathrm{fin}}$ if and only if the following three conditions hold:
+              \begin{enumerate}[label=(\roman*)]
+                  \item $F(\varnothing)$ is a singleton set.
+                  \item The natural map $F(X_1 \amalg X_2) \to F(X_1) \times F(X_2)$ is a bijection for all $X_1, X_2 \in \mathsf{ProFin}$.
+                  \item For every surjective map $f : X \to Y$ in $\mathsf{ProFin}$,
+                        \[F(Y) \to F(X) \rightrightarrows F(X \times_Y X)\]
+                        is an equalizer diagram in $\Set$.
+              \end{enumerate}
+        \item Let $T$ be a topological space. Show that the presheaf $y(T) : \mathsf{ProFin}^\op \to \Set$ given by $y(T)(X) = \Hom_{\Top}(X,T)$ is a sheaf for the topology $\tau_{\mathrm{can}}^{\mathrm{fin}}$.
+    \end{enumerate}
+\end{exercise}
+
 \begin{exercise}
     Prove \Cref{prop:chap:sheaves:sec:sites:plus construction is a presheaf}.
 \end{exercise}
+
+\begin{exercise}
+    Fill in the details of the proof of \Cref{prop:chap:sheaves:sec:sites:plus construction of a sheaf is an isomorphism}.
+\end{exercise}
+
+\begin{exercise}
+    Let $(\catC, \tau)$ be a small site. Let $\varphi : \cal{F} \to \cal{G}$ be a morphism of presheaves on $\catC$. Let $x$ be an object of $\catC$. For an element $\sigma \in \cal{G}(x)$, define $S_\sigma$ to be the set of morphisms $f : z \to x$ such that $f^* \sigma \in \varphi_z(\cal{F}(z))$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that $S_\sigma$ is a sieve on $x$.
+        \item Suppose $\alpha(\sigma)$ lies in the image of $\varphi^+_x : \cal{F}^+(x) \to \cal{G}^+(x)$. Show that $S_\sigma \in \tau(x)$.
+        \item Suppose $\eta(\sigma)$ lies in the image of $\varphi^{++}_x : \cal{F}^{++}(x) \to \cal{G}^{++}(x)$. Show that $S_\sigma \in \tau(x)$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Let $(\catC,\tau)$ be a small site, and let $x$ be an object of $\catC$. Let $i : S \hookrightarrow y(x)$ be a sieve on $x$. In particular, $S$ is a presheaf on $\catC$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose $S \in \tau(x)$. Show that $i^{++} : S^{++} \to y(x)^{++}$ is an isomorphism. \textit{Hint:} use the Yoneda lemma.
+        \item Suppose $i^{++} : S^{++} \to y(x)^{++}$ is an isomorphism. Show that $S \in \tau(x)$. \textit{Hint:} apply the previous exercise to the element $\sigma = \id_x \in y(x)(x)$.
+        \item Suppose $\tau'$ is a Grothendieck topology on $\catC$ such that $\Sh_{\tau}(\catC) = \Sh_{\tau'}(\catC)$. Show that $\tau = \tau'$.
+    \end{enumerate}
+\end{exercise}
+
+
